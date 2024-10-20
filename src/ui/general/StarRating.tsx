@@ -1,6 +1,6 @@
 import { FaStar } from "react-icons/fa";
 
-export default function StarRating({ rating }: { rating: number }) {
+export default function StarRating({ rating, size, fillColor }: { rating: number, size: string, fillColor: string }) {
     const totalStars = 5;
 
     return (
@@ -13,14 +13,14 @@ export default function StarRating({ rating }: { rating: number }) {
                     <span key={index} style={{marginRight: "5px", position: 'relative', display: 'flex'}}>
                         {index < fullStars ? (
                             // Fully filled stars
-                            <FaStar color="var(--rating-yellow)" size={24}/>
+                            <FaStar color={fillColor} size={size === "normal" ? 24 : 44} />
                         ) : index === fullStars ? (
                             // Partially filled star
                             <span style={{position: 'relative', display: 'inline-block'}}>
-                                <FaStar color="gray" size={24}/>
+                                <FaStar color="#d1d5db" size={size === "normal" ? 24 : 44} />
                                 <FaStar
-                                    color="var(--rating-yellow)"
-                                    size={24}
+                                    color={fillColor}
+                                    size={size === "normal" ? 24 : 44} 
                                     style={{
                                         position: 'absolute',
                                         top: 0,
@@ -31,12 +31,12 @@ export default function StarRating({ rating }: { rating: number }) {
                             </span>
                         ) : (
                             // Empty stars (gray)
-                            <FaStar color="gray" size={24}/>
+                            <FaStar color="#d1d5db" size={size === "normal" ? 24 : 44} />
                         )}
                     </span>
                 );
             })}
-            <span style={{fontFamily: 'Playfair'}} className={'text-lg'}>{rating}/5</span>
+            {/* <span style={{fontFamily: 'Playfair'}} className={'text-lg'}>{rating}/5</span> */}
         </div>
     );
 }
