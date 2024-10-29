@@ -3,6 +3,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { BsHandbag } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { NavLink } from 'react-router-dom';
 
 export default function Navbar(){
     return(
@@ -16,8 +17,8 @@ export default function Navbar(){
             </span>
             <div className={'hidden sm:flex w-[55%]'}>
                 <ul className={'flex items-center justify-center sm:gap-6 md:gap-10 lg:gap-16 w-full'}>
-                    <li className={'text-center lg:text-lg roboto-regular'}>Home</li>
-                    <li className={'text-center lg:text-lg roboto-regular'}>Shop</li>
+                    <NavLink to={"/"} className={'text-center lg:text-lg roboto-regular'}>Home</NavLink>
+                    <NavLink to={"/"} className={'text-center lg:text-lg roboto-regular'}>Shop</NavLink>
                     <li className={'text-center lg:text-lg roboto-regular'}>About</li>
                     <li className={'text-center lg:text-lg roboto-regular'}>Services</li>
                     <li className={'text-center lg:text-lg roboto-regular'}>Blog</li>
