@@ -1,8 +1,9 @@
-import React from 'react';
 import Navbar from '../ui/general/Navbar';
 import Image1 from '../assets/old-fashion-black-perfume.png';
 import { MdDelete } from "react-icons/md";
 import IncrementDecrementBtn from "../ui/components/IncrementDecrementBtn.tsx";
+import { useNavigate } from 'react-router-dom';
+
 
 const products = [
     { id: 1, name: 'Luxurious Elixir', price: 250, quantity: 100, image: Image1 },
@@ -10,9 +11,17 @@ const products = [
     { id: 3, name: 'Auram Aura', price: 200, quantity: 50, image: Image1 }
 ];
 
+
+
 const CartPage = () => {
     // Calculate the total cost of the products
     const totalCost = products.reduce((acc, product) => acc + product.price, 0);
+
+    const navigate = useNavigate();
+
+    const handleCheckoutClick = () => {
+        navigate('/personal-details'); // Adjust this path as needed for your Personal Details route
+    };
 
     return (
         <>
@@ -63,7 +72,9 @@ const CartPage = () => {
                                     <span className="font-semibold">${totalCost}</span>
                                 </li>
                             </ul>
-                            <button className="mt-4 w-full bg-[#ab572d] hover:bg-[#db6e37] text-white font-semibold py-2 px-4 rounded transition-colors duration-200 ease-in-out flex justify-center items-center">
+                            <button
+                                onClick={handleCheckoutClick}
+                                className="mt-4 w-full bg-[#ab572d] hover:bg-[#db6e37] text-white font-semibold py-2 px-4 rounded transition-colors duration-200 ease-in-out flex justify-center items-center">
                                 Go to Checkout →
                             </button>
                         </div>
