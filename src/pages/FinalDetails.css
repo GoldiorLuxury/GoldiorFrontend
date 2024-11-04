@@ -1,0 +1,77 @@
+/* styles.css */
+.order-summary {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: 'Luxurious Elixir';
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.summary-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.customer-details,
+.date {
+    font-weight: 500;
+    font-size: 20px;
+    color: #000000;
+}
+
+.product-list {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 20px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+
+
+.button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    background-color: #da6110;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+
+}
+
+.checkbox {
+    margin-right: 10px;
+
+}
