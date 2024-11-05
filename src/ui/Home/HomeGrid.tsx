@@ -8,8 +8,8 @@ function HomeGrid() {
   return (
     <>
     <h1 className="text-5xl font-bold text-brown-700 mb-8 text-center py-8 mt-10 text-[var(--theme-brown)]">Best selling products</h1>
-    <div className="flex gap-5 items-center justify-center p-6 px-12">
-    <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-3 gap-5 p-8 -mt-14">
+    <div className="flex gap-5 items-center justify-center p-6 lg:px-12">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 p-8 -mt-14">
       <ProductCard
         imageUrl={perfume1}
         name="Luxurs elixir"

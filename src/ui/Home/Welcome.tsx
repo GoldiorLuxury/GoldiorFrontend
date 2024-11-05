@@ -14,18 +14,15 @@ function Welcome({
           style={{
             backgroundImage: `url(${imageUrl})`,
             backgroundBlendMode: "darken",
-            backgroundColor: "rgba(0, 0, 0, 0.65)",
+            backgroundColor: "rgba(0, 0, 0, 0.70)",
           }}
         >
-          {/* Overlay to darken the background image */}
-          <div className="absolute inset-0 bg-black opacity-50"></div>
   
-          {/* Text content, centered */}
-          <div className="relative z-10 text-center px-4">
-            <h1 className="text-5xl lg:text-6xl mb-12 text-[var(--theme-brown)] drop-shadow-lg">
+          <div className="relative z-10 text-center">
+            <h1 className="text-4xl font-bold text-[var(--theme-brown)] drop-shadow-lg mb-6 md:text-5xl lg:text-6xl">
               {heading}
             </h1>
-            <p className="text-2xl lg:text-xl text-white drop-shadow-md px-64">
+            <p className="text-lg text-white drop-shadow-md text-center px-10 md:text-xl lg:px-36">
               {subtext}
             </p>
           </div>
