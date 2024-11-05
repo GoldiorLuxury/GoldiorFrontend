@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        serif: ['Inria Serif', 'serif'],
+      },
+      screens: {
+        'xs': '350px',  // Adding a new custom breakpoint at 450px
+      }
+    },
   },
   plugins: [],
 }
