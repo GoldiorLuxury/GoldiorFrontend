@@ -19,6 +19,25 @@
 
 }
 
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(80%);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(60%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(25%);
+  }
+}
+
+.slide-in {
+  display: inline-block; /* or block if the component takes up the whole row */
+  animation: slideInFromRight 3s ease forwards;
+}
 
 .roboto-thin {
     font-family: "Roboto", sans-serif;
