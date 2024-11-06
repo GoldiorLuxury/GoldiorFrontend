@@ -83,7 +83,7 @@ function ProductGrid({
                 <select className="w-20">
                   <option className="font-semibold" value="" disabled selected>
                     Sort By
-                  </option>
+                  </option> 
                   <option value="casual">Price: Low to High</option>
                   <option value="formal">Price: High to Low</option>
                   <option value="evening">Rating: Low to High</option>
