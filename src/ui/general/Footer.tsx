@@ -4,8 +4,8 @@ import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 function Footer() {
   return (
     <footer className="bg-white py-6 lg:px-20 ">
-      <div className="container mx-auto px-10">
-        <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start border-t border-b border-gray-300 pt-8 pb-6">
+      <div className="container mx-auto px-10 text-center">
+        <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start border-t border-b border-gray-300 pt-8 pb-6 text-left">
           <div className="w-full md:w-1/3 lg:w-1/4 mb-6 md:mb-0">
             <img src={logo} alt="Logo" className="h-12 mb-4" />
             <p className="font-semibold text-2xl">
@@ -93,6 +93,7 @@ function Footer() {
             </div>
           </div>
         </div>
+        @Goldior
       </div>
     </footer>
   );
