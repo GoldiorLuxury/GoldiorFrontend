@@ -17,7 +17,7 @@ function Home() {
       <Hero
         heading={"Elevate your fragrance! Victory Scented Fragrances!"}
         subtext={
-          "Shop now and embrace the sweet smell of victory with Local Face."
+          "Shop now and embrace the sweet smell of victory with Goldior."
         }
         buttonText={"Shop now"}
         imageUrl={landingPageImage}
