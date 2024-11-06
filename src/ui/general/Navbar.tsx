@@ -98,7 +98,7 @@ export default function Navbar() {
             <NavLink to="/" className="text-center lg:text-lg roboto-regular">
               Home
             </NavLink>
-            <NavLink to="/" className="text-center lg:text-lg roboto-regular">
+            <NavLink to="/shop" className="text-center lg:text-lg roboto-regular">
               Shop
             </NavLink>
             <NavLink
