@@ -4,6 +4,7 @@ import SingleProduct from "./pages/SingleProduct.tsx";
 import About from './pages/About.tsx'
 import Services from "./pages/Services.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Shop from "./pages/Shop.tsx";
 
 
 
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/product/:id" element={<SingleProduct />} />
 
             <Route path="/about" element={<About />} />
+            <Route path="/shop" element={<Shop />} />
             {/* <Route path="/cartpage" element={<CartPage />} />
                 <Route path="/personal-details" element={<PersonalDetails />} />
                 <Route path="/final-details" element={<FinalDetails />} /> */}

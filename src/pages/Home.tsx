@@ -1,4 +1,4 @@
-import HomeGrid from "../ui/Home/HomeGrid";
+import HomeGrid from "../ui/general/ProductGrid";
 import Hero from "../ui/Home/Hero";
 import OurValues from "../ui/Home/OurValues";
 import Welcome from "../ui/Home/Welcome";
@@ -9,8 +9,11 @@ import welcomePage from "../assets/welcome-page-image.png";
 import SaleBanner from "../ui/Home/SaleBanner";
 import salePageBG from "../assets/sale_page_bg.jpg";
 import Footer from "../ui/general/Footer";
+import useGetMostOrderedProducts from "../data/products/useGetMostOrderedProducts";
 
 function Home() {
+  const { products } = useGetMostOrderedProducts();
+  console.log("products: ", products);
   return (
     <>
       <Navbar />
@@ -37,7 +40,7 @@ function Home() {
         imageUrl={welcomePage}
         buttonText={"Shop now"}
       />
-      <HomeGrid />
+      <HomeGrid products={products} heading="Best Selling Products" />
       <SaleBanner
         heading="Perfume Year-End Sale! Up to 50% OFF"
         subtext={

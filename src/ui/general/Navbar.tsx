@@ -36,7 +36,7 @@ export default function Navbar() {
               Home
             </NavLink>
             <NavLink
-              to={"/"}
+              to={"/shop"}
               className={"text-center lg:text-lg roboto-regular"}
             >
               Shop
