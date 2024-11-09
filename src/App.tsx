@@ -5,6 +5,7 @@ import About from './pages/About.tsx'
 import Services from "./pages/Services.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Shop from "./pages/Shop.tsx";
+import FinalDetails from "./pages/FinalDetails.tsx";
 
 
 
@@ -22,13 +23,14 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route index element={<Home />} />
-            <Route path="/product/:id" element={<SingleProduct />} />
+            <Route path="/product/:productId" element={<SingleProduct />} />
 
             <Route path="/about" element={<About />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/final-details" element={<FinalDetails/>} />
             {/* <Route path="/cartpage" element={<CartPage />} />
                 <Route path="/personal-details" element={<PersonalDetails />} />
-                <Route path="/final-details" element={<FinalDetails />} /> */}
+                */}
             {/*<Route path="login" element={<Login />} />*/}
 
             {/*<Route path="*" element={<PageNotFound />} />*/}

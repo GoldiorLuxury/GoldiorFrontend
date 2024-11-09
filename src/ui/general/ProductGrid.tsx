@@ -104,6 +104,7 @@ function ProductGrid({
                 name={item.name}
                 price={item.price}
                 quantity={"100ml"}
+                id={item._id}
               />
             );
           })}
