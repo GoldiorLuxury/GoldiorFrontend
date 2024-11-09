@@ -19,10 +19,10 @@ function Welcome({
         >
   
           <div className="relative z-10 text-center">
-            <h1 className="text-4xl font-bold text-[var(--theme-brown)] drop-shadow-lg mb-6 md:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-semibold text-[var(--theme-brown)] drop-shadow-lg mb-6 md:text-5xl lg:text-6xl">
               {heading}
             </h1>
-            <p className="text-lg text-white drop-shadow-md text-center px-10 md:text-xl lg:px-36">
+            <p className="text-lg text-white drop-shadow-md text-center px-10 md:text-xl lg:px-72">
               {subtext}
             </p>
           </div>

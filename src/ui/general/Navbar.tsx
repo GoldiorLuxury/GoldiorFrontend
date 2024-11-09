@@ -191,7 +191,7 @@ export default function Navbar() {
         <div
           className={`absolute top-0 right-0 w-full h-screen bg-white transform transition-transform duration-500 z-20 ease-in-out ${
             isWishlistOpen ? "translate-y-0" : "-translate-y-full"
-          } w-4/5 md:w-3/5 lg:w-1/4 shadow-lg`}
+          } w-2/3 md:w-3/5 lg:w-1/4 shadow-lg`}
         >
           <div className="flex p-6 justify-between items-center">
             <h2 className="text-3xl md:text-4xl font-semibold">Wishlist</h2>
@@ -211,9 +211,9 @@ export default function Navbar() {
           <WishlistCard />
         </div>
 
-        <div className="h-full w-[40%] sm:w-[25%] flex items-center justify-evenly lg:mx-16">
-          <IoSearchSharp size={23} />
-          <FaRegUser size={23} />
+        <div className="h-full w-[40%] sm:w-[22%] flex items-center justify-evenly lg:mx-16">
+          {/* <IoSearchSharp size={23} /> */}
+          <FaRegUser size={23}/>
           <FaRegHeart size={23} onClick={() => setWishlistOpen(true)} />
           <BsHandbag size={23} />
         </div>
