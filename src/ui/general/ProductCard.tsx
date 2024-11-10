@@ -5,17 +5,19 @@ function ProductCard({
   imageUrl,
   quantity,
   name,
+  id
 }: {
   price?: string;
   quantity?: string;
   imageUrl?: string;
   name?: string;
+  id: string;
 }) {
   const navigate = useNavigate();
 
   return (
     <button
-      onClick={() => navigate("/product/60606060")}
+      onClick={() => navigate("/product/" + id)}
       className="bg-gray-200 rounded-lg p-4 shadow-md h-full w-30 flex flex-col items-center px-14"
     >
       <div className="overflow-hidden rounded-lg mb-4">

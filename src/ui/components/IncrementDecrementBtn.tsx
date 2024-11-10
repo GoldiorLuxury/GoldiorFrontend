@@ -1,35 +1,40 @@
 import React, { useState } from "react";
-import "./IncrementDecrementBtn.css";
-import { FaPlus } from "react-icons/fa";
-import { FaMinus } from "react-icons/fa";
+import { FaPlus, FaMinus } from "react-icons/fa";
 
 const IncrementDecrementBtn = ({ minValue = 0, maxValue = 100 }) => {
-    const [count, setCount] = useState(minValue);
-    // Function to handle incrementing the counter
-    const handleIncrementCounter = () => {
-        if (count < maxValue) {
-            setCount((prevState) => prevState + 1);
-        }
-    };
-    // Function to handle decrementing the counter
-    const handleDecrementCounter = () => {
-        if (count > minValue) {
-            setCount((prevState) => prevState - 1);
-        }
-    };
-    return (
-        <div className="btn-group">
-            <button className="increment-btn" onClick={handleIncrementCounter}>
-                <FaPlus /> {/* Replaced with FaPlus icon */}
-            </button>
+  const [count, setCount] = useState(minValue);
 
-            <p>{count}</p>
+  const handleIncrementCounter = () => {
+    if (count < maxValue) {
+      setCount((prevState) => prevState + 1);
+    }
+  };
 
-            <button className="decrement-btn" onClick={handleDecrementCounter}>
-                <FaMinus /> {/* Replaced with FaMinus icon */}
-            </button>
-        </div>
-    );
+  const handleDecrementCounter = () => {
+    if (count > minValue) {
+      setCount((prevState) => prevState - 1);
+    }
+  };
 
+  return (
+    <div className="flex items-center bg-white border-2 border-[#ab572d] rounded-lg overflow-hidden transition-all duration-300 hover:border hover:border-[#ab572d]">
+      <button
+        className="w-6 h-6 flex items-center justify-center text-[#4097fe] bg-white cursor-pointer transition-all duration-300 hover:bg-[#f3f9ff]"
+        onClick={handleIncrementCounter}
+      >
+        <FaPlus />
+      </button>
+      <p className="w-5 text-center font-serif border-x border-[#f5f8fb]">
+        {count}
+      </p>
+      <button
+        className="w-6 h-6 flex items-center justify-center text-[#4097fe] bg-white cursor-pointer transition-all duration-300 hover:bg-[#f3f9ff]"
+        onClick={handleDecrementCounter}
+      >
+        <FaMinus />
+      </button>
+    </div>
+  );
 };
+
 export default IncrementDecrementBtn;

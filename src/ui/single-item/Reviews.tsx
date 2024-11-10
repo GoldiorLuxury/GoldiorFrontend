@@ -1,12 +1,21 @@
 import { useState } from "react";
 import StarRating from "../general/StarRating";
+import ProfileIcon from "../user/ProfileIcon";
+import Footer from "../general/Footer";
 
-export default function Reviews({ reviews }: { reviews: any }) {
-  const totalRating = reviews.reduce(
-    (sum: number, review: any) => sum + review.rating,
-    0
-  );
-  const averageRating = Number((totalRating / reviews.length).toFixed(1));
+export default function Reviews({reviews, averageRating}: {reviews: any, averageRating: number}){
+
+
+
+ const totalReviews = reviews.length;
+ const recommendedReviews = reviews.filter(
+   (review) => review.isRecommended === true
+ ).length;
+
+ // Calculate the percentage
+ const recommendationPercentage = Math.round(
+   (recommendedReviews / totalReviews) * 100
+ );
 
   // Calculate counts for each star (1 to 5)
   const starCounts = [1, 2, 3, 4, 5].reduce((acc, star) => {
@@ -17,23 +26,29 @@ export default function Reviews({ reviews }: { reviews: any }) {
   }, {} as Record<number, number>); // Initial accumulator as an object {1: 0, 2: 0, ...}
 
   return (
-    <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-0 md:mt-8 py-4">
-      <h2
-        style={{ fontFamily: "Playfair" }}
-        className="text-xl text-gray-900 font-semibold text-center"
-      >
-        Ratings & Reviews
-      </h2>
-      <div className="w-full flex items-center justify-center my-2">
-        <p className="w-[60vw] h-[0.15rem] bg-gray-400"></p>
+    <>
+      <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-0 md:mt-8 py-4">
+        <h2
+          style={{ fontFamily: "Playfair" }}
+          className="text-xl text-gray-900 font-semibold text-center"
+        >
+          Ratings & Reviews
+        </h2>
+        <div className="w-full flex items-center justify-center my-2">
+          <p className="w-[60vw] h-[0.15rem] bg-gray-400"></p>
+        </div>
+        {reviews.length > 0 && (
+          <RatingSummary
+            reviews={reviews}
+            averageRating={averageRating}
+            starCounts={starCounts}
+            recommendationPercentage={recommendationPercentage}
+          />
+        )}
+        <ReviewList reviews={reviews} />
       </div>
-      <RatingSummary
-        reviews={reviews}
-        averageRating={averageRating}
-        starCounts={starCounts}
-      />
-      <ReviewList reviews={reviews} />
-    </div>
+      <Footer />
+    </>
   );
 }
 
@@ -47,83 +62,89 @@ function ReviewList({ reviews }: { reviews: any }) {
   );
 }
 
-function ReviewListItem({ review }: { review: any }) {
-  const [readMore, setReadMore] = useState<boolean>(false);
+function ReviewListItem({review}: {review: any}){
+    const [readMore, setReadMore] = useState<boolean>(false); 
 
-  function handleToggleReadMore() {
-    setReadMore(!readMore);
-  }
-  return (
-    <div className="flex gap-4 items-start mb-6 mt-10">
-      <img
-        className="rounded-full object-contain"
-        height={64}
-        width={64}
-        src={review.userimg}
-        alt={`${review.username}'s profile`}
-      />
-      <div>
-        <div className="flex w-full items-center justify-between">
-          <div>
-            <p className="text-lg font-semibold text-gray-800">
-              {review.username}
-            </p>
-            <StarRating
-              rating={review.rating}
-              size="normal"
-              fillColor="var(--rating-yellow)"
-            />
+    console.log("review: ", review)
+    
+    function handleToggleReadMore(){
+        setReadMore(!readMore)
+    }
+    return (
+      <div className="flex gap-4 items-start mb-6 mt-10">
+        {/* <img
+          className="rounded-full object-contain"
+          height={64}
+          width={64}
+          src={review.userimg}
+          alt={`${review.username}'s profile`}
+        /> */}
+        <ProfileIcon username={review?.user_id?.username} />
+        <div>
+          <div className="flex w-full items-center justify-between">
+            <div>
+              <p className="text-lg font-semibold text-gray-800">
+                {review?.user_id?.username}
+              </p>
+              <StarRating
+                rating={review?.rating}
+                size="normal"
+                fillColor="var(--rating-yellow)"
+              />
+            </div>
           </div>
+          <p className="text-justify text-gray-800 mt-2">
+            {readMore || review.text.length <= 500
+              ? review.text
+              : `${review.text.slice(0, 500)}...`}
+          </p>
+          {review.text.length > 500 && (
+            <button
+              className="text-[var(--theme-brown)]"
+              onClick={handleToggleReadMore}
+            >
+              {readMore ? "Read Less" : "Read More"}
+            </button>
+          )}
+          {review.img_url && (
+            <img
+              src={review.img_url}
+              height={200}
+              width={300}
+              alt="review image"
+            />
+          )}
+          <span className="font-semibold text-gray-500">
+            Posted on{" "}
+            {new Date(review.createdAt).toLocaleDateString("en-US", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+          </span>
         </div>
-        <p className="text-justify text-gray-800 mt-2">
-          {readMore || review.text.length <= 500
-            ? review.text
-            : `${review.text.slice(0, 500)}...`}
-        </p>
-        {review.text.length > 500 && (
-          <button
-            className="text-[var(--theme-brown)]"
-            onClick={handleToggleReadMore}
-          >
-            {readMore ? "Read Less" : "Read More"}
-          </button>
-        )}
-        {review.imgUrl && (
-          <img
-            src={review.imgUrl}
-            height={200}
-            width={300}
-            alt="review image"
-          />
-        )}
-        <span className="font-semibold text-gray-500">
-          Posted on{" "}
-          {new Date(review.createdAt).toLocaleDateString("en-US", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
-        </span>
       </div>
-    </div>
-  );
+    );
 }
 
 function RatingSummary({
+  recommendationPercentage,
   averageRating,
   starCounts,
   reviews,
 }: {
+  recommendationPercentage: number;
   averageRating: number;
   starCounts: Record<number, number>;
   reviews: any;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [rating, setRating] = useState(5);
-  const [reviewText, setReviewText] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [recommend, setRecommend] = useState(false);
 
+    const [isOpen, setIsOpen] = useState(false);
+    const [rating, setRating] = useState(5);
+    const [reviewText, setReviewText] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+    const [recommend, setRecommend] = useState(false);
+    
   return (
     <div className="md:flex ">
       {/* left side */}
