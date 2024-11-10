@@ -68,7 +68,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
       <div>
         <div
           className={
-            "h-[95vh] sm:h-[55vh] md:h-[55vh] lg:h-[60vh] w-full px-0 sm:px-16 md:px-20 lg:px-28 justify-center items-center flex sm:flex-row flex-col"
+            "h-[95vh] sm:h-[55vh] md:h-[55vh] mt-32 lg:h-[60vh] w-full px-0 sm:px-16 md:px-20 lg:px-28 justify-center items-center flex sm:flex-row flex-col"
           }
         >
           {/*perfume image*/}

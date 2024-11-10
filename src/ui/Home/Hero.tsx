@@ -9,7 +9,7 @@ function Hero({
   }) {
    
     return (
-      <div className=" relative flex flex-col-reverse items-center justify-between w-full p-6 mt-12 lg:flex-row lg:px-28 md:mt-0 h-screen">
+      <div className=" relative flex flex-col-reverse items-center justify-between w-full p-6 mt-12  lg:flex-row lg:px-28 md:mt-0 h-screen">
         <div className="flex flex-col justify-center items-center text-center p-0 m-0 lg:items-start">
           <p className="text-2xl mt-1 lg:text-6xl lg:my-1.5 font-medium">Elevate Your Spirit With</p>
           <p className="text-2xl mt-1 lg:text-6xl lg:my-1.5 font-medium">Victory Scented Fragrances!</p>
