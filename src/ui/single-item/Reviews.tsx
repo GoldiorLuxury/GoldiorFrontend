@@ -5,8 +5,6 @@ import Footer from "../general/Footer";
 
 export default function Reviews({reviews, averageRating}: {reviews: any, averageRating: number}){
 
-
-
  const totalReviews = reviews.length;
  const recommendedReviews = reviews.filter(
    (review) => review.isRecommended === true

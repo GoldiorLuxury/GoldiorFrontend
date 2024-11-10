@@ -1,22 +1,35 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import {sendEmailForOtp} from "../../data/auth/otpverification";
+import { useVerifyOtp } from "../../data/auth/UseVerifyOtp";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [isOtpModalOpen, setIsOtpModalOpen] = useState(false);
   const [otp, setOtp] = useState(["", "", "", ""]);
 
+  const {verifyOtp} = useVerifyOtp();
+
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
-  const handleSendOtp = () => {
-    if (email) {
-      setIsOtpModalOpen(true);
-    } else {
-      alert("Please enter a valid email address.");
-    }
-  };
+  const handleSubmitEmail = () => {
+    if(!email) return;
+    sendEmailForOtp(email);
+    setIsOtpModalOpen(true);
+  }
+
+  const handleVerifyOtp = () => {
+    if(!email || !otp) return;
+    const otpString = otp.join("");
+    // console.log(otp.toString())
+  
+    verifyOtp(email, otpString);
+    
+  }
+
+
 
   const handleOtpChange = (index: number, value: string) => {
     if (/^[0-9]*$/.test(value)) {
@@ -39,8 +52,8 @@ const Login: React.FC = () => {
           isOtpModalOpen ? "hidden" : ""
         }`}
       >
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        <label className="block text-sm font-medium text-gray-700">Email</label>
+        <h2 className="text-2xl font-bold mb-4 text-center">Verify your email</h2>
+        {/* <label className="block text-sm font-medium text-gray-700">Email</label> */}
         <input
           type="email"
           value={email}
@@ -49,7 +62,7 @@ const Login: React.FC = () => {
           placeholder="Enter your email"
         />
         <button
-          onClick={handleSendOtp}
+          onClick={handleSubmitEmail}
           className="mt-4 w-full bg-[var(--theme-brown)] text-white p-2 rounded"
         >
           Send OTP
@@ -94,14 +107,14 @@ const Login: React.FC = () => {
                 />
               ))}
             </div>
-            <button onClick={()=>{console.log(otp, "The Login page OTP")}} className="w-full bg-[var(--theme-brown)] text-white p-2 rounded">
-              Login
+            <button onClick={handleVerifyOtp} className="w-full bg-[var(--theme-brown)] text-white p-2 rounded">
+              Verify
             </button>
             <p className="text-center text-sm text-gray-600 mt-4">
               Didn’t receive an OTP?{" "}
-              <span className="text-[var(--theme-brown)] cursor-pointer">
+              <button onClick={handleSubmitEmail} className="text-[var(--theme-brown)] cursor-pointer">
                 Resend
-              </span>
+              </button>
             </p>
           </div>
         </div>
