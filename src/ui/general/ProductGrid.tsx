@@ -17,8 +17,8 @@ function ProductGrid({
   showFilters?: boolean;
 }) {
   return (
-    <>
-      <h1 className="text-5xl font-bold text-brown-700 mb-8 text-center mt-10 text-[var(--theme-brown)]">
+    <div className="py-20">
+      <h1 className="text-5xl font-bold text-brown-700 mb-8 text-center text-[var(--theme-brown)]">
         {heading}
       </h1>
       {showFilters && (
@@ -109,7 +109,7 @@ function ProductGrid({
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
