@@ -10,6 +10,7 @@ import SaleBanner from "../ui/Home/SaleBanner";
 import salePageBG from "../assets/sale_page_bg.jpg";
 import Footer from "../ui/general/Footer";
 import useGetMostOrderedProducts from "../data/products/useGetMostOrderedProducts";
+import DisplayFeatures from "../ui/Home/Features";
 
 function Home() {
   const { products } = useGetMostOrderedProducts();
@@ -18,7 +19,6 @@ function Home() {
     <>
       <Navbar />
       <Hero
-        heading={"Elevate your fragrance! Victory Scented Fragrances!"}
         subtext={
           "Shop now and embrace the sweet smell of victory with Goldior."
         }
@@ -49,6 +49,7 @@ function Home() {
         imageUrl={salePageBG}
         buttonText={"Know more"}
       />
+      <DisplayFeatures />
       <Footer />
     </>
   );

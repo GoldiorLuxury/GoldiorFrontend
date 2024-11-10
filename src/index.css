@@ -16,7 +16,9 @@
     --twitterIcon: #1DA1F2;
     --linkedinIcon: #0077B5;
     --instagramIcon: #cc2366;
-
+    --background: #f7eaea;
+    --buttonHover : #7d3d1d;
+    
 }
 
 @keyframes slideInFromRight {

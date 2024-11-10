@@ -10,8 +10,8 @@ function OurStory({
   return (
     <>
       {/* Text content */}
-      <div className="w-full p-6 flex flex-col justify-center items-center text-center md:px-28 lg:px-72 md:py-44">
-        <div className="text-3xl text-[var(--theme-brown)] font-medium mb-4 lg:text-5xl">
+      <div className="w-full p-6 flex flex-col bg-[radial-gradient(circle,#f7eaea,white)] justify-center items-center text-center md:px-28 lg:px-72 md:py-44">
+        <div className="text-3xl text-[var(--theme-brown)] font-bold mb-4 lg:text-5xl">
           {heading}
         </div>
         <p className="text-lg lg:text-2xl">{subtext}</p>

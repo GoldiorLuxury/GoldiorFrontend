@@ -5,7 +5,7 @@ function WhatMakesUsUnique() {
         What Makes Us Unique
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-14 w-full  md:text-left">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-14 w-full  md:text-justify">
         <div className="p-6">
           <h2 className="text-xl font-semibold mb-2">Locally Inspired</h2>
           <p className="text-xl">
@@ -41,7 +41,7 @@ function WhatMakesUsUnique() {
         </div>
       </div>
 
-      <div className="mt-8 text-xl px-6">
+      <div className="mt-8 text-xl font-light px-6">
         <p>
           Join us on this olfactory journey, celebrating the diverse tapestry of
           scents worldwide. Discover captivating aromas that connect with the
@@ -53,7 +53,7 @@ function WhatMakesUsUnique() {
           <br />
           With love and gratitude,
           <br />
-          The Local Face Perfumes Team
+          The Goldior Luxury team
         </p>
       </div>
     </div>

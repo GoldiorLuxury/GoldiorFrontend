@@ -19,8 +19,10 @@ function SaleBanner({
       >
         <div className="max-w-3xl p-8 lg:p-12 text-white z-10 ml-6">
           <h1 className="text-4xl lg:text-6xl font-bold mb-4">{heading}</h1>
-          <p className="text-lg lg:text-xl lg:font-light mb-6 lg:mb-12">{subtext}</p>
-          <button className="bg-[var(--theme-brown)] hover:bg-opacity-80 text-white font-semibold py-3 px-6 rounded-lg">
+          <p className="text-lg lg:text-xl lg:font-light mb-6 lg:mb-12">
+            {subtext}
+          </p>
+          <button className="bg-[var(--theme-brown)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--buttonHover)] duration-500">
             {buttonText}
           </button>
         </div>
