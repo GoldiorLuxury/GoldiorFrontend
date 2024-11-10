@@ -24,6 +24,7 @@ function ProductCard({
           alt={name}
           className="w-full h-full object-contain"
         />
+        
       </div>
 
       <h2 className="text-xl font-bold mb-2 text-center">{name}</h2>
