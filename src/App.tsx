@@ -12,9 +12,11 @@ import CartPage from "./pages/CartPage.tsx";
 import Blog from "./pages/Blog.tsx";
 import Blog1 from "./ui/blog/Blog1.tsx";
 import Blog2 from "./ui/blog/Blog2.tsx";
-import Blog3 from "./ui/blog/Blog3.tsx"
-import Blog4 from "./ui/blog/Blog4.tsx"
-
+import Blog3 from "./ui/blog/Blog3.tsx";
+import Blog4 from "./ui/blog/Blog4.tsx";
+import Privacy from "./ui/security/PrivacyPolicy.tsx";
+import RefundPolicy from "./ui/security/RefundPolicy.tsx";
+import TermsAndConditions from "./ui/security/terms.tsx";
 
 
 
@@ -47,6 +49,9 @@ export default function App() {
           <Route path="/blog/choosing-the-perfect-fragrance-for-every-season" element={<Blog2 />} />
           <Route path="/blog/find-your-signature-scent" element={<Blog3 />} />
           <Route path="/blog/discover-the-different-types-of-perfumes" element={<Blog4 />} />
+          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/terms & conditions" element={<TermsAndConditions />} />
 
 
         </Routes>
