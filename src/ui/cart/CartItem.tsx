@@ -8,7 +8,7 @@ export default function CartItem({product}: {product: any}){
     return(
         <div key={product.id} className="bg-white rounded-lg shadow-md p-4 mb-4 w-full">
                                 <div className="flex flex-row items-start">
-                                    <img src={product?.image} alt={product?.name} className="h-24 w-24 md:h-40 md:w-40 flex-none bg-cover rounded-t lg:rounded-t-none " />
+                                    <img src={product?.imgUrl} alt={product?.name} className="h-24 w-24 md:h-40 md:w-40 flex-none bg-cover rounded-t lg:rounded-t-none " />
                                     <div className="flex flex-col ml-20 flex-grow">
                                         <div className="text-left">
                                             <p className="text-xl font-semibold whitespace-nowrap">{product?.name}</p>

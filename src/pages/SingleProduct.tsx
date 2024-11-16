@@ -79,7 +79,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
             name,
             quantity: 1,
             unitPrice: price,
-            imgUrl: "",
+            imgUrl: product?.imgUrl,
             totalPrice: price * 1,
           };
           dispatch(addItem(newItem));
@@ -122,7 +122,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
             }
           >
             <img
-              src={perfume}
+              src={product?.imgUrl}
               alt="Perfume"
               className="h-auto w-full max-w-[300px] max-h-[450px] sm:max-w-[250px] sm:max-h-[350px] md:max-w-[300px] md:max-h-[400px] lg:max-w-[350px] lg:max-h-[450px] xl:max-w-[400px] xl:max-h-[500px] object-cover mx-auto mt-[-10%]"
             />
@@ -193,6 +193,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
                     capacity={item}
                     selectedQuantity={selectedQuantity}
                     setSelectedQuantity={setSelectedQuantity}
+                    imgUrl={product?.imgUrl}
                   />
                 ))}
               </div>
@@ -270,16 +271,17 @@ function KeyNotes({notes}: {notes: Notes[]}){
     )
 }
 
-function SizePics({capacity, selectedQuantity, setSelectedQuantity}: {
+function SizePics({capacity, selectedQuantity, setSelectedQuantity, imgUrl}: {
     capacity: number,
     selectedQuantity: number,
-    setSelectedQuantity: any
+    setSelectedQuantity: any,
+    imgUrl: string
 }) {
     return (
         <button onClick={() => setSelectedQuantity(capacity)}
-                className={`flex w-24 flex-col items-center justify-center rounded-sm  ${selectedQuantity === capacity && 'bg-gray-300'}`}>
+                className={`flex w-24 p-4 flex-col items-center justify-center rounded-sm  ${selectedQuantity === capacity && 'bg-gray-300'}`}>
             <img
-                src={perfume}
+                src={imgUrl}
                 alt="Perfume"
                 className="h-auto w-full max-w-[60px] max-h-[90px] sm:max-w-[50px] sm:max-h-[70px] md:max-w-[60px] md:max-h-[80px] lg:max-w-[70px] lg:max-h-[90px] xl:max-w-[80px] xl:max-h-[100px] object-cover mx-auto mt-[-10%]"
             />
