@@ -17,41 +17,19 @@ function ProductGrid({
   showFilters?: boolean;
 }) {
   return (
-    <div className="py-20">
+    <div className="py-20 ">
       <h1 className="text-5xl font-bold text-brown-700 mb-8 text-center text-[var(--theme-brown)]">
         {heading}
       </h1>
       {showFilters && (
         <div className="px-16 lg:px-36 pb-10 ">
           <hr />
-          <div className="flex lg:flex-row flex-col justify-between w-[50%] md:w-[70%] lg:w-full">
+          <div className="flex justify-between w-[50%] md:w-[70%] lg:w-full">
             {/* filters  */}
             <div className="flex gap-8 lg:gap-10">
-              <span className="font-semibold">Filter by</span>
+              <span className="font-semibold ">Filters</span>
 
-              {/* Dropdown for Collections */}
-              <div className="dropdown">
-                <select>
-                  <option value="" disabled selected>
-                    Collections
-                  </option>
-                  <option value="collection1">Collection 1</option>
-                  <option value="collection2">Collection 2</option>
-                  <option value="collection3">Collection 3</option>
-                </select>
-              </div>
 
-              {/* Dropdown for Fragrance Families */}
-              <div className="dropdown">
-                <select>
-                  <option value="" disabled selected>
-                    Fragrance Families
-                  </option>
-                  <option value="woody">Woody</option>
-                  <option value="oriental">Oriental</option>
-                  <option value="citrus">Citrus</option>
-                </select>
-              </div>
 
               {/* Dropdown for Gender */}
               <div className="dropdown">
@@ -64,23 +42,11 @@ function ProductGrid({
                 </select>
               </div>
 
-              {/* Dropdown for Occasions */}
-              <div className="dropdown">
-                <select>
-                  <option value="" disabled selected>
-                    Occassions
-                  </option>
-                  <option value="casual">Casual</option>
-                  <option value="formal">Formal</option>
-                  <option value="evening">Evening</option>
-                  <option value="special">Special</option>
-                </select>
-              </div>
             </div>
 
             <div>
               <div className="dropdown">
-                <select className="w-20">
+                <select className="w-40">
                   <option className="font-semibold" value="" disabled selected> 
                     Sort By
                   </option>

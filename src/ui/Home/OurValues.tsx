@@ -12,7 +12,7 @@ function OurValues({
     return (
       <div className="flex flex-col lg:flex-row items-center justify-between p-10">
         {/* Image Section - Left */}
-        <div className="lg:w-1/2 w-fit mb-8 lg:mb-0">
+        <div className="lg:w-1/2 w-fit mb-8 p-16 lg:mb-0">
           <img
             src={imageUrl}
             alt="Banner"

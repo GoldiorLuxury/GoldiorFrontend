@@ -1,12 +1,18 @@
+import { useNavigate, useNavigation } from "react-router-dom";
+
 function Hero({
     subtext,
     imageUrl,
     buttonText,
+    navigateTo = ""
   }: {
     subtext?: string;
     imageUrl?: string;
     buttonText?: string;
+    navigateTo?: string
   }) {
+
+    const navigate = useNavigate();
    
     return (
       <div className=" relative flex flex-col-reverse items-center justify-between w-full p-6 mt-12  lg:flex-row lg:px-28 md:mt-0 h-screen">
@@ -14,7 +20,7 @@ function Hero({
           <p className="text-2xl mt-1 lg:text-6xl lg:my-1.5 font-medium">Elevate Your Spirit With</p>
           <p className="text-2xl mt-1 lg:text-6xl lg:my-1.5 font-medium">Victory Scented Fragrances!</p>
           <p className=" lg:text-2xl text-brown-600 mb-4 lg:mb-16 lg:mt-2">{subtext}</p>
-          <button className="bg-[var(--theme-brown)] text-white font-medium px-6 py-3 rounded-lg w-1/2 lg:mt-1 lg:w-1/5 hover:bg-[var(--buttonHover)] duration-500">
+          <button onClick={() => navigate(navigateTo)} className="bg-[var(--theme-brown)] text-white font-medium px-6 py-3 rounded-lg w-1/2 lg:mt-1 lg:w-1/5 hover:bg-[var(--buttonHover)] duration-500">
             {buttonText}
           </button>
         </div>

@@ -11,6 +11,22 @@ import { useParams } from "react-router-dom";
 import useGetProductById from "../data/products/useGetProductById.ts";
 import Spinner from "../ui/general/Spinner.tsx";
 import useGetReviewForProduct from "../data/reviews/useGetReviewForProduct.ts";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  decreaseQuantity,
+  getCart,
+  increaseQuantity
+} from "../Features/cart/cartSlice.ts";
+
+  interface CartItem {
+    id: string;
+    name: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
+    imgUrl: string;
+  }
 
 export default function SingleProduct(){
     const perfumeCapacities = [50, 100, 150];
@@ -18,6 +34,7 @@ export default function SingleProduct(){
 
     const {product, isGettingProduct} = useGetProductById(productId);
     const {reviews, isGettingReviews} = useGetReviewForProduct(productId);
+       
 
     const totalRating = reviews?.reduce(
       (sum: number, review: any) => sum + review?.rating,
@@ -41,6 +58,33 @@ export default function SingleProduct(){
 
 function ProductInfo({averageRating, reviews, product, selectedQuantity, setSelectedQuantity}: {averageRating: number,reviews: any, product: any, selectedQuantity: number, setSelectedQuantity: any}) {
     const [size, setSize] = useState('sm'); // Default to small
+    const cart = useSelector(getCart);
+
+    const currentItemId = product?._id; // replace with the actual item ID you are checking for
+
+    const [inCart, setInCart] = useState(false);
+
+    useEffect(() => {
+      // Check if the current item is in the cart based on its ID
+      const itemInCart = cart.some(
+        (item: CartItem) => item.id === currentItemId
+      );
+      setInCart(itemInCart);
+    }, [cart, currentItemId]);
+      const dispatch = useDispatch();
+
+        function handleAddToCart(id: string, name: string, price: number) {
+          const newItem = {
+            id,
+            name,
+            quantity: 1,
+            unitPrice: price,
+            imgUrl: "",
+            totalPrice: price * 1,
+          };
+          dispatch(addItem(newItem));
+          setInCart(true);
+        }
 
     // Function to check screen width and set button size
     const checkScreenWidth = () => {
@@ -159,8 +203,8 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
                 "flex flex-row items-center justify-start gap-6 md:gap-20 px-6"
               }
             >
-              <QuantityAdjuster />
-              <RoundButton text="Add to cart" size={size} />
+              {inCart && <QuantityAdjuster  id={product?._id} />}
+              {!inCart && <RoundButton onClick={() => handleAddToCart(product?._id, product?.name, product?.price)} text="Add to cart" size={size} />}
             </div>
           </div>
         </div>

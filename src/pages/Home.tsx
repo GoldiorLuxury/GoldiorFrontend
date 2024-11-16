@@ -24,6 +24,7 @@ function Home() {
         }
         buttonText={"Shop now"}
         imageUrl={landingPageImage}
+        navigateTo="/shop"
       />
       <Welcome
         heading="Welcome to Goldior Luxury"

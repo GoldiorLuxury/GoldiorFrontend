@@ -1,0 +1,13 @@
+/* Assuming this is your CSS or Tailwind custom CSS */
+.product-image-container {
+  position: relative; /* Make sure the container positions the image correctly */
+  overflow: hidden; /* Hide any overflowed image when zooming */
+}
+
+.product-image {
+  transition: transform 0.3s ease; /* Smooth zoom transition */
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.1); /* Scale the image by 1.1x */
+}

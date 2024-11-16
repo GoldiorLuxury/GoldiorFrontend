@@ -3,6 +3,19 @@ import Image1 from '../assets/old-fashion-black-perfume.png';
 import { MdDelete } from "react-icons/md";
 import IncrementDecrementBtn from "../ui/components/IncrementDecrementBtn.tsx";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearCart,
+  decreaseQuantity,
+  deleteItem,
+  getCart,
+  getCurrentQuantityById,
+  getTotalCartPrice,
+  getTotalCartQuantity,
+  addItem,
+  increaseQuantity,
+} from "../Features/cart/cartSlice.ts";
+import CartItem from '../ui/cart/CartItem.tsx';
 
 
 const products = [
@@ -15,9 +28,14 @@ const products = [
 
 const CartPage = () => {
     // Calculate the total cost of the products
-    const totalCost = products.reduce((acc, product) => acc + product.price, 0);
+    const totalCost = useSelector(getTotalCartPrice);
 
     const navigate = useNavigate();
+
+     const cart = useSelector(getCart);
+     const dispatch = useDispatch();
+
+     console.log("cart page: ", cart);
 
     const handleCheckoutClick = () => {
         navigate('/personal-details'); // Adjust this path as needed for your Personal Details route
@@ -34,37 +52,18 @@ const CartPage = () => {
             <div className='flex justify-center w-full'>
                 <div className={`flex w-full flex-col lg:flex-row`}> {/* Responsive flex direction change */}
                     <div className="flex flex-col items-center justify-center p-4 w-full lg:w-1/2">
-                        {products.map((product) => (
-                            <div key={product.id} className="bg-white rounded-lg shadow-md p-4 mb-4 w-full">
-                                <div className="flex flex-row items-start">
-                                    <img src={product.image} alt={product.name} className="h-24 w-24 md:h-40 md:w-40 flex-none bg-cover rounded-t lg:rounded-t-none " />
-                                    <div className="flex flex-col ml-20 flex-grow">
-                                        <div className="text-left">
-                                            <p className="text-xl font-semibold whitespace-nowrap">{product.name}</p>
-                                            <p className="text-sm whitespace-nowrap">Quantity: {product.quantity}ml</p>
-                                        </div>
-                                        <div className="text-left">
-                                            <p className="text-xl font-bold mt-14">${product.price}</p>
-                                        </div>
-                                    </div>
-                                    <div className="p-4 flex flex-col items-center">
-                                        <button><MdDelete size={25} color="var(--theme-brown)" /></button>
-                                        <div className="mt-16">
-                                            <IncrementDecrementBtn />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        {cart.map((product) => (
+                            <CartItem product={product} />
                         ))}
                     </div>
                     <div className="flex items-center justify-center bg-white-200 w-full md:w-1/2">
                         <div className="border-l-indigo-50 p-6 rounded-lg shadow-md max-w-md m-auto"> {/* Changed max-w-sm to max-w-md for a wider box */}
                             <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
                             <ul>
-                                {products.map((product) => (
+                                {cart.map((product) => (
                                     <li key={product.id} className="flex justify-between py-1 ">
                                         <span className="flex-1 text-left pr-40">{product.name}</span> {/* Added padding to the right */}
-                                        <span>${product.price}</span>
+                                        <span>${product.totalPrice}</span>
                                     </li>
                                 ))}
                                 <li className="border-t pt-3 mt-3 flex justify-between">

@@ -6,6 +6,7 @@ import services4 from '../assets/services-img-4.png';
 import services5 from '../assets/services-img-5.jpg';
 import Navbar from '../ui/general/Navbar';
 import Footer from '../ui/general/Footer';
+import { NavLink } from 'react-router-dom';
 
 interface BlogCardProps {
     imageSrc: string;
@@ -21,11 +22,11 @@ const BlogCard: React.FC<BlogCardProps> = ({ imageSrc, title, description, butto
             <div className="p-6 text-center">
                 <h3 className="text-xl font-semibold mb-4">{title}</h3>
                 <p className="text-sm mb-6">{description}</p>
-                <a href={buttonLink}>
+                <NavLink to={buttonLink}>
                     <button className="shadow-[inset_0_0_0_2px_rgba(0,0,0,1)] px-4 py-1 bg-transparent border border-black text-black rounded-lg font-semibold transform hover:-translate-y-1 transition duration-400">
                         Read More
                     </button>
-                </a>
+                </NavLink>
             </div>
         </div>
 
