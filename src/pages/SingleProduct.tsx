@@ -13,19 +13,37 @@ import Spinner from "../ui/general/Spinner.tsx";
 import useGetReviewForProduct from "../data/reviews/useGetReviewForProduct.ts";
 import { handleSaveToLocalStorage } from "../data/wishlist/useSetFavItems.ts";
 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  decreaseQuantity,
+  getCart,
+  increaseQuantity
+} from "../Features/cart/cartSlice.ts";
+
+  interface CartItem {
+    id: string;
+    name: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
+    imgUrl: string;
+  }
+
+
 export default function SingleProduct(){
     const perfumeCapacities = [50, 100, 150];
     const {productId} = useParams();
 
     const {product, isGettingProduct} = useGetProductById(productId);
     const {reviews, isGettingReviews} = useGetReviewForProduct(productId);
+       
 
     const totalRating = reviews?.reduce(
       (sum: number, review: any) => sum + review?.rating,
       0
     );
     const averageRating = Number((totalRating / reviews?.length).toFixed(1));
-    // console.log("single prod", product.product)
     console.log("reviews: ", reviews)
 
     const [selectedQuantity, setSelectedQuantity] = useState<number>(perfumeCapacities[0]);
@@ -41,9 +59,34 @@ export default function SingleProduct(){
 }
 
 function ProductInfo({averageRating, reviews, product, selectedQuantity, setSelectedQuantity}: {averageRating: number,reviews: any, product: any, selectedQuantity: number, setSelectedQuantity: any}) {
-    const [size, setSize] = useState('sm'); // Default to small
+    const [size, setSize] = useState('sm');
+    const cart = useSelector(getCart);
 
-    // Function to check screen width and set button size
+    const currentItemId = product?._id; 
+
+    const [inCart, setInCart] = useState(false);
+
+    useEffect(() => {
+      const itemInCart = cart.some(
+        (item: CartItem) => item.id === currentItemId
+      );
+      setInCart(itemInCart);
+    }, [cart, currentItemId]);
+      const dispatch = useDispatch();
+
+        function handleAddToCart(id: string, name: string, price: number) {
+          const newItem = {
+            id,
+            name,
+            quantity: 1,
+            unitPrice: price,
+            imgUrl: product?.imgUrl,
+            totalPrice: price * 1,
+          };
+          dispatch(addItem(newItem));
+          setInCart(true);
+        }
+
     const checkScreenWidth = () => {
         const width = window.innerWidth;
         if (width >= 1280) {
@@ -57,7 +100,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
         }
     };
     useEffect(() => {
-        checkScreenWidth(); // Check when component mounts
+        checkScreenWidth(); 
         window.addEventListener('resize', checkScreenWidth);
 
         return () => {
@@ -79,7 +122,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
             }
           >
             <img
-              src={perfume}
+              src={product?.imgUrl}
               alt="Perfume"
               className="h-auto w-full max-w-[300px] max-h-[450px] sm:max-w-[250px] sm:max-h-[350px] md:max-w-[300px] md:max-h-[400px] lg:max-w-[350px] lg:max-h-[450px] xl:max-w-[400px] xl:max-h-[500px] object-cover mx-auto mt-[-10%]"
             />
@@ -150,6 +193,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
                     capacity={item}
                     selectedQuantity={selectedQuantity}
                     setSelectedQuantity={setSelectedQuantity}
+                    imgUrl={product?.imgUrl}
                   />
                 ))}
               </div>
@@ -160,8 +204,8 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
                 "flex flex-row items-center justify-start gap-6 md:gap-20 px-6"
               }
             >
-              <QuantityAdjuster />
-              <RoundButton text="Add to cart" size={size} />
+              {inCart && <QuantityAdjuster  id={product?._id} />}
+              {!inCart && <RoundButton onClick={() => handleAddToCart(product?._id, product?.name, product?.price)} text="Add to cart" size={size} />}
             </div>
           </div>
         </div>
@@ -227,16 +271,17 @@ function KeyNotes({notes}: {notes: Notes[]}){
     )
 }
 
-function SizePics({capacity, selectedQuantity, setSelectedQuantity}: {
+function SizePics({capacity, selectedQuantity, setSelectedQuantity, imgUrl}: {
     capacity: number,
     selectedQuantity: number,
-    setSelectedQuantity: any
+    setSelectedQuantity: any,
+    imgUrl: string
 }) {
     return (
         <button onClick={() => setSelectedQuantity(capacity)}
-                className={`flex w-24 flex-col items-center justify-center rounded-sm  ${selectedQuantity === capacity && 'bg-gray-300'}`}>
+                className={`flex w-24 p-4 flex-col items-center justify-center rounded-sm  ${selectedQuantity === capacity && 'bg-gray-300'}`}>
             <img
-                src={perfume}
+                src={imgUrl}
                 alt="Perfume"
                 className="h-auto w-full max-w-[60px] max-h-[90px] sm:max-w-[50px] sm:max-h-[70px] md:max-w-[60px] md:max-h-[80px] lg:max-w-[70px] lg:max-h-[90px] xl:max-w-[80px] xl:max-h-[100px] object-cover mx-auto mt-[-10%]"
             />

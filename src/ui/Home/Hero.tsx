@@ -1,3 +1,5 @@
+import { useNavigate, useNavigation } from "react-router-dom";
+
 function Hero({
   heading,
   subtext,
@@ -21,6 +23,7 @@ function Hero({
         <button className="bg-[var(--theme-brown)] text-white font-medium px-6 py-3 rounded-lg w-36 lg:mt-1 hover:bg-[var(--buttonHover)] duration-500">
           {buttonText}
         </button>
+
       </div>
 
       <div className="w-4/5 md:w-1/2 lg:w-1/4 h-screen md:py-6">

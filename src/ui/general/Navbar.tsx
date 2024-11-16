@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="h-24 p-3 bg-[#F7F1F1] shadow-sm flex items-center justify-between absolute top-0 w-full z-20">
+      <nav className="h-24 p-3 bg-[#F7F1F1]  flex items-center justify-between fixed top-0 w-full z-20">
         <span className="flex items-center justify-center gap-4 w-[35%] sm:w-[25%] h-full">
           <button onClick={() => setMobileMenuOpen(true)} className="sm:hidden">
             <RxHamburgerMenu size={25} />
@@ -68,9 +68,19 @@ export default function Navbar() {
             >
               About
             </NavLink>
-            <li className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300">
+
+            <NavLink
+              to="/services"
+              className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
+            >
+              Services
+            </NavLink>
+            <NavLink
+              to="/blog"
+              className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
+            >
               Blog
-            </li>
+            </NavLink>
           </ul>
         </div>
 
@@ -114,7 +124,7 @@ export default function Navbar() {
               About
             </NavLink>
             <NavLink
-              to="/"
+              to="/blog"
               className="text-center text-2xl roboto-regular hover:text-gray-200 transition-colors duration-200"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -166,13 +176,16 @@ export default function Navbar() {
             className="hover:text-[var(--theme-brown)] cursor-pointer"
             onClick={() => setWishlistOpen(true)}
           />
-          <RiHandbagLine
-            size={23}
-            className="hover:text-[var(--theme-brown)] cursor-pointer"
-          />
+
+          <NavLink to={"/cart"}>
+            <RiHandbagLine
+              size={23}
+              className="hover:text-[var(--theme-brown)] cursor-pointer"
+            />
+          </NavLink>
         </div>
       </nav>
-      <span className="mx-8 sm:mx-16 md:mx-24 lg:mx-32 z-10 top-28 relative">
+      <span className="mx-8 sm:mx-16 md:mx-24 lg:mx-32 z-20 top-28 relative">
         path from url
       </span>
     </>
