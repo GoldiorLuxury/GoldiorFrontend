@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import useGetProductById from "../data/products/useGetProductById.ts";
 import Spinner from "../ui/general/Spinner.tsx";
 import useGetReviewForProduct from "../data/reviews/useGetReviewForProduct.ts";
+import { handleSaveToLocalStorage } from "../data/wishlist/useSetFavItems.ts";
 
 export default function SingleProduct(){
     const perfumeCapacities = [50, 100, 150];
@@ -92,7 +93,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
               >
                 {product?.name}
               </span>
-              <button>
+              <button onClick={()=> handleSaveToLocalStorage(product)}>
                 <FaRegHeart size={25} color="var(--theme-brown)" />
               </button>
             </div>
@@ -144,7 +145,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
                 Choose size:
               </span>
               <div className={"flex items-center justify-start"}>
-                {product?.capacityInML?.map((item) => (
+                {product?.capacityInML?.map((item: any) => (
                   <SizePics
                     capacity={item}
                     selectedQuantity={selectedQuantity}

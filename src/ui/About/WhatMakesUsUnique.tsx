@@ -1,13 +1,13 @@
 function WhatMakesUsUnique() {
   return (
-    <div className="relative w-full h-full flex flex-col items-center p-8 space-y-8 lg:px-28">
-      <h1 className="text-4xl font-bold text-[var(--theme-brown)] text-center mt-4">
+    <div className="relative w-full h-full flex flex-col items-center p-14 space-y-14 lg:px-16">
+      <h1 className="text-5xl md:text-6xl font-bold text-[var(--theme-brown)] text-center mt-4">
         What Makes Us Unique
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-14 w-full  md:text-justify">
-        <div className="p-6">
-          <h2 className="text-xl font-semibold mb-2">Locally Inspired</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-16 w-full  md:text-justify">
+        <div>
+          <h2 className="text-2xl font-semibold mb-2">Locally Inspired</h2>
           <p className="text-xl">
             Our perfumes are meticulously crafted to reflect the cultural
             heritage, traditions, and landscapes of various regions. From the
@@ -16,8 +16,8 @@ function WhatMakesUsUnique() {
           </p>
         </div>
 
-        <div className="p-6">
-          <h2 className="text-xl font-semibold mb-2">
+        <div>
+          <h2 className="text-2xl font-semibold mb-2">
             High-Quality Ingredients
           </h2>
           <p className="text-xl">
@@ -29,8 +29,8 @@ function WhatMakesUsUnique() {
           </p>
         </div>
 
-        <div className="p-6">
-          <h2 className="text-xl font-semibold mb-2">Personalized Service</h2>
+        <div>
+          <h2 className="text-2xl font-semibold mb-2">Personalized Service</h2>
           <p className="text-xl">
             We understand that choosing the perfect scent is a deeply personal
             experience. Our team of fragrance experts is always ready to assist
@@ -41,7 +41,7 @@ function WhatMakesUsUnique() {
         </div>
       </div>
 
-      <div className="mt-8 text-xl font-light px-6">
+      <div className="mt-8 text-xl">
         <p>
           Join us on this olfactory journey, celebrating the diverse tapestry of
           scents worldwide. Discover captivating aromas that connect with the
