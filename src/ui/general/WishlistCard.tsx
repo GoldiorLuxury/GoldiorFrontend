@@ -7,6 +7,7 @@ function WishlistCard({
   favorites,
   setFavourites,
   price,
+  discountPercentage,
   imageUrl,
   quantity,
   name,
@@ -15,6 +16,7 @@ function WishlistCard({
   favorites: any;
   setFavourites: any,
   price?: string;
+  discountPercentage: string,
   quantity?: string;
   imageUrl?: string;
   name?: string;
@@ -54,7 +56,10 @@ function WishlistCard({
 
       {/* Price */}
       <div className="flex flex-col items-end justify-between h-full">
-        <span className="text-lg font-semibold text-gray-800">${price}</span>
+        <span className="text-lg font-semibold text-gray-800">${Math.round(
+                  Number(price) *
+                  (1 - Number(discountPercentage) / 100)
+                )}</span>
       </div>
     </div>
   );

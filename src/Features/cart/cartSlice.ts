@@ -75,7 +75,7 @@
     state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
 
   export const getTotalCartPrice = (state: { cart: CartState }) =>
-    state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
+    state.cart.cart.reduce((sum, item) => sum + Math.round(item.totalPrice*(1-item.discountPercentage/100)), 0);
 
   export const getCurrentQuantityById =
     (id: string) => (state: { cart: CartState }) =>

@@ -156,6 +156,7 @@ export default function Navbar() {
                 id={item._id}
                 name={item.name}
                 imageUrl={item.imgUrl}
+                discountPercentage = {item.discountPercentage}
                 quantity="250ml"
                 price={item.price}
               />

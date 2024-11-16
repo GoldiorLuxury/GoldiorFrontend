@@ -5,6 +5,7 @@ import {useState, useEffect} from "react";
 import QuantityAdjuster from "../ui/cart/QuantityAdjuster.tsx";
 import RoundButton from "../ui/general/RoundButton.tsx";
 import {FaRegHeart} from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import Notes from "../Types/Notes.ts";
 import Reviews from "../ui/single-item/Reviews.tsx";
 import { useParams } from "react-router-dom";
@@ -20,6 +21,7 @@ import {
   getCart,
   increaseQuantity
 } from "../Features/cart/cartSlice.ts";
+import { getWishlist } from "../data/wishlist/getWishlist.ts";
 
   interface CartItem {
     id: string;
@@ -36,8 +38,7 @@ export default function SingleProduct(){
     const {productId} = useParams();
 
     const {product, isGettingProduct} = useGetProductById(productId);
-    const {reviews, isGettingReviews} = useGetReviewForProduct(productId);
-       
+    const {reviews, isGettingReviews} = useGetReviewForProduct(productId);       
 
     const totalRating = reviews?.reduce(
       (sum: number, review: any) => sum + review?.rating,
@@ -65,6 +66,9 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
     const currentItemId = product?._id; 
 
     const [inCart, setInCart] = useState(false);
+
+    const favorites = getWishlist();
+    const productExists = favorites.some(item => item._id === product?._id);
 
     useEffect(() => {
       const itemInCart = cart.some(
@@ -138,7 +142,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
                 {product?.name}
               </span>
               <button onClick={()=> handleSaveToLocalStorage(product)}>
-                <FaRegHeart size={25} color="var(--theme-brown)" />
+                {!productExists?<FaRegHeart size={25} color="var(--theme-brown)" /> : <FaHeart size={25} color="var(--theme-brown)" /> }
               </button>
             </div>
             <div className="flex gap-2 items-center">
