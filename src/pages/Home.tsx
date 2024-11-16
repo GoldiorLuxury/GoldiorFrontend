@@ -19,6 +19,7 @@ function Home() {
     <>
       <Navbar />
       <Hero
+        heading={"Luxury Perfumes Priced For You!"}
         subtext={
           "Shop now and embrace the sweet smell of victory with Goldior."
         }
@@ -33,14 +34,14 @@ function Home() {
         }
         imageUrl={welcomeBg}
       />
-      <OurValues
+      {/* <OurValues
         heading="Our values"
         subtext={
           "At Goldior Luxury, our perfume retail store is built on a foundation of passion and authenticity. We believe in celebrating the individuality of every customer, providing a diverse collection of scents that resonate with their unique personality and style. Our dedicated team of fragrance enthusiasts is committed to creating a welcoming and inclusive environment, where connections are forged, and inspiration thrives."
         }
         imageUrl={welcomePage}
         buttonText={"Shop now"}
-      />
+      /> */}
       <HomeGrid products={products} heading="Best Selling Products" />
       <SaleBanner
         heading="Perfume Year-End Sale! Up to 50% OFF"

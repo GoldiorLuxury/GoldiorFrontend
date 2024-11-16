@@ -2,16 +2,36 @@ import logo from "../../assets/goldior-logo.png";
 import WLproduct1 from "../../assets/old-fashion-perfume-black-gold.png";
 import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
-import { BsHandbag } from "react-icons/bs";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import WishlistCard from "./WishlistCard";
 import { FaChevronUp } from "react-icons/fa";
+import { RiHandbagLine } from "react-icons/ri";
+import { getWishlist } from "../../data/wishlist/getWishlist";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isWishlistOpen, setWishlistOpen] = useState(false);
+  const [favourites, setFavourites] = useState([]);
+  const wishlistRef = useRef(null);
+
+  useEffect(()=>{
+    document.addEventListener('mousedown', handleClickOutside);
+  },[])
+
+  useEffect(() => {
+    setFavourites(getWishlist());
+    console.log(favourites, "This is favorites from navbar");
+  }, [isWishlistOpen]);
+
+  const handleClickOutside = (event) => {
+    if (wishlistRef.current && !wishlistRef.current.contains(event.target)) {
+      setFavourites(getWishlist());
+      setWishlistOpen(false);
+      console.log(favourites, "This is favorites from handled click");
+    }
+  };
 
   return (
     <>
@@ -48,6 +68,7 @@ export default function Navbar() {
             >
               About
             </NavLink>
+
             <NavLink
               to="/services"
               className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
@@ -89,7 +110,7 @@ export default function Navbar() {
               Home
             </NavLink>
             <NavLink
-              to="/"
+              to="/shop"
               className="text-center text-2xl roboto-regular hover:text-gray-200 duration-200"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -102,10 +123,18 @@ export default function Navbar() {
             >
               About
             </NavLink>
+            <NavLink
+              to="/blog"
+              className="text-center text-2xl roboto-regular hover:text-gray-200 transition-colors duration-200"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Blog
+            </NavLink>
           </ul>
         </div>
 
         <div
+          ref={wishlistRef}
           className={`fixed top-0 right-0 h-screen bg-white transform transition-transform duration-500 z-20 ease-in-out ${
             isWishlistOpen ? "translate-y-0" : "-translate-y-full"
           } w-4/5 md:w-3/5 lg:w-1/4 shadow-lg`}
@@ -115,31 +144,41 @@ export default function Navbar() {
             <FaChevronUp
               onClick={() => setWishlistOpen(false)}
               size={28}
-              className="cursor-pointer"
+              className="cursor-pointer" 
             />
           </div>
-          <WishlistCard
-            name="Luxurious elixer"
-            imageUrl={WLproduct1}
-            quantity="250ml"
-            price="300"
-          />
-          <WishlistCard />
-          <WishlistCard />
+          {favourites?.map((item: any, index: number) => {
+            return (
+              <WishlistCard
+                key={index}
+                favorites={favourites}
+                setFavourites={setFavourites}
+                id={item._id}
+                name={item.name}
+                imageUrl={item.imgUrl}
+                quantity="250ml"
+                price={item.price}
+              />
+            );
+          })}
         </div>
 
         <div className="h-full w-[40%] sm:w-[22%] flex items-center justify-evenly lg:mx-16">
-          <FaRegUser
-            size={23}
-            className="hover:text-[var(--theme-brown)] cursor-pointer"
-          />
+          <NavLink to={"/login"}>
+            <FaRegUser
+              size={23}
+              className="hover:text-[var(--theme-brown)] cursor-pointer"
+            />
+          </NavLink>
+
           <FaRegHeart
             size={23}
             className="hover:text-[var(--theme-brown)] cursor-pointer"
             onClick={() => setWishlistOpen(true)}
           />
+
           <NavLink to={"/cart"}>
-            <BsHandbag
+            <RiHandbagLine
               size={23}
               className="hover:text-[var(--theme-brown)] cursor-pointer"
             />

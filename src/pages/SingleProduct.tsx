@@ -11,6 +11,8 @@ import { useParams } from "react-router-dom";
 import useGetProductById from "../data/products/useGetProductById.ts";
 import Spinner from "../ui/general/Spinner.tsx";
 import useGetReviewForProduct from "../data/reviews/useGetReviewForProduct.ts";
+import { handleSaveToLocalStorage } from "../data/wishlist/useSetFavItems.ts";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItem,
@@ -28,6 +30,7 @@ import {
     imgUrl: string;
   }
 
+
 export default function SingleProduct(){
     const perfumeCapacities = [50, 100, 150];
     const {productId} = useParams();
@@ -41,7 +44,6 @@ export default function SingleProduct(){
       0
     );
     const averageRating = Number((totalRating / reviews?.length).toFixed(1));
-    // console.log("single prod", product.product)
     console.log("reviews: ", reviews)
 
     const [selectedQuantity, setSelectedQuantity] = useState<number>(perfumeCapacities[0]);
@@ -57,15 +59,14 @@ export default function SingleProduct(){
 }
 
 function ProductInfo({averageRating, reviews, product, selectedQuantity, setSelectedQuantity}: {averageRating: number,reviews: any, product: any, selectedQuantity: number, setSelectedQuantity: any}) {
-    const [size, setSize] = useState('sm'); // Default to small
+    const [size, setSize] = useState('sm');
     const cart = useSelector(getCart);
 
-    const currentItemId = product?._id; // replace with the actual item ID you are checking for
+    const currentItemId = product?._id; 
 
     const [inCart, setInCart] = useState(false);
 
     useEffect(() => {
-      // Check if the current item is in the cart based on its ID
       const itemInCart = cart.some(
         (item: CartItem) => item.id === currentItemId
       );
@@ -86,7 +87,6 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
           setInCart(true);
         }
 
-    // Function to check screen width and set button size
     const checkScreenWidth = () => {
         const width = window.innerWidth;
         if (width >= 1280) {
@@ -100,7 +100,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
         }
     };
     useEffect(() => {
-        checkScreenWidth(); // Check when component mounts
+        checkScreenWidth(); 
         window.addEventListener('resize', checkScreenWidth);
 
         return () => {
@@ -136,7 +136,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
               >
                 {product?.name}
               </span>
-              <button>
+              <button onClick={()=> handleSaveToLocalStorage(product)}>
                 <FaRegHeart size={25} color="var(--theme-brown)" />
               </button>
             </div>
@@ -188,7 +188,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
                 Choose size:
               </span>
               <div className={"flex items-center justify-start"}>
-                {product?.capacityInML?.map((item) => (
+                {product?.capacityInML?.map((item: any) => (
                   <SizePics
                     capacity={item}
                     selectedQuantity={selectedQuantity}

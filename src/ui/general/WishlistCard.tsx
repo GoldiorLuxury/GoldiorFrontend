@@ -1,23 +1,37 @@
 import { RxCross2 } from "react-icons/rx";
 import perfume from "../../assets/landing-page-perfume.png";
+import { handleRemoveFromLocalStorage } from "../../data/wishlist/useRemoveFavItem";
 
 function WishlistCard({
+  id,
+  favorites,
+  setFavourites,
   price,
   imageUrl,
   quantity,
   name,
 }: {
+  id: string;
+  favorites: any;
+  setFavourites: any,
   price?: string;
   quantity?: string;
   imageUrl?: string;
   name?: string;
 }) {
+  const handleRemove = () => {
+    handleRemoveFromLocalStorage(id); 
+    const favs = favorites?.filter((item: any) => id !== item._id)
+    setFavourites(favs);
+  };
+  
   return (
     <div className="relative flex items-center p-2 bg-white border-y-2 border-gray-200">
       {/* Close Icon */}
       <RxCross2
         size={18}
         className="absolute top-2 right-2 cursor-pointer text-gray-600"
+        onClick={()=> handleRemove()}
       />
 
       {/* Product Image */}
