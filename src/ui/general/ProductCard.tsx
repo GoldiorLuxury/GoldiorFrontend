@@ -6,13 +6,15 @@ function ProductCard({
   imageUrl,
   quantity,
   name,
-  id
+  id,
+  discountPercentage
 }: {
   price?: string;
   quantity?: string;
   imageUrl?: string;
   name?: string;
   id: string;
+  discountPercentage: number
 }) {
   const navigate = useNavigate();
 
@@ -27,13 +29,15 @@ function ProductCard({
           alt={name}
           className="w-full h-full object-contain product-image"
         />
-        
       </div>
 
       <h2 className="text-xl font-bold mb-2 text-center">{name}</h2>
 
       <div className="flex justify-between w-full text-lg font-semibold mb-2">
-        <span>Price: {price}</span>
+        <span>
+          Price: ${Math.round(Number(price) * (1 - discountPercentage / 100))}
+        </span>
+
         <span>Quantity: {quantity}</span>
       </div>
     </button>

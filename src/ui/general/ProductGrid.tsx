@@ -71,6 +71,7 @@ function ProductGrid({
                 price={item.price}
                 quantity={"100ml"}
                 id={item._id}
+                discountPercentage={item?.discountPercentage}
               />
             );
           })}

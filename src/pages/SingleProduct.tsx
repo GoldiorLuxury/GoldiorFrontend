@@ -82,6 +82,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
             unitPrice: price,
             imgUrl: product?.imgUrl,
             totalPrice: price * 1,
+            discountPercentage: product?.discountPercentage,
           };
           dispatch(addItem(newItem));
           setInCart(true);

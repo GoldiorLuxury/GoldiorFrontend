@@ -70,7 +70,7 @@ const CartPage = () => {
                         {product.name}
                       </span>{" "}
                       {/* Added padding to the right */}
-                      <span>${product.totalPrice}</span>
+                      <span>${Math.round(product.totalPrice)}</span>
                     </li>
                   ))}
                   <li className="border-t pt-3 mt-3 flex justify-between">

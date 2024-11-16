@@ -7,6 +7,7 @@
     unitPrice: number;
     totalPrice: number;
     imgUrl: string;
+    discountPercentage: number;
   }
 
   interface CartState {
