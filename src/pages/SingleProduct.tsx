@@ -22,6 +22,7 @@ import {
   increaseQuantity
 } from "../Features/cart/cartSlice.ts";
 import { getWishlist } from "../data/wishlist/getWishlist.ts";
+import { handleRemoveFromLocalStorage } from "../data/wishlist/useRemoveFavItem.ts";
 
   interface CartItem {
     id: string;
@@ -62,13 +63,19 @@ export default function SingleProduct(){
 function ProductInfo({averageRating, reviews, product, selectedQuantity, setSelectedQuantity}: {averageRating: number,reviews: any, product: any, selectedQuantity: number, setSelectedQuantity: any}) {
     const [size, setSize] = useState('sm');
     const cart = useSelector(getCart);
+    const favorites = getWishlist();
+
+    const [productExistsInWishList, setProductExistsInWishList] = useState(favorites.some(item => item._id === product?._id));
 
     const currentItemId = product?._id; 
 
     const [inCart, setInCart] = useState(false);
 
-    const favorites = getWishlist();
-    const productExists = favorites.some(item => item._id === product?._id);
+    useEffect(() => {setProductExistsInWishList(
+      favorites.some((item) => item._id === product?._id)
+    );}, [product])
+
+    
 
     useEffect(() => {
       const itemInCart = cart.some(
@@ -113,6 +120,16 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
         };
     }, []);
 
+      const handleToggleWishlist = () => {
+        if (productExistsInWishList) {
+          handleRemoveFromLocalStorage(product?._id);
+          setProductExistsInWishList(false);
+        } else {
+          handleSaveToLocalStorage(product);
+          setProductExistsInWishList(true);
+        }
+      };
+
     return (
       <div>
         <div
@@ -141,8 +158,8 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity, setSele
               >
                 {product?.name}
               </span>
-              <button onClick={()=> handleSaveToLocalStorage(product)}>
-                {!productExists?<FaRegHeart size={25} color="var(--theme-brown)" /> : <FaHeart size={25} color="var(--theme-brown)" /> }
+              <button onClick={handleToggleWishlist}>
+                {!productExistsInWishList?<FaRegHeart size={25} color="var(--theme-brown)" /> : <FaHeart size={25} color="var(--theme-brown)" /> }
               </button>
             </div>
             <div className="flex gap-2 items-center">
