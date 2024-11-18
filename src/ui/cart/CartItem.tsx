@@ -29,8 +29,7 @@ export default function CartItem({product}: {product: any}){
               <p className="text-xl font-bold mt-14">
                 $
                 {Math.round(
-                  product?.unitPrice *
-                  (1 - product?.discountPercentage / 100)
+                  product?.unitPrice 
                 )}
               </p>
             </div>
