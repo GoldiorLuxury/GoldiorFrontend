@@ -39,9 +39,18 @@ export default function SingleProduct(){
     const [perfumeCapacities, setPerfumeCapacities] = useState<any[]>([]);
     const [selectedQuantity, setSelectedQuantity] = useState<number>(perfumeCapacities[0]?.quantity || 50);
     const {productId} = useParams();
+    
+    const [isOpenReviewModal, setIsOpenReviewModal] = useState(false);
+
 
     const {product, isGettingProduct} = useGetProductById(productId);
-    const {reviews, isGettingReviews} = useGetReviewForProduct(productId);   
+    const {reviews, isGettingReviews, refetch: refetchReviews} = useGetReviewForProduct(productId); 
+    
+    useEffect(() => {
+      if(isOpenReviewModal == false){
+        refetchReviews();
+      }
+    }, [isOpenReviewModal, refetchReviews])
 
   useEffect(() => {
     if (product && product.capacityInML) {
@@ -61,21 +70,48 @@ export default function SingleProduct(){
     console.log("reviews: ", reviews)
 
     return (
-        <>
-{isGettingProduct || isGettingReviews || !product ? <Spinner /> :             
-        (<><Navbar />
-            <ProductInfo averageRating={averageRating} reviews={reviews} product={product?.product} selectedQuantity={selectedQuantity} setSelectedQuantity={setSelectedQuantity}  />
-            </>
+      <>
+        {isGettingProduct || isGettingReviews || !product ? (
+          <Spinner />
+        ) : (
+          <>
+            <Navbar />
+            <ProductInfo
+              isOpenReviewModal={isOpenReviewModal}
+              setIsOpenReviewModal={setIsOpenReviewModal}
+              averageRating={averageRating}
+              reviews={reviews}
+              product={product?.product}
+              selectedQuantity={selectedQuantity}
+              setSelectedQuantity={setSelectedQuantity}
+            />
+          </>
         )}
-        </>
-    )
+      </>
+    );
 }
 
-function ProductInfo({averageRating, reviews, product, selectedQuantity = 50, setSelectedQuantity}: {averageRating: number,reviews: any, product: any, selectedQuantity: number, setSelectedQuantity: any}) {
+function ProductInfo({
+  isOpenReviewModal,
+  setIsOpenReviewModal,
+  averageRating,
+  reviews,
+  product,
+  selectedQuantity = 50,
+  setSelectedQuantity,
+}: {
+  isOpenReviewModal: boolean;
+  setIsOpenReviewModal: any;
+  averageRating: number;
+  reviews: any;
+  product: any;
+  selectedQuantity: number;
+  setSelectedQuantity: any;
+}) {
   const [size, setSize] = useState("sm");
   const [selectedCapacity, setSelectedCapacity] = useState(null);
   const [actualPrice, setActualPrice] = useState(0);
-  const [salePrice, setSalePrice] = useState(0)
+  const [salePrice, setSalePrice] = useState(0);
   const cart = useSelector(getCart);
   const favorites = getWishlist();
 
@@ -100,10 +136,11 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity = 50, se
 
     setSelectedCapacity(x);
     setActualPrice(x?.price);
-    setSalePrice(x?.price - ((x?.price * (product?.discountPercentage || 0)) / 100));
-
+    setSalePrice(
+      x?.price - (x?.price * (product?.discountPercentage || 0)) / 100
+    );
   }, [selectedQuantity, product?.capacityInML, product?.discountPercentage]);
-  
+
   useEffect(() => {
     const itemInCart = cart.some((item: CartItem) => item.id === currentItemId);
     setInCart(itemInCart);
@@ -155,7 +192,6 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity = 50, se
     }
   };
 
-
   return (
     <div>
       <div
@@ -206,10 +242,7 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity = 50, se
             style={{ fontFamily: "Playfair" }}
             className={"price font-semibold text-3xl text-gray-800"}
           >
-            $
-            {Math.round(
-             salePrice
-            )}
+            ${Math.round(salePrice)}
           </span>
           {product?.discountPercentage > 0 && (
             <span
@@ -301,7 +334,12 @@ function ProductInfo({averageRating, reviews, product, selectedQuantity = 50, se
       {/* key notes  */}
       <KeyNotes notes={product?.keynotes} />
       {/* reviews  */}
-      <Reviews averageRating={averageRating} reviews={reviews} />
+      <Reviews
+        averageRating={averageRating}
+        reviews={reviews}
+        isOpenReviewModal={isOpenReviewModal}
+        setIsOpenReviewModal={setIsOpenReviewModal}
+      />
     </div>
   );
 }

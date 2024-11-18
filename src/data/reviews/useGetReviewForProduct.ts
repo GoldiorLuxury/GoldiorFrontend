@@ -4,12 +4,12 @@
 import { useQuery } from "@tanstack/react-query";
 
 export default function useGetReviewForProduct(product_id: string | undefined) {
-  const { data: reviews, isLoading: isGettingReviews } = useQuery({
+  const { data: reviews, isLoading: isGettingReviews, refetch } = useQuery({
     queryFn: () => getReviews(product_id),
     queryKey: ["reviews"],
   });
 
-  return { reviews, isGettingReviews };
+  return { reviews, isGettingReviews, refetch };
 }
 
 async function getReviews(product_id: string | undefined) {

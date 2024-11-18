@@ -1,19 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StarRating from "../general/StarRating";
 import ProfileIcon from "../user/ProfileIcon";
 import Footer from "../general/Footer";
+import compressImage from "../../utils/compressImage";
+import useAddReview from "../../data/reviews/useAddReview";
+import { useParams } from "react-router-dom";
 
-export default function Reviews({reviews, averageRating}: {reviews: any, averageRating: number}){
+export default function Reviews({
+  reviews,
+  averageRating,
+  isOpenReviewModal,
+  setIsOpenReviewModal,
+}: {
+  reviews: any;
+  averageRating: number;
+  isOpenReviewModal: boolean;
+  setIsOpenReviewModal: any;
+}) {
+  const totalReviews = reviews.length;
+  const recommendedReviews = reviews.filter(
+    (review) => review.isRecommended === true
+  ).length;
 
- const totalReviews = reviews.length;
- const recommendedReviews = reviews.filter(
-   (review) => review.isRecommended === true
- ).length;
-
- // Calculate the percentage
- const recommendationPercentage = Math.round(
-   (recommendedReviews / totalReviews) * 100
- );
+  // Calculate the percentage
+  const recommendationPercentage = Math.round(
+    (recommendedReviews / totalReviews) * 100
+  );
 
   // Calculate counts for each star (1 to 5)
   const starCounts = [1, 2, 3, 4, 5].reduce((acc, star) => {
@@ -41,6 +53,8 @@ export default function Reviews({reviews, averageRating}: {reviews: any, average
             averageRating={averageRating}
             starCounts={starCounts}
             recommendationPercentage={recommendationPercentage}
+            isOpenReviewModal={isOpenReviewModal}
+            setIsOpenReviewModal={setIsOpenReviewModal}
           />
         )}
         <ReviewList reviews={reviews} />
@@ -130,19 +144,74 @@ function RatingSummary({
   averageRating,
   starCounts,
   reviews,
+  isOpenReviewModal,
+  setIsOpenReviewModal,
 }: {
   recommendationPercentage: number;
   averageRating: number;
   starCounts: Record<number, number>;
   reviews: any;
+  isOpenReviewModal: boolean;
+  setIsOpenReviewModal: any;
 }) {
+  const [rating, setRating] = useState(5);
+  const [reviewText, setReviewText] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [recommend, setRecommend] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { productId } = useParams();
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [rating, setRating] = useState(5);
-    const [reviewText, setReviewText] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
-    const [recommend, setRecommend] = useState(false);
-    
+  const { isAddingReview, addReview } = useAddReview();
+
+  useEffect(() => {
+    console.log("data url: ", imageUrl);
+  }, [imageUrl]);
+
+
+  async function handleFile(e: any) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.addEventListener("load", async () => {
+      const compressedDataUrl = await compressImage(reader.result);
+      setImageUrl(compressedDataUrl);
+    });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (reviewText.trim() === "") {
+      alert("Please write a review before submitting.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Directly call addReview from here with the parameters
+      await addReview(
+        productId,
+        "6725fa63522a42d96ed9a6a6",
+        rating,
+        true, // Parent review (optional, null if no parent)
+        reviewText,
+        imageUrl,
+        "", // No video URL (optional)
+        recommend
+      );
+    } catch (error: any) {
+      console.log(error.message);
+    } finally {
+      setIsSubmitting(false);
+      setIsOpenReviewModal(false);
+      setRating(5);   
+      setReviewText(""); 
+      setImageUrl(""); 
+      setRecommend(false); 
+    }
+  }
+
   return (
     <div className="md:flex ">
       {/* left side */}
@@ -172,11 +241,11 @@ function RatingSummary({
       </div>
 
       {/* right side  */}
-      {isOpen && (
+      {isOpenReviewModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="relative bg-white p-8 rounded-lg shadow-lg lg:w-1/3">
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={() => setIsOpenReviewModal(false)}
               className="absolute top-2 right-2 text-3xl text-gray-600 hover:text-gray-900"
             >
               &times;
@@ -223,10 +292,7 @@ function RatingSummary({
                 type="file"
                 accept=".png, .jpg, .jpeg"
                 onChange={(e: any) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    setImageUrl(URL.createObjectURL(file));
-                  }
+                  handleFile(e);
                 }}
                 className="w-full p-1 border border-gray-300 rounded-lg mb-4"
               />
@@ -265,8 +331,9 @@ function RatingSummary({
                 <button
                   type="submit"
                   className="px-4 py-2 bg-[var(--theme-brown)] text-white rounded-lg"
+                  onClick={(e) => handleSubmit(e)}
                 >
-                  Submit Review
+                  {isAddingReview ? "Submitting..." : "Submit Review"}
                 </button>
               </div>
             </form>
@@ -286,7 +353,7 @@ function RatingSummary({
           <span>{reviews.length} reviews</span>{" "}
           <button
             onClick={() => {
-              setIsOpen(true);
+              setIsOpenReviewModal(true);
             }}
             className="text-md bg-gray-300 rounded-lg p-2 mx-8"
           >
