@@ -27,6 +27,7 @@ export async function saveUser(formData: any) {
     if (res.ok) {
       // Handle success (e.g., redirect or show success message)
       console.log("User created successfully:", data);
+      
     } else {
       // Handle failure (e.g., show error message)
       console.error("Error:", data.message || "Failed to create user");

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {sendEmailForOtp} from "../../data/auth/otpverification";
 import { useVerifyOtp } from "../../data/auth/UseVerifyOtp";
+import { verifyUserExists } from "../../data/auth/VerifyUserExists";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ const Login: React.FC = () => {
     if(!email) return;
     sendEmailForOtp(email);
     setIsOtpModalOpen(true);
+
   }
 
   const handleVerifyOtp = () => {

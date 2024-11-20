@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { verifyUserExists } from "./VerifyUserExists";
 
 export function useVerifyOtp() {
 //   const [errorMessage, setErrorMessage] = useState("");
@@ -22,11 +23,21 @@ export function useVerifyOtp() {
 
       console.log("OTP verified successfully:", data.message);
 
+      
+      const doesuserexist = await verifyUserExists(email);
+
+      console.log("does user existL: ", doesuserexist)
+
       // Navigate to /register after successful OTP verification
-      navigate("/register");
+      localStorage.setItem("user_email_goldior_luxury", email);
+      if(doesuserexist){
+          window.history.back();
+      }else{
+        navigate("/register");
+      }
 
       // Optionally store the email in localStorage if required
-      localStorage.setItem("user_email_goldior_luxury", email);
+      
     } catch (error: any) {
       console.error("Error verifying OTP:", error.message);
     }

@@ -1,8 +1,10 @@
   import { useEffect, useState } from "react";
-  import { NavLink } from "react-router-dom";
+  import { NavLink, useNavigate } from "react-router-dom";
   import  { saveUser } from "../../data/auth/UseAddUser";
+import { verifyUserExists } from "../../data/auth/VerifyUserExists";
 
   const RegisterForm = () => {
+    const navigation = useNavigate();
     const [formData, setFormData] = useState({
       username: "",
       email: "",
@@ -57,8 +59,14 @@
 
     const handleSubmit = (e) => {
       e.preventDefault(); // Prevent form from reloading the page
-      console.log(formData, "form data: frontend");
-      saveUser(formData);
+      try {
+        console.log(formData, "form data: frontend");
+        saveUser(formData);
+         window.history.go(-2);
+
+      } catch (error: any) {
+        console.log(error.message)
+      }
     };
 
     return (

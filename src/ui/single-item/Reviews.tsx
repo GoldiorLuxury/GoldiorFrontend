@@ -4,7 +4,7 @@ import ProfileIcon from "../user/ProfileIcon";
 import Footer from "../general/Footer";
 import compressImage from "../../utils/compressImage";
 import useAddReview from "../../data/reviews/useAddReview";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Reviews({
   reviews,
@@ -160,8 +160,11 @@ function RatingSummary({
   const [recommend, setRecommend] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { productId } = useParams();
+  const userEmail = localStorage.getItem("user_email_goldior_luxury");
 
   const { isAddingReview, addReview } = useAddReview();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("data url: ", imageUrl);
@@ -352,9 +355,9 @@ function RatingSummary({
           <p>99% users recomment this product</p>
           <span>{reviews.length} reviews</span>{" "}
           <button
-            onClick={() => {
-              setIsOpenReviewModal(true);
-            }}
+            onClick={() =>
+              userEmail ? setIsOpenReviewModal(true) : navigate("/login")
+            }
             className="text-md bg-gray-300 rounded-lg p-2 mx-8"
           >
             + Add a review

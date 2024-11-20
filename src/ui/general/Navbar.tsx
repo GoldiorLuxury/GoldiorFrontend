@@ -1,5 +1,5 @@
 import logo from "../../assets/goldior-logo.png";
-import WLproduct1 from "../../assets/old-fashion-perfume-black-gold.png";
+// import WLproduct1 from "../../assets/old-fashion-perfume-black-gold.png";
 import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -14,7 +14,10 @@ export default function Navbar() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isWishlistOpen, setWishlistOpen] = useState(false);
   const [favourites, setFavourites] = useState([]);
+  const [isProfileHovered, setIsProfileHovered] = useState(false);
   const wishlistRef = useRef(null);
+
+  const userEmail = localStorage.getItem("user_email_goldior_luxury");
 
   useEffect(()=>{
     document.addEventListener('mousedown', handleClickOutside);
@@ -24,6 +27,12 @@ export default function Navbar() {
     setFavourites(getWishlist());
     console.log(favourites, "This is favorites from navbar");
   }, [isWishlistOpen]);
+
+    const handleLogout = () => {
+      // Remove email from localStorage on logout
+      localStorage.removeItem("user_email_goldior_luxury");
+      setIsProfileHovered(false);
+    };
 
   const handleClickOutside = (event) => {
     if (wishlistRef.current && !wishlistRef.current.contains(event.target)) {
@@ -144,7 +153,7 @@ export default function Navbar() {
             <FaChevronUp
               onClick={() => setWishlistOpen(false)}
               size={28}
-              className="cursor-pointer" 
+              className="cursor-pointer"
             />
           </div>
           {favourites?.map((item: any, index: number) => {
@@ -156,7 +165,7 @@ export default function Navbar() {
                 id={item._id}
                 name={item.name}
                 imageUrl={item.imgUrl}
-                discountPercentage = {item.discountPercentage}
+                discountPercentage={item.discountPercentage}
                 quantity="250ml"
                 price={item.price}
               />
@@ -165,12 +174,35 @@ export default function Navbar() {
         </div>
 
         <div className="h-full w-[40%] sm:w-[22%] flex items-center justify-evenly lg:mx-16">
-          <NavLink to={"/login"}>
-            <FaRegUser
-              size={23}
-              className="hover:text-[var(--theme-brown)] cursor-pointer"
-            />
-          </NavLink>
+          <div
+            className="relative"
+            onMouseEnter={() => setIsProfileHovered(true)} // Show bubble on hover
+            onMouseLeave={() => setIsProfileHovered(false)} // Hide bubble when hover ends
+          >
+            <NavLink to={!userEmail ? "/login" : "" }>
+              <FaRegUser
+                size={23}
+                className="hover:text-[var(--theme-brown)] cursor-pointer"
+              />
+            </NavLink>
+
+            {userEmail && isProfileHovered && (
+              <div
+                onMouseEnter={() => setIsProfileHovered(true)}
+                onMouseLeave={() => setIsProfileHovered(false)}
+                className="absolute top-6 left-0 bg-[var(--theme-brown)] text-gray-200 p-2 rounded-full flex items-center gap-4 justify-center"
+                style={{ transform: "translateX(-50%)" }}
+              >
+                {userEmail}
+                <button
+                  onClick={handleLogout}
+                  className=" px-3 py-1 bg-[#F7F1F1] text-gray-600 rounded-full text-xs hover:bg-[#d3cfcf] hover:text-[var(--theme-brown)] "
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
 
           <FaRegHeart
             size={23}
