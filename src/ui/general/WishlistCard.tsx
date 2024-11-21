@@ -22,18 +22,18 @@ function WishlistCard({
   name?: string;
 }) {
   const handleRemove = () => {
-    handleRemoveFromLocalStorage(id); 
+    handleRemoveFromLocalStorage(id);
     const favs = favorites?.filter((item: any) => id !== item._id)
     setFavourites(favs);
   };
-  
+
   return (
     <div className="relative flex items-center p-2 bg-white border-y-2 border-gray-200">
       {/* Close Icon */}
       <RxCross2
         size={18}
         className="absolute top-2 right-2 cursor-pointer text-gray-600"
-        onClick={()=> handleRemove()}
+        onClick={() => handleRemove()}
       />
 
       {/* Product Image */}
@@ -48,7 +48,7 @@ function WishlistCard({
       {/* Product Details */}
       <div className="flex flex-col flex-1 px-4">
         <h2 className="text-lg font-semibold">{name}</h2>
-        {/* <p className="text-gray-600 text-sm">Quantity: {quantity}</p> */}
+        <p className="text-gray-600 text-sm">Quantity: {quantity}</p>
         <button className="bg-[#A0522D] text-white px-4 py-2 mt-2 rounded-md text-sm">
           Add to cart
         </button>
@@ -57,9 +57,9 @@ function WishlistCard({
       {/* Price */}
       {/* <div className="flex flex-col items-end justify-between h-full">
         <span className="text-lg font-semibold text-gray-800">${Math.round(
-                  Number(price) *
-                  (1 - Number(discountPercentage) / 100)
-                )}</span>
+          Number(price) *
+          (1 - Number(discountPercentage) / 100)
+        )}</span>
       </div> */}
     </div>
   );

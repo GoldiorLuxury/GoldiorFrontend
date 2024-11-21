@@ -21,7 +21,7 @@ function Home() {
       <Hero
         heading={"Luxury Perfumes Priced For You!"}
         subtext={
-          "Shop now and embrace the sweet smell of victory with Goldior."
+          "At Goldior Luxury, we believe that every victory deserves a signature scent, and we are dedicated to providing unforgettable fragrances that elevate your spirit and empower your journey."
         }
         buttonText={"Shop now"}
         imageUrl={landingPageImage}
@@ -29,9 +29,9 @@ function Home() {
       />
       <Welcome
         heading="Welcome to Goldior Luxury"
-        subtext={
-          "Welcome to Goldior Luxury Perfumes, where the spirit of victory and triumph come alive through scents that empower and inspire. Our curated collection, aptly named Victory Scented, is a celebration of success and elegance, designed to unleash your victorious essence. Indulge in the sweet taste of triumph with captivating fragrances that tell the tale of your achievements. At Goldior Luxury, we believe that every victory deserves a signature scent, and we are dedicated to providing unforgettable fragrances that elevate your spirit and empower your journey."
-        }
+        // subtext={
+        // "Welcome to Goldior Luxury Perfumes, where the spirit of victory and triumph come alive through scents that empower and inspire. Our curated collection, aptly named Victory Scented, is a celebration of success and elegance, designed to unleash your victorious essence. Indulge in the sweet taste of triumph with captivating fragrances that tell the tale of your achievements. At Goldior Luxury, we believe that every victory deserves a signature scent, and we are dedicated to providing unforgettable fragrances that elevate your spirit and empower your journey."
+        // }
         imageUrl={welcomeBg}
       />
       {/* <OurValues
@@ -51,7 +51,7 @@ function Home() {
         imageUrl={salePageBG}
         buttonText={"Know more"}
       />
-      <DisplayFeatures />
+      {/* <DisplayFeatures /> */}
       <Footer />
     </>
   );
