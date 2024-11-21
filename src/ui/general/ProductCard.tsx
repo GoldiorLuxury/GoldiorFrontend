@@ -1,5 +1,8 @@
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./productcard.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, getCart } from '../../Features/cart/cartSlice';
+import { RiHandbagLine } from 'react-icons/ri';
 
 function ProductCard({
   price,
@@ -8,72 +11,74 @@ function ProductCard({
   name,
   id,
   discountPercentage,
-}: {
-  price?: string;
-  quantity?: string;
-  imageUrl?: string;
-  name?: string;
-  id: string;
-  discountPercentage: number;
+  brand = "Brand",
 }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cart = useSelector(getCart); // This assumes getCart returns the entire cart array
+  const [inCart, setInCart] = useState(false);
+
+  // Calculate the discounted price
+  const discountedPrice = (Number(price) * (1 - discountPercentage / 100)).toFixed(2);
+
+  // Check if item is in cart
+  useEffect(() => {
+    const itemInCart = cart.find(item => item.id === id);
+    setInCart(!!itemInCart);
+  }, [cart, id]);
+
+  // Function to add item to the cart
+  function handleAddToCart() {
+    const newItem = {
+      id,
+      name,
+      quantity: 1,
+      unitPrice: parseFloat(discountedPrice),
+      imgUrl: imageUrl,
+      totalPrice: parseFloat(discountedPrice),
+      discountPercentage,
+    };
+    dispatch(addItem(newItem));
+    setInCart(true);
+  }
 
   return (
-    // <button
-    //   onClick={() => navigate("/product/" + id)}
-    //   className="bg-gray-200 rounded-lg p-4 shadow-md h-full w-30 flex flex-col items-center px-14 product-card"
-    // >
-    //   <div className="overflow-hidden rounded-lg mb-4">
-    //     <img
-    //       src={imageUrl}
-    //       alt={name}
-    //       className="w-full h-full object-contain product-image"
-    //     />
-    //   </div>
-
-    //   <h2 className="text-xl font-bold mb-2 text-center">{name}</h2>
-
-    //   <div className="flex justify-between w-full text-lg font-semibold mb-2">
-    //     <span>
-    //       Price: ${Math.round(Number(price) * (1 - discountPercentage / 100))}
-    //     </span>
-
-    //     <span>Quantity: {quantity}</span>
-    //   </div>
-    // </button>
-
-    <button
+    <div
+      className="w-80 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl cursor-pointer"
       onClick={() => navigate("/product/" + id)}
-      className="bg-white p-6 rounded-md shadow-md hover:shadow-xl hover:scale-105 duration-300 ease-in-out w-full sm:w-80 md:w-96 lg:w-[440px] max-w-full flex flex-col items-center relative product-card group"
     >
-      <div className="overflow-hidden rounded-md mb-4 w-full h-64 sm:h-72 md:h-80 flex items-center justify-center">
-        <img
-          src={imageUrl}
-          alt={name}
-          className="w-auto h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
-        />
-      </div>
-
-      <h2 className="text-2xl font-semibold text-center mb-2 text-gray-700">
-        {name}
-      </h2>
-
-      <div className="flex justify-between w-full text-lg font-medium text-gray-700 mb-3 px-4">
-        <span>
-          $
-          {Math.round(Number(price) * (1 - discountPercentage / 100)).toFixed(
-            2
+      <img
+        src={imageUrl || "https://via.placeholder.com/320x360"}
+        alt={name}
+        className="h-80 w-80 object-cover rounded-t-xl"
+      />
+      <div className="px-4 py-3">
+        <span className="text-gray-400 mr-3 uppercase text-xs">{brand}</span>
+        <p className="text-lg font-bold text-black truncate block capitalize">{name}</p>
+        <div className="flex items-center">
+          <p className="text-lg font-semibold text-black cursor-auto my-3">${discountedPrice}</p>
+          {discountPercentage > 0 && (
+            <del>
+              <p className="text-sm text-gray-600 cursor-auto ml-2">${price}</p>
+            </del>
           )}
-        </span>
-        <span className="text-gray-600">Qty: {quantity}</span>
-      </div>
-
-      {discountPercentage > 0 && (
-        <div className="absolute top-4 right-4 px-2 py-1 bg-red-500 text-white text-sm font-semibold rounded-lg opacity-0 group-hover:opacity-90">
-          {discountPercentage}% OFF
+          <div className="ml-auto">
+            {inCart ? (
+              <span className="text-red-500">In Cart</span>
+            ) : (
+              <RiHandbagLine
+                size={23}
+                className="hover:text-[var(--theme-brown)] cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent navigation when clicking on the cart icon
+                  handleAddToCart();
+                }}
+              />
+            )}
+          </div>
         </div>
-      )}
-    </button>
+      </div>
+    </div>
   );
 }
 

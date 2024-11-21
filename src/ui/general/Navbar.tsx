@@ -3,44 +3,70 @@ import logo from "../../assets/goldior-logo.png";
 import { FaRegUser, FaRegHeart } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import WishlistCard from "./WishlistCard";
+import ProfileCard from '../components/profile';
 import { FaChevronUp } from "react-icons/fa";
 import { RiHandbagLine } from "react-icons/ri";
+import profileimg from "../../assets/profile.jpg"
+import wishimg from "../../assets/8.jpg"
 import { getWishlist } from "../../data/wishlist/getWishlist";
 
+
+interface WishlistItem {
+  id: string;
+  name: string;
+  imageUrl: string;
+  discountPercentage?: number;  // Ensure this matches your actual data model.
+  quantity: string;
+  price: number;  // This must be a number if that's what you're receiving.
+}
+
 export default function Navbar() {
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isWishlistOpen, setWishlistOpen] = useState(false);
-  const [favourites, setFavourites] = useState([]);
-  const [isProfileHovered, setIsProfileHovered] = useState(false);
-  const wishlistRef = useRef(null);
-
+  const [favourites, setFavourites] = useState<WishlistItem[]>([]);
+  const [isProfileCardOpen, setIsProfileCardOpen] = useState(false);
+  const profileCardRef = useRef<HTMLDivElement>(null);
+  const wishlistRef = useRef<HTMLDivElement>(null);
   const userEmail = localStorage.getItem("user_email_goldior_luxury");
 
-  useEffect(()=>{
+  useEffect(() => {
+    const handleClickOutside = (event: { target: any; }) => {
+      if (profileCardRef.current && !profileCardRef.current.contains(event.target)) {
+        setIsProfileCardOpen(false);
+      }
+    };
     document.addEventListener('mousedown', handleClickOutside);
-  },[])
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
-    setFavourites(getWishlist());
-    console.log(favourites, "This is favorites from navbar");
+    const fetchData = async () => {
+      const items = await getWishlist();
+      setFavourites(items);
+    };
+    fetchData();
   }, [isWishlistOpen]);
 
-    const handleLogout = () => {
-      // Remove email from localStorage on logout
-      localStorage.removeItem("user_email_goldior_luxury");
-      setIsProfileHovered(false);
-    };
+  const handleLogout = () => {
+    localStorage.removeItem("user_email_goldior_luxury");
+    setIsProfileCardOpen(false);
+    navigate("/");
+  };
 
-  const handleClickOutside = (event) => {
-    if (wishlistRef.current && !wishlistRef.current.contains(event.target)) {
-      setFavourites(getWishlist());
-      setWishlistOpen(false);
-      console.log(favourites, "This is favorites from handled click");
+  const toggleProfileCard = () => {
+    if (!userEmail) {
+      navigate("/login");
+    } else {
+      setIsProfileCardOpen(!isProfileCardOpen);
     }
   };
+
 
   return (
     <>
@@ -78,12 +104,12 @@ export default function Navbar() {
               About
             </NavLink>
 
-            <NavLink
+            {/* <NavLink
               to="/services"
               className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
             >
               Services
-            </NavLink>
+            </NavLink> */}
             <NavLink
               to="/blog"
               className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
@@ -94,9 +120,8 @@ export default function Navbar() {
         </div>
 
         <div
-          className={`fixed top-0 left-0 h-screen bg-[var(--theme-brown)] text-white transform opacity-95 transition-transform duration-300 z-20 ease-in-out ${
-            isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } w-3/4 sm:hidden shadow-lg`}
+          className={`fixed top-0 left-0 h-screen bg-[var(--theme-brown)] text-white transform opacity-95 transition-transform duration-300 z-20 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            } w-3/4 sm:hidden shadow-lg`}
         >
           <div className="flex p-6 justify-between items-center border-b border-white/50">
             <img
@@ -144,9 +169,8 @@ export default function Navbar() {
 
         <div
           ref={wishlistRef}
-          className={`fixed top-0 right-0 h-screen bg-white transform transition-transform duration-500 z-20 ease-in-out ${
-            isWishlistOpen ? "translate-y-0" : "-translate-y-full"
-          } w-4/5 md:w-3/5 lg:w-1/4 shadow-lg`}
+          className={`fixed top-0 right-0 h-screen bg-white transform transition-transform duration-500 z-20 ease-in-out ${isWishlistOpen ? "translate-y-0" : "-translate-y-full"
+            } w-4/5 md:w-3/5 lg:w-1/4 shadow-lg`}
         >
           <div className="flex p-6 justify-between items-center">
             <h2 className="text-3xl md:text-4xl font-semibold">Wishlist</h2>
@@ -156,8 +180,8 @@ export default function Navbar() {
               className="cursor-pointer"
             />
           </div>
-          {favourites?.map((item: any, index: number) => {
-            return (
+          {favourites.length > 0 ? (
+            favourites.map((item, index) => (
               <WishlistCard
                 key={index}
                 favorites={favourites}
@@ -169,40 +193,42 @@ export default function Navbar() {
                 quantity="250ml"
                 price={item.price}
               />
-            );
-          })}
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center h-100">
+              <img
+                src={wishimg} // You should replace this with your actual image path or use an imported image
+                alt="Empty Wishlist"
+                className="w-1/2"
+              />
+              <p className="text-xl text-black  font-extrabold font-[Inria-Serif]">Your Wishlist is Empty!</p>
+
+              <NavLink to="/shop" className="mt-10 bg-[var(--theme-brown)] text-white font-medium px-6 py-2 rounded-lg hover:bg-[var(--buttonHover)]">
+                Shop Now
+              </NavLink>
+            </div>
+          )}
         </div>
 
         <div className="h-full w-[40%] sm:w-[22%] flex items-center justify-evenly lg:mx-16">
-          <div
-            className="relative"
-            onMouseEnter={() => setIsProfileHovered(true)} // Show bubble on hover
-            onMouseLeave={() => setIsProfileHovered(false)} // Hide bubble when hover ends
-          >
-            <NavLink to={!userEmail ? "/login" : "" }>
-              <FaRegUser
-                size={23}
-                className="hover:text-[var(--theme-brown)] cursor-pointer"
-              />
-            </NavLink>
-
-            {userEmail && isProfileHovered && (
-              <div
-                onMouseEnter={() => setIsProfileHovered(true)}
-                onMouseLeave={() => setIsProfileHovered(false)}
-                className="absolute top-6 left-0 bg-[var(--theme-brown)] text-gray-200 p-2 rounded-full flex items-center gap-4 justify-center"
-                style={{ transform: "translateX(-50%)" }}
-              >
-                {userEmail}
-                <button
-                  onClick={handleLogout}
-                  className=" px-3 py-1 bg-[#F7F1F1] text-gray-600 rounded-full text-xs hover:bg-[#d3cfcf] hover:text-[var(--theme-brown)] "
-                >
-                  Logout
-                </button>
+          <div className="relative">
+            <FaRegUser
+              size={23}
+              className="hover:text-[var(--theme-brown)] cursor-pointer"
+              onClick={toggleProfileCard}
+            />
+            {isProfileCardOpen && userEmail && (
+              <div style={{ position: 'absolute', top: '3rem', transform: 'translateX(-50%)' }}>
+                <ProfileCard
+                  name="Hey:)"
+                  email={userEmail}
+                  imageUrl={profileimg}
+                  onLogout={handleLogout}
+                />
               </div>
             )}
           </div>
+
 
           <FaRegHeart
             size={23}
@@ -217,10 +243,13 @@ export default function Navbar() {
             />
           </NavLink>
         </div>
-      </nav>
+      </nav >
       <span className="mx-8 sm:mx-16 md:mx-24 lg:mx-32 z-20 top-28 relative">
         path from url
       </span>
     </>
   );
 }
+
+
+

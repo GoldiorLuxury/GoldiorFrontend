@@ -1,45 +1,21 @@
 import Navbar from "../ui/general/Navbar";
 import Image1 from "../assets/old-fashion-black-perfume.png";
-import { MdDelete } from "react-icons/md";
-import IncrementDecrementBtn from "../ui/components/IncrementDecrementBtn.tsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  clearCart,
-  decreaseQuantity,
-  deleteItem,
   getCart,
-  getCurrentQuantityById,
   getTotalCartPrice,
-  getTotalCartQuantity,
-  addItem,
-  increaseQuantity,
 } from "../Features/cart/cartSlice.ts";
 import CartItem from "../ui/cart/CartItem.tsx";
-
-const products = [
-  { id: 1, name: "Luxurious Elixir", price: 250, quantity: 100, image: Image1 },
-  {
-    id: 2,
-    name: "The Golden Legacy",
-    price: 160,
-    quantity: 250,
-    image: Image1,
-  },
-  { id: 3, name: "Auram Aura", price: 200, quantity: 50, image: Image1 },
-];
+import wishimg from "../assets/8.jpg" // Assume you have an empty cart image
 
 const CartPage = () => {
-  // Calculate the total cost of the products
-  const totalCost = useSelector(getTotalCartPrice);
-
   const navigate = useNavigate();
-
-  const cart = useSelector(getCart);
   const dispatch = useDispatch();
-
-  console.log("cart page: ", cart);
-
+  const cart = useSelector(getCart);
+  const totalCost = useSelector(getTotalCartPrice);
+  console.log("Cart data in component:", cart);
+  console.log("Total cost in component:", totalCost);
   const handleCheckoutClick = () => {
     navigate("/personal-details"); // Adjust this path as needed for your Personal Details route
   };
@@ -53,52 +29,56 @@ const CartPage = () => {
         </span>
       </div>
       <div className="flex justify-center w-full">
-        <div className={`flex w-full flex-col lg:flex-row`}>
-          {" "}
-          {/* Responsive flex direction change */}
-          <div className="flex flex-col items-center justify-center p-4 w-full lg:w-1/2">
-            {cart.map((product) => (
-              <CartItem product={product} />
-            ))}
-          </div>
-          <div className="flex items-center justify-center bg-white-200 w-full md:w-1/2">
-            <div className="border-l-indigo-50 p-6 rounded-lg shadow-md max-w-md m-auto">
-              {" "}
-              {/* Changed max-w-sm to max-w-md for a wider box */}
-              <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
-              <ul>
-                {cart.map((product) => (
-                  <li key={product.id} className="flex justify-between py-1 ">
-                    <span className="flex-1 text-left pr-40">
-                      {product.name}
-                    </span>{" "}
-                    {/* Added padding to the right */}
-                    <span>
-                      {" "}
-                      $
-                      {Math.round(
-                        product?.totalPrice *
-                          (1 - product?.discountPercentage / 100)
-                      )}
+        {cart.length > 0 ? (
+          <div className={`flex w-full flex-col lg:flex-row`}>
+            <div className="flex flex-col items-center justify-center p-4 w-full lg:w-1/2">
+              {cart.map((product) => (
+                <CartItem key={product.id} product={product} />
+              ))}
+            </div>
+            <div className="flex items-center justify-center bg-white w-full md:w-1/2">
+              <div className="border-l p-6 rounded-lg shadow-md max-w-md m-auto">
+                <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
+                <ul>
+                  {cart.map((product) => (
+                    <li key={product.id} className="flex justify-between py-1">
+                      <span className="flex-1 text-left pr-40">
+                        {product.name}
+                      </span>
+                      <span>
+                        ${product.totalPrice ? product.totalPrice.toFixed(2) : '0.00'}
+                      </span>
+                    </li>
+                  ))}
+                  <li className="border-t pt-3 mt-3 flex justify-between">
+                    <span className="font-semibold">Total</span>
+                    <span className="font-semibold">
+                      ${totalCost ? totalCost.toFixed(2) : '0.00'}
                     </span>
                   </li>
-                ))}
-                <li className="border-t pt-3 mt-3 flex justify-between">
-                  <span className="font-semibold">Total</span>
-                  <span className="font-semibold">
-                    ${Math.round(totalCost)}
-                  </span>
-                </li>
-              </ul>
-              <button
-                onClick={handleCheckoutClick}
-                className="mt-4 w-full bg-[#ab572d] hover:bg-[#db6e37] text-white font-semibold py-2 px-4 rounded transition-colors duration-200 ease-in-out flex justify-center items-center"
-              >
-                Go to Checkout →
-              </button>
+                </ul>
+                <button
+                  onClick={handleCheckoutClick}
+                  className="mt-4 w-full bg-[#ab572d] hover:bg-[#db6e37] text-white font-semibold py-2 px-4 rounded transition-colors duration-200 ease-in-out"
+                >
+                  Go to Checkout →
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center h-screen">
+            <img
+              src={wishimg} // Use a relevant empty cart image
+              alt="Empty Cart"
+              className="w-100 h-1/2"
+            />
+            <p className="text-5xl text-black font-extrabold font-[Inria-Serif]">Your Cart is Empty!</p>
+            <NavLink to="/shop" className="mt-10 bg-[var(--theme-brown)] text-white text-xl font-medium px-8 py-3 rounded-lg hover:bg-[var(--buttonHover)]">
+              Shop Now
+            </NavLink>
+          </div>
+        )}
       </div>
     </>
   );
