@@ -235,7 +235,7 @@ function ProductInfo({
               fillColor="var(--rating-yellow)"
             />{" "}
             <span style={{ fontFamily: "Playfair" }} className={"text-lg"}>
-              {averageRating}/5
+              {averageRating ? `${averageRating }/5` : "Be the first one to review!"}
             </span>
           </div>
           <span

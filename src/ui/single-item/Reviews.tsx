@@ -5,6 +5,7 @@ import Footer from "../general/Footer";
 import compressImage from "../../utils/compressImage";
 import useAddReview from "../../data/reviews/useAddReview";
 import { useNavigate, useParams } from "react-router-dom";
+import DynamicStarRating from "../general/DynamicStar";
 
 export default function Reviews({
   reviews,
@@ -260,7 +261,7 @@ function RatingSummary({
                 Rating (1-5)
               </label>
               <span className="text-lg">{rating}</span>
-              <input
+              {/* <input
                 id="rating"
                 type="range"
                 min="1"
@@ -271,7 +272,15 @@ function RatingSummary({
                   setRating(e.target.value);
                 }}
                 className="w-full h-4 bg-gray-200 rounded-lg cursor-pointer mb-4"
-              />
+              /> */}
+                 <DynamicStarRating
+        maxRating={5}
+        defaultRating={rating}
+        color="#fcc419"
+        size={48}
+        messages={["Poor", "Fair", "Good", "Very Good", "Excellent"]}
+        onSetRating={setRating}
+      />
               {/* Review Text Input */}
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Your Review
