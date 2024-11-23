@@ -1,5 +1,8 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Navbar from '../ui/general/Navbar';
+import { getCart } from "../Features/cart/cartSlice"; // Import your selector
 
 interface FormData {
     name: string;
@@ -24,16 +27,20 @@ const PersonalDetails: React.FC = () => {
         pinCode: '',
     });
 
+    const cartItems = useSelector(getCart); // Get cart items from Redux
+    const navigate = useNavigate();
+
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
     };
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        console.log(formData);
+        // Pass form data and cart items to the Final Details page
+        navigate('/final-details', { state: { userDetails: formData, cartItems } });
     };
 
     return (
@@ -84,13 +91,15 @@ const PersonalDetails: React.FC = () => {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    <button type="submit" className="w-40 bg-[#c75014] hover:bg-[#db6e37] text-white py-2 px-4 rounded-full transition-colors duration-200 ease-in-out">
+                    <button
+                        type="submit"
+                        className="w-40 bg-[#c75014] hover:bg-[#db6e37] text-white py-2 px-4 rounded-full transition-colors duration-200 ease-in-out">
                         Submit
                     </button>
                 </div>
             </form>
         </>
     );
-}
+};
 
 export default PersonalDetails;
