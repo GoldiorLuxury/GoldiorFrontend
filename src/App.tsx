@@ -8,6 +8,7 @@ import Shop from "./pages/Shop.tsx";
 import UserAuthentication from "./pages/UserAuthentication.tsx";
 import Login from "./ui/Authentication/Login.tsx";
 import FinalDetails from "./pages/FinalDetails.tsx";
+import PersonalDetails from "./pages/PersonalDetails.tsx";
 import CartPage from "./pages/CartPage.tsx";
 import Blog from "./pages/Blog.tsx";
 import Blog1 from "./ui/blog/Blog1.tsx";
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/final-details" element={<FinalDetails />} />
+          <Route path="/personal-details" element={<PersonalDetails />} />
           <Route path="/register" element={<UserAuthentication />} />
           <Route path="/login" element={<Login />} />
           {/*<Route path="*" element={<PageNotFound />} />*/}
