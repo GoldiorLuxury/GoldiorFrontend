@@ -13,7 +13,9 @@ export default function useGetProductById(id: string | undefined) {
 
 async function getProduct(id: string | undefined) {
   try {
-    const res = await fetch(`/api/product/${id}`);
+    const res = await fetch(
+      `https://website-backend-1-a73j.onrender.com/api/product/${id}`
+    );
     const data = await res.json();
 
     if (!res.ok) {

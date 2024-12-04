@@ -12,7 +12,9 @@ export default function useGetMostOrderedProducts() {
 
 async function getAllProducts() {
   try {
-    const res = await fetch("/api/product/mostOrdered");
+    const res = await fetch(
+      "https://website-backend-1-a73j.onrender.com/api/product/mostOrdered"
+    );
     const data = await res.json();
 
     if (!res.ok) {
