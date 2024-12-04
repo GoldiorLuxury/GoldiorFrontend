@@ -4,7 +4,7 @@
 export  async function sendEmailForOtp(email: string) {
   try {
     const res = await fetch(
-      `/api/auth/send-otp/${email}`,
+      `https://website-backend-1-a73j.onrender.com/api/auth/send-otp/${email}`,
       {
         method: "POST", // Using POST method
         headers: {

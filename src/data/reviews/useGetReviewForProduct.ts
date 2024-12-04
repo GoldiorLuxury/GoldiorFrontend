@@ -18,12 +18,15 @@ export default function useGetReviewForProduct(product_id: string | undefined) {
 
 async function getReviews(product_id: string | undefined) {
   try {
-    const res = await fetch(`/api/review/${product_id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `https://website-backend-1-a73j.onrender.com/api/review/${product_id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!res.ok)
       throw new Error("Failed to fetch review: useGetReviewForProduct.js");
