@@ -196,7 +196,6 @@ export default function Navbar() {
                 // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
                 discountPercentage={item.discountPercentage}
                 quantity="250ml"
-                // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
                 price={item.price}
               />
             ))

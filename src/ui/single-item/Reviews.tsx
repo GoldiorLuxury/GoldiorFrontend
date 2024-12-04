@@ -20,7 +20,7 @@ export default function Reviews({
 }) {
   const totalReviews = reviews.length;
   const recommendedReviews = reviews.filter(
-    (review) => review.isRecommended === true
+    (review: any) => review.isRecommended === true
   ).length;
 
   // Calculate the percentage
@@ -141,7 +141,7 @@ function ReviewListItem({review}: {review: any}){
 }
 
 function RatingSummary({
-  recommendationPercentage,
+  // recommendationPercentage,
   averageRating,
   starCounts,
   reviews,
@@ -166,6 +166,7 @@ function RatingSummary({
   const { isAddingReview, addReview } = useAddReview();
 
   const navigate = useNavigate();
+  console.log(isSubmitting)
 
   useEffect(() => {
     console.log("data url: ", imageUrl);

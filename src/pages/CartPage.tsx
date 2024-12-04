@@ -1,7 +1,7 @@
 import Navbar from "../ui/general/Navbar";
 // import Image1 from "../assets/old-fashion-black-perfume.png";
 import { useNavigate, NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import {
   getCart,
   getTotalCartPrice,

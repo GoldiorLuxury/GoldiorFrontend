@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, getCart } from '../../Features/cart/cartSlice';
@@ -49,6 +49,7 @@ function ProductCard({
       totalPrice: parseFloat(discountedPrice),
       discountPercentage,
     };
+    // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
     dispatch(addItem(newItem));
     setInCart(true);
   }

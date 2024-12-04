@@ -1,4 +1,4 @@
-import { useNavigate, useNavigation } from "react-router-dom";
+// import { useNavigate, useNavigation } from "react-router-dom";
 
 function Hero({
   heading,
