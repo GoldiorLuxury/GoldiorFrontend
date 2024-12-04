@@ -9,7 +9,7 @@ import image5 from "../assets/services-img-5.jpg";
 import image6 from "../assets/services-img-6.jpg";
 import Navbar from "../ui/general/Navbar";
 import Footer from "../ui/general/Footer";
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 
 function Services() {

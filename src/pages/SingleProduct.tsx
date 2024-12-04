@@ -1,5 +1,5 @@
 import Navbar from "../ui/general/Navbar.tsx";
-import perfume from '../assets/old-fashion-perfume-black-gold.png';
+// import perfume from '../assets/old-fashion-perfume-black-gold.png';
 import StarRating from "../ui/general/StarRating.tsx";
 import {useState, useEffect} from "react";
 import QuantityAdjuster from "../ui/cart/QuantityAdjuster.tsx";
@@ -17,13 +17,13 @@ import { handleSaveToLocalStorage } from "../data/wishlist/useSetFavItems.ts";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItem,
-  decreaseQuantity,
+  // decreaseQuantity,
   getCart,
-  increaseQuantity
+  // increaseQuantity
 } from "../Features/cart/cartSlice.ts";
 import { getWishlist } from "../data/wishlist/getWishlist.ts";
 import { handleRemoveFromLocalStorage } from "../data/wishlist/useRemoveFavItem.ts";
-import { useWatch } from "react-hook-form";
+// import { useWatch } from "react-hook-form";
 
   interface CartItem {
     id: string;
@@ -115,8 +115,10 @@ function ProductInfo({
   const cart = useSelector(getCart);
   const favorites = getWishlist();
 
+  console.log(selectedCapacity);
+
   const [productExistsInWishList, setProductExistsInWishList] = useState(
-    favorites.some((item) => item._id === product?._id)
+    favorites.some((item: any) => item._id === product?._id)
   );
 
   const currentItemId = product?._id;
@@ -125,7 +127,7 @@ function ProductInfo({
 
   useEffect(() => {
     setProductExistsInWishList(
-      favorites.some((item) => item._id === product?._id)
+      favorites.some((item: any) => item._id === product?._id)
     );
   }, [product]);
 
@@ -149,6 +151,7 @@ function ProductInfo({
 
   function handleAddToCart(id: string, name: string, price: number) {
     const newItem = {
+      price: null,
       id,
       name,
       quantity: 1,

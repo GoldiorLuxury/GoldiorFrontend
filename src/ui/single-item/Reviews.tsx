@@ -183,7 +183,7 @@ function RatingSummary({
     });
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     if (reviewText.trim() === "") {
       alert("Please write a review before submitting.");

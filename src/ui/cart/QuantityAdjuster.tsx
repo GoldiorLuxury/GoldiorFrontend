@@ -1,7 +1,7 @@
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { decreaseQuantity, deleteItem, getCurrentQuantityById, increaseQuantity } from "../../Features/cart/cartSlice";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function QuantityAdjuster({
   id
