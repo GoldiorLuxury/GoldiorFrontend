@@ -1,4 +1,4 @@
-// http://localhost:5100/api/product/672c49008681df2dabc8ad20 
+// https://website-backend-1-a73j.onrender.com/api/product/672c49008681df2dabc8ad20
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -23,7 +23,7 @@ async function getProduct(id: string | undefined) {
     }
 
     return data;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error(error.message);
     throw new Error("Failed to fetch recipes: useGetProduct.js");

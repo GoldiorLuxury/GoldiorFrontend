@@ -1,4 +1,4 @@
-// http://localhost:5100/api/product/672c49008681df2dabc8ad20
+// https://website-backend-1-a73j.onrender.com/api/product/672c49008681df2dabc8ad20
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -12,22 +12,24 @@ export default function UseAddUser(formData: any) {
 
 export async function saveUser(formData: any) {
   console.log(formData, "form data saving...");
-   try {
+  try {
     // Send the POST request to the backend API
-    const res = await fetch("http://localhost:5100/api/auth/create-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData), // Send the form data in the body
-    });
+    const res = await fetch(
+      "https://website-backend-1-a73j.onrender.com/api/auth/create-user",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Send the form data in the body
+      }
+    );
 
     const data = await res.json();
 
     if (res.ok) {
       // Handle success (e.g., redirect or show success message)
       console.log("User created successfully:", data);
-      
     } else {
       // Handle failure (e.g., show error message)
       console.error("Error:", data.message || "Failed to create user");
@@ -35,4 +37,4 @@ export async function saveUser(formData: any) {
   } catch (error) {
     console.error("Error submitting form:", error);
   }
-};
+}

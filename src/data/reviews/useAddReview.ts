@@ -31,13 +31,16 @@ export async function addReview(
 
   try {
     // Make the API call
-    const res = await fetch("http://localhost:5100/api/review/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(reviewData),
-    });
+    const res = await fetch(
+      "https://website-backend-1-a73j.onrender.com/api/review/add",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reviewData),
+      }
+    );
 
     // Check if the response is not okay
     if (!res.ok) {
@@ -54,8 +57,6 @@ export async function addReview(
     throw new Error(error?.message || "Unexpected error occurred");
   }
 }
-
-
 
 export default function useAddReview() {
   const [isAddingReview, setIsAddingReview] = useState(false);
@@ -105,4 +106,3 @@ export default function useAddReview() {
 
   return { isAddingReview, addReview: addReviewWithLoadingState };
 }
-
