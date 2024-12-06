@@ -10,10 +10,11 @@ function SaleBanner({
   buttonText?: string;
 }) {
   return (
-    <div className="p-4">
+    <div className="">
       <div
         className="relative w-full h-screen flex items-center justify-start bg-cover bg-center"
         style={{
+          backgroundPosition: "center",
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${imageUrl})`,
         }}
       >

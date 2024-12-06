@@ -231,7 +231,7 @@ function Footer() {
     //   </div>
     // </footer>
 
-    <footer className="bg-white pl-6 md:px-20">
+    <footer className="bg-white px-3 md:px-20">
       <div className="flex flex-col md:flex-row justify-between py-6 border-t border-b border-[var(--theme-brown)]">
         {/* Logo and Newsletter */}
         <div className="w-full md:w-1/3 mb-8 md:mb-0">

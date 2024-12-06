@@ -15,7 +15,7 @@ function OurStory({
           {heading}
         </div>
 
-        <p className="text-lg lg:text-2xl text-center md:px-28 lg:px-42 drop-shadow-lg">{subtext}</p>
+        <p className="text-lg lg:text-2xl text-justify md:px-28 lg:px-42 drop-shadow-lg">{subtext}</p>
       </div>
 
       {/* Image below text */}
