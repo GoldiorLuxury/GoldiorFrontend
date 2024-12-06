@@ -1,7 +1,7 @@
 import Navbar from "../ui/general/Navbar.tsx";
 // import perfume from '../assets/old-fashion-perfume-black-gold.png';
 import StarRating from "../ui/general/StarRating.tsx";
-import React, {useState, useEffect} from "react";
+import  {useState, useEffect} from "react";
 import QuantityAdjuster from "../ui/cart/QuantityAdjuster.tsx";
 import RoundButton from "../ui/general/RoundButton.tsx";
 import {FaRegHeart} from "react-icons/fa";
