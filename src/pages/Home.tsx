@@ -5,8 +5,8 @@ import Welcome from "../ui/Home/Welcome";
 import Navbar from "../ui/general/Navbar";
 import landingPageImage from "../assets/landing-page-perfume.png";
 import welcomeBg from "../assets/welcome-bg.png";
-import { useNavigate, NavLink } from "react-router-dom";
-import welcomePage from "../assets/welcome-page-image.png";
+// import { useNavigate, NavLink } from "react-router-dom";
+
 
 import SaleBanner from "../ui/Home/SaleBanner";
 import salePageBG from "../assets/sale_page_bg.jpg";
