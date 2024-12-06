@@ -260,7 +260,7 @@ export default function Navbar() {
         </div>
       </nav>
       <span className="mx-8 sm:mx-16 md:mx-24 lg:mx-32 z-20 top-28 relative">
-        path from url
+        {/* path from url */}
       </span>
     </>
   );
