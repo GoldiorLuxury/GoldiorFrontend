@@ -5,12 +5,15 @@ function Hero({
   subtext,
   imageUrl,
   buttonText,
+  navigateTo
 }: {
   heading?: string;
   subtext?: string;
   imageUrl?: string;
   buttonText?: string;
+  navigateTo?: string;
 }) {
+  const navigate = useNavigate();
   return (
     <div className="relative flex flex-col-reverse items-center justify-between w-full p-6 mt-12 lg:flex-row lg:px-28 md:mt-0 h-screen">
       <div className="flex flex-col justify-center items-center text-center p-0 m-0 lg:items-start lg:w-2/3 lg:text-left">
@@ -20,8 +23,12 @@ function Hero({
         <p className=" lg:text-2xl text-brown-600 mb-4 lg:mb-10 lg:mt-2">
           {subtext}
         </p>
-        <button className="bg-[var(--theme-brown)] text-white font-medium px-6 py-3 rounded-lg w-36 lg:mt-1 hover:bg-[var(--buttonHover)] duration-500">
-          {buttonText}
+        <button 
+        // @ts-ignore: Ignoring this line because TypeScript can't recognize 'baz' in 'someObject'
+        onClick={()=>navigate(navigateTo)}
+        className="bg-[var(--theme-brown)] text-white font-medium px-6 py-3 rounded-lg w-36 lg:mt-1 hover:bg-[var(--buttonHover)] duration-500">
+          {buttonText
+          }
         </button>
 
       </div>

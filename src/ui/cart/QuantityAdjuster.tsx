@@ -1,46 +1,56 @@
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { decreaseQuantity, deleteItem, getCurrentQuantityById, increaseQuantity } from "../../Features/cart/cartSlice";
-import { useState } from "react";
+import {
+  decreaseQuantity,
+  deleteItem,
+  increaseQuantity,
+  getCurrentQuantityById,
+} from "../../Features/cart/cartSlice";
 
-export default function QuantityAdjuster({
-  id
-}: {
-  id: string;
-}) {
-    // const [quantity, setQuantity] = useState(1);
-    const dispatch = useDispatch();
-    const quantity: number = useSelector(getCurrentQuantityById(id))
+export default function QuantityAdjuster({ id }: { id: string }) {
+  const dispatch = useDispatch();
 
-    function onClickMinus(){
-        if (quantity <= 1) {
-            dispatch(deleteItem(id));
-            // setInCart(false);
-        }
-        dispatch(decreaseQuantity(id))
-        // setQuantity(quantity => quantity - 1);
-        
+  // Pass the `id` to the selector to retrieve the quantity
+  const quantity = useSelector((state: { cart: any }) =>
+    getCurrentQuantityById(id)(state)
+  );
+
+  function onClickMinus() {
+    if (quantity <= 1) {
+      dispatch(deleteItem(id));
+    } else {
+      dispatch(decreaseQuantity(id));
     }
-     function onClickPlus() {
-       dispatch(increaseQuantity(id));
-      //  setQuantity((quantity) => quantity + 1);
-     }
-    
+  }
+
+  function onClickPlus() {
+    if (quantity < 10) {
+      dispatch(increaseQuantity(id));
+    } else {
+      alert("You cannot add more than 10 items of this product.");
+    }
+  }
+
   return (
     <div
       style={{ fontFamily: "Playfair" }}
-      className={"text-xl flex justify-center items-center gap-8"}
+      className="text-xl flex justify-center items-center gap-8"
     >
+      {/* Minus button */}
       <button onClick={onClickMinus}>
-        <span className={"text-2xl md:text-3xl text-gray-800"}>
+        <span className="text-2xl md:text-3xl text-gray-800">
           <FaMinus />
         </span>
       </button>
-      <span className={"text-xl md:text-2xl font-semibold text-gray-800"}>
+
+      {/* Display the current quantity */}
+      <span className="text-xl md:text-2xl font-semibold text-gray-800">
         {quantity}
       </span>
+
+      {/* Plus button */}
       <button onClick={onClickPlus}>
-        <span className={"text-xl md:text-2xl font-semibold text-gray-800"}>
+        <span className="text-xl md:text-2xl font-semibold text-gray-800">
           <FaPlus />
         </span>
       </button>

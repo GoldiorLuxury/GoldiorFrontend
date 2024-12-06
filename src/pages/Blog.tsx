@@ -63,7 +63,7 @@ const BlogCollection: React.FC = () => {
 
             {/* Blog Section with Cards */}
             <div className="blog-sec py-12 px-6 md:px-12 lg:px-24">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <BlogCard
                         imageSrc={services1}
                         title="Make Your Scent Last All Day: Top Tips for Long-Lasting Perfume"
@@ -76,12 +76,12 @@ const BlogCollection: React.FC = () => {
                         description="A luxury perfume collection is not just an assortment of fragrances; it is a reflection of one’s taste, personality, and experiences."
                         buttonLink="/blog/choosing-the-perfect-fragrance-for-every-season"
                     />
-                    <BlogCard
+                    {/* <BlogCard
                         imageSrc={services4}
                         title="Decoding Fragrance Notes: Unraveling the Symphony of Scents"
                         description="Ever wondered how perfumers compose their masterpieces? Unravel the mystery behind fragrance notes and learn how they combine to create olfactory experiences."
                         buttonLink="/blog/decoding-fragrance-notes"
-                    />
+                    /> */}
                     <BlogCard
                         imageSrc={services3}
                         title="Find Your Signature Scent: How to Choose the Perfect Perfume"

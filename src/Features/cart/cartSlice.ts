@@ -24,22 +24,36 @@
     initialState,
     reducers: {
       addItem(state, action: PayloadAction<CartItem>) {
-        // payload is the new dish to add
-        state.cart.push(action.payload);
+        const existingItem = state.cart.find((item) => item.id === action.payload.id);
+        if (existingItem) {
+          if (existingItem.quantity < 10) {
+            existingItem.quantity++;
+            existingItem.totalPrice = existingItem.quantity * existingItem.unitPrice;
+          } else {
+            console.warn("Maximum limit of 10 items reached for product:", existingItem.name);
+          }
+        } else {
+          state.cart.push(action.payload);
+        }
         console.log("Cart after addItem:", JSON.stringify(state.cart));
       },
+      
       deleteItem(state, action: PayloadAction<string>) {
         // payload is the id of the item to delete
         state.cart = state.cart.filter((item) => item.id !== action.payload);
       },
       increaseQuantity(state, action: PayloadAction<string>) {
-        // payload is the id of the item to increase quantity
         const item = state.cart.find((item) => item.id === action.payload);
         if (item) {
-          item.quantity++;
-          item.totalPrice = item.quantity * item.unitPrice;
+          if (item.quantity < 10) {
+            item.quantity++;
+            item.totalPrice = item.quantity * item.unitPrice;
+          } else {
+            console.warn("Maximum limit of 10 items reached for product:", item.name);
+          }
         }
       },
+      
       decreaseQuantity(state, action: PayloadAction<string>) {
         // payload is the id of the item to decrease quantity
         const item = state.cart.find((item) => item.id === action.payload);
@@ -75,9 +89,12 @@
   export const getTotalCartQuantity = (state: { cart: CartState }) =>
     state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
 
+  const calculateDiscountedPrice = (item: CartItem) =>
+    Math.round(item.totalPrice * (1 - item.discountPercentage / 100));
+  
   export const getTotalCartPrice = (state: { cart: CartState }) =>
-    state.cart.cart.reduce((sum, item) => sum + Math.round(item.totalPrice*(1-item.discountPercentage/100)), 0);
-
-  export const getCurrentQuantityById =
-    (id: string) => (state: { cart: CartState }) =>
-      state.cart.cart.find((item) => item.id === id)?.quantity ?? 0;
+    state.cart.cart.reduce((sum, item) => sum + calculateDiscountedPrice(item), 0);
+  
+  export const getCurrentQuantityById = (id: string) => (state: { cart: CartState }) =>
+    state.cart.cart.find((item) => item.id === id)?.quantity ?? 0;
+  
