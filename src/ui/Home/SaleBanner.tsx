@@ -12,7 +12,7 @@ function SaleBanner({
   return (
     <div className="">
       <div
-        className="relative w-full h-screen flex items-center justify-start bg-cover bg-center"
+        className="relative w-full h-[80vh] sm:h-screen flex items-center justify-start bg-cover bg-center"
         style={{
           backgroundPosition: "center",
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${imageUrl})`,
