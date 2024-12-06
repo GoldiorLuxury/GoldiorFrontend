@@ -1,7 +1,7 @@
 import Navbar from "../ui/general/Navbar.tsx";
 // import perfume from '../assets/old-fashion-perfume-black-gold.png';
 import StarRating from "../ui/general/StarRating.tsx";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import QuantityAdjuster from "../ui/cart/QuantityAdjuster.tsx";
 import RoundButton from "../ui/general/RoundButton.tsx";
 import {FaRegHeart} from "react-icons/fa";
@@ -238,7 +238,9 @@ function ProductInfo({
               fillColor="var(--rating-yellow)"
             />{" "}
             <span style={{ fontFamily: "Playfair" }} className={"text-lg"}>
-              {averageRating ? `${averageRating }/5` : "Be the first one to review!"}
+              {averageRating
+                ? `${averageRating}/5`
+                : "Be the first one to review!"}
             </span>
           </div>
           <span
@@ -259,11 +261,7 @@ function ProductInfo({
             style={{ fontFamily: "Playfair" }}
             className={"description text-gray-800"}
           >
-            Step into a world of unparalleled opulence with Luxurious Elixir, an
-            exquisite fragrance that weaves an enchanting symphony of gold and
-            luxury. This gilded elixir is a celebration of sophistication,
-            crafted with the finest essences and imbued with the allure of
-            precious golden hues.
+            {product?.description}
           </p>
 
           {/*perfume sizes */}
@@ -315,12 +313,23 @@ function ProductInfo({
         <div className="w-full flex items-center justify-center my-2">
           <p className="w-[60vw] h-[0.15rem] bg-gray-400"></p>
         </div>
-        <p style={{ fontFamily: "Playfair" }} className="mt-2 text-center">
-          {product?.description}
+        <p
+          style={{ fontFamily: "Playfair" }}
+          className="mt-2 text-justify px-20"
+        >
+          {product?.description2
+            .split(".")
+            .filter(Boolean)
+            ?.map((sentence: string, index: number) => (
+              <ul className="list-disc" key={index}>
+                 <li>{sentence.trim()}.</li>
+                <br />
+              </ul>
+            ))}
         </p>
       </div>
       <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-7">
-        <h2
+        {/* <h2
           style={{ fontFamily: "Playfair" }}
           className="text-xl text-gray-900 font-semibold text-center"
         >
@@ -331,7 +340,7 @@ function ProductInfo({
         </div>
         <p style={{ fontFamily: "Playfair" }} className="mt-2 text-center ">
           {product?.description2}
-        </p>
+        </p> */}
       </div>
 
       {/* key notes  */}
