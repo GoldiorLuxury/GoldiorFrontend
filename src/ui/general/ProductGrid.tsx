@@ -14,8 +14,27 @@ function ProductGrid({
   console.log('Products', products)
   const [selectedSort, setSelectedSort] = useState("Sort By");
 
+  function isHomePage(): boolean {
+    // Get the current URL
+    const currentUrl = window.location.href;
+
+    // Define the home page URL
+    const homePageUrl = "http://localhost:5173/";
+
+    // Check if the current URL matches the home page URL
+    return currentUrl === homePageUrl;
+  }
+
+  // Usage
+  if (isHomePage()) {
+    console.log("You are on the home page!");
+  } else {
+    console.log("You are not on the home page.");
+  }
+
+
   return (
-    <div className="pt-20">
+    <div className="pt-28">
       <h1 className="text-5xl font-bold text-brown-700 mb-8 text-center text-[var(--theme-brown)]">
         {heading}
       </h1>
@@ -86,7 +105,7 @@ function ProductGrid({
 
       <div className="flex items-center justify-center p-6 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 -mt-14">
-          {products?.products?.map((item: any, index: number) => (
+          {products?.products?.slice(0, isHomePage() ? 3 : 6).map((item: any, index: number) => (
             <ProductCard
               key={index}
               imageUrl={item.imgUrl}

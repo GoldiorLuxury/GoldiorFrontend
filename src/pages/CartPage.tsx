@@ -23,12 +23,12 @@ const CartPage = () => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center p-4 ml-8">
+      <div className="flex items-center pt-32 ml-4">
         <span className="text-[#ab572d] font-serif text-[40px] font-bold leading-[47.9px] text-left">
           YOUR CART
         </span>
       </div>
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center w-full pt-10 ">
         {cart.length > 0 ? (
           <div className={`flex w-full flex-col lg:flex-row`}>
             <div className="flex flex-col items-center justify-center p-4 w-full lg:w-1/2">

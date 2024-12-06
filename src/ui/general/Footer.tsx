@@ -288,13 +288,13 @@ function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Shopping</h3>
             <ul>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 Payments
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 Delivery Options
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 Buyer Protection
               </li>
             </ul>
@@ -304,19 +304,19 @@ function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Customer Care</h3>
             <ul>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 Help Center
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 Terms & Conditions
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 Privacy Policy
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 Returns & Refund
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 Survey & Feedback
               </li>
             </ul>
@@ -326,21 +326,21 @@ function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Pages</h3>
             <ul>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 <NavLink to="/about">About</NavLink>
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 <NavLink to="/shop">Shop</NavLink>
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">
                 Contact Us
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">Blog</li>
+              <li className="cursor-pointer hover:text-[#ab572d] hover:font-bold mb-2">Blog</li>
             </ul>
           </div>
         </div>
       </div>
-      <div className="mt-2 text-sm text-gray-400 text-center">
+      <div className="mt-2 text-sm text-gray-600 text-center">
         <p>
           Copyright © 2024 Glodior Luxury Pvt. Ltd.
           <br /> Registered office: 202, Crystal Tower, Gundavali Road, Near

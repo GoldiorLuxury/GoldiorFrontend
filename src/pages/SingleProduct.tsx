@@ -1,10 +1,10 @@
 import Navbar from "../ui/general/Navbar.tsx";
 import perfume from '../assets/old-fashion-perfume-black-gold.png';
 import StarRating from "../ui/general/StarRating.tsx";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import QuantityAdjuster from "../ui/cart/QuantityAdjuster.tsx";
 import RoundButton from "../ui/general/RoundButton.tsx";
-import {FaRegHeart} from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import Notes from "../Types/Notes.ts";
 import Reviews from "../ui/single-item/Reviews.tsx";
@@ -25,32 +25,32 @@ import { getWishlist } from "../data/wishlist/getWishlist.ts";
 import { handleRemoveFromLocalStorage } from "../data/wishlist/useRemoveFavItem.ts";
 import { useWatch } from "react-hook-form";
 
-  interface CartItem {
-    id: string;
-    name: string;
-    quantity: number;
-    unitPrice: number;
-    totalPrice: number;
-    imgUrl: string;
-  }
+interface CartItem {
+  id: string;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+  imgUrl: string;
+}
 
 
-export default function SingleProduct(){
-    const [perfumeCapacities, setPerfumeCapacities] = useState<any[]>([]);
-    const [selectedQuantity, setSelectedQuantity] = useState<number>(perfumeCapacities[0]?.quantity || 50);
-    const {productId} = useParams();
-    
-    const [isOpenReviewModal, setIsOpenReviewModal] = useState(false);
+export default function SingleProduct() {
+  const [perfumeCapacities, setPerfumeCapacities] = useState<any[]>([]);
+  const [selectedQuantity, setSelectedQuantity] = useState<number>(perfumeCapacities[0]?.quantity || 50);
+  const { productId } = useParams();
+
+  const [isOpenReviewModal, setIsOpenReviewModal] = useState(false);
 
 
-    const {product, isGettingProduct} = useGetProductById(productId);
-    const {reviews, isGettingReviews, refetch: refetchReviews} = useGetReviewForProduct(productId); 
-    
-    useEffect(() => {
-      if(isOpenReviewModal == false){
-        refetchReviews();
-      }
-    }, [isOpenReviewModal, refetchReviews])
+  const { product, isGettingProduct } = useGetProductById(productId);
+  const { reviews, isGettingReviews, refetch: refetchReviews } = useGetReviewForProduct(productId);
+
+  useEffect(() => {
+    if (isOpenReviewModal == false) {
+      refetchReviews();
+    }
+  }, [isOpenReviewModal, refetchReviews])
 
   useEffect(() => {
     if (product && product.capacityInML) {
@@ -59,36 +59,36 @@ export default function SingleProduct(){
     }
     console.log("produicts: ", product, "selected: ", product?.product?.capacityInML[0].quantity);
   }, [product, productId]);
-    
-    
 
-    const totalRating = reviews?.reduce(
-      (sum: number, review: any) => sum + review?.rating,
-      0
-    );
-    const averageRating = Number((totalRating / reviews?.length).toFixed(1));
-    console.log("reviews: ", reviews)
 
-    return (
-      <>
-        {isGettingProduct || isGettingReviews || !product ? (
-          <Spinner />
-        ) : (
-          <>
-            <Navbar />
-            <ProductInfo
-              isOpenReviewModal={isOpenReviewModal}
-              setIsOpenReviewModal={setIsOpenReviewModal}
-              averageRating={averageRating}
-              reviews={reviews}
-              product={product?.product}
-              selectedQuantity={selectedQuantity}
-              setSelectedQuantity={setSelectedQuantity}
-            />
-          </>
-        )}
-      </>
-    );
+
+  const totalRating = reviews?.reduce(
+    (sum: number, review: any) => sum + review?.rating,
+    0
+  );
+  const averageRating = Number((totalRating / reviews?.length).toFixed(1));
+  console.log("reviews: ", reviews)
+
+  return (
+    <>
+      {isGettingProduct || isGettingReviews || !product ? (
+        <Spinner />
+      ) : (
+        <>
+          <Navbar />
+          <ProductInfo
+            isOpenReviewModal={isOpenReviewModal}
+            setIsOpenReviewModal={setIsOpenReviewModal}
+            averageRating={averageRating}
+            reviews={reviews}
+            product={product?.product}
+            selectedQuantity={selectedQuantity}
+            setSelectedQuantity={setSelectedQuantity}
+          />
+        </>
+      )}
+    </>
+  );
 }
 
 function ProductInfo({
@@ -235,7 +235,7 @@ function ProductInfo({
               fillColor="var(--rating-yellow)"
             />{" "}
             <span style={{ fontFamily: "Playfair" }} className={"text-lg"}>
-              {averageRating ? `${averageRating }/5` : "Be the first one to review!"}
+              {averageRating ? `${averageRating}/5` : "Be the first one to review!"}
             </span>
           </div>
           <span
@@ -302,7 +302,7 @@ function ProductInfo({
         </div>
       </div>
       {/* product info  */}
-      <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-14 md:mt-8">
+      <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-24 md:mt-24">
         <h2
           style={{ fontFamily: "Playfair" }}
           className="text-xl text-gray-900 font-semibold text-center"
@@ -346,44 +346,44 @@ function ProductInfo({
 
 
 
-function KeyNotes({notes}: {notes: Notes[]}){
-    return(
-        <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-0 md:mt-8">
-            <h2 style={{fontFamily: 'Playfair'}} className="text-xl text-gray-900 font-semibold text-center">Key Notes</h2>
-            <div className="w-full flex items-center justify-center my-2"><p className="w-[60vw] h-[0.15rem] bg-gray-400"></p></div>
-            <div className="flex items-center justify-evenly">
-            {
-                notes?.map((item: Notes) => {
-                    return <div className=" w-[25%] md:w-[33%]" >
-                        <div className="flex flex-col justify-center items-center border-solid">
-                            <p style={{fontFamily: 'Playfair'}} className="text-center font-semibold text-base md:text-lg">{item?.name}</p>
-                            {/* <p style={{fontFamily: 'Playfair'}} className="text-center text-base md:text-lg">{item.ingredients.join(', ')}</p> */}
-                            <img className="rounded-full  object-cover h-28 w-32 sm:h-36 sm:w-36 md:h-44 md:w-44" src={item?.image} alt="image" />
-                        </div>
-                    </div>
-                })
-            }
+function KeyNotes({ notes }: { notes: Notes[] }) {
+  return (
+    <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-0 md:mt-8">
+      <h2 style={{ fontFamily: 'Playfair' }} className="text-xl text-gray-900 font-semibold text-center">Key Notes</h2>
+      <div className="w-full flex items-center justify-center my-2"><p className="w-[60vw] h-[0.15rem] bg-gray-400"></p></div>
+      <div className="flex items-center justify-evenly">
+        {
+          notes?.map((item: Notes) => {
+            return <div className=" w-[25%] md:w-[33%]" >
+              <div className="flex flex-col justify-center items-center border-solid">
+                <p style={{ fontFamily: 'Playfair' }} className="text-center font-semibold text-base md:text-lg">{item?.name}</p>
+                {/* <p style={{fontFamily: 'Playfair'}} className="text-center text-base md:text-lg">{item.ingredients.join(', ')}</p> */}
+                <img className="rounded-full  object-cover h-28 w-32 sm:h-36 sm:w-36 md:h-44 md:w-44" src={item?.image} alt="image" />
+              </div>
             </div>
-        </div>
-    )
+          })
+        }
+      </div>
+    </div>
+  )
 }
 
-function SizePics({capacity, selectedQuantity, setSelectedQuantity, imgUrl}: {
-    capacity: any,
-    selectedQuantity: number,
-    setSelectedQuantity: any,
-    imgUrl: string
+function SizePics({ capacity, selectedQuantity, setSelectedQuantity, imgUrl }: {
+  capacity: any,
+  selectedQuantity: number,
+  setSelectedQuantity: any,
+  imgUrl: string
 }) {
-    return (
-        <button onClick={() => setSelectedQuantity(capacity?.quantity)}
-                className={`flex w-24 p-4 flex-col items-center justify-center rounded-sm  ${selectedQuantity === capacity?.quantity && 'bg-gray-300'}`}>
-            <img
-                src={imgUrl}
-                alt="Perfume"
-                className="h-auto w-full max-w-[60px] max-h-[90px] sm:max-w-[50px] sm:max-h-[70px] md:max-w-[60px] md:max-h-[80px] lg:max-w-[70px] lg:max-h-[90px] xl:max-w-[80px] xl:max-h-[100px] object-cover mx-auto mt-[-10%]"
-            />
-            <span style={{fontFamily: 'Playfair'}}>{capacity?.quantity} ml</span>
-        </button>
+  return (
+    <button onClick={() => setSelectedQuantity(capacity?.quantity)}
+      className={`flex w-24 p-4 flex-col items-center justify-center rounded-sm  ${selectedQuantity === capacity?.quantity && 'bg-gray-300'}`}>
+      <img
+        src={imgUrl}
+        alt="Perfume"
+        className="h-auto w-full max-w-[60px] max-h-[90px] sm:max-w-[50px] sm:max-h-[70px] md:max-w-[60px] md:max-h-[80px] lg:max-w-[70px] lg:max-h-[90px] xl:max-w-[80px] xl:max-h-[100px] object-cover mx-auto mt-[-10%]"
+      />
+      <span style={{ fontFamily: 'Playfair' }}>{capacity?.quantity} ml</span>
+    </button>
 
-    )
+  )
 }

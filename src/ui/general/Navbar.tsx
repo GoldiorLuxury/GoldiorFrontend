@@ -244,9 +244,9 @@ export default function Navbar() {
           </NavLink>
         </div>
       </nav >
-      <span className="mx-8 sm:mx-16 md:mx-24 lg:mx-32 z-20 top-28 relative">
+      {/* <span className="mx-8 sm:mx-16 md:mx-24 lg:mx-32 z-20 top-28 relative">
         path from url
-      </span>
+      </span> */}
     </>
   );
 }

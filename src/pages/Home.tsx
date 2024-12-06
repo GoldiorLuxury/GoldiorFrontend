@@ -11,6 +11,7 @@ import salePageBG from "../assets/sale_page_bg.jpg";
 import Footer from "../ui/general/Footer";
 import useGetMostOrderedProducts from "../data/products/useGetMostOrderedProducts";
 import DisplayFeatures from "../ui/Home/Features";
+import ProductGrid from "../ui/general/ProductGrid";
 
 function Home() {
   const { products } = useGetMostOrderedProducts();
@@ -42,7 +43,7 @@ function Home() {
         imageUrl={welcomePage}
         buttonText={"Shop now"}
       /> */}
-      <HomeGrid products={products} heading="Best Selling Products" />
+      <ProductGrid products={products} heading="Best Selling Products" />
       <SaleBanner
         heading="Perfume Year-End Sale! Up to 50% OFF"
         subtext={
