@@ -1,17 +1,18 @@
 import HomeGrid from "../ui/general/ProductGrid";
 import Hero from "../ui/Home/Hero";
-import OurValues from "../ui/Home/OurValues";
+// import OurValues from "../ui/Home/OurValues";
 import Welcome from "../ui/Home/Welcome";
 import Navbar from "../ui/general/Navbar";
 import landingPageImage from "../assets/landing-page-perfume.png";
 import welcomeBg from "../assets/welcome-bg.png";
 import { useNavigate, NavLink } from "react-router-dom";
 import welcomePage from "../assets/welcome-page-image.png";
+
 import SaleBanner from "../ui/Home/SaleBanner";
 import salePageBG from "../assets/sale_page_bg.jpg";
 import Footer from "../ui/general/Footer";
 import useGetMostOrderedProducts from "../data/products/useGetMostOrderedProducts";
-import DisplayFeatures from "../ui/Home/Features";
+// import DisplayFeatures from "../ui/Home/Features";
 
 function Home() {
   const { products } = useGetMostOrderedProducts();
@@ -27,7 +28,7 @@ function Home() {
         }
         buttonText={"Shop now"}
         imageUrl={landingPageImage}
-        navigateTo="/shop"
+        // navigateTo="/shop"
       />
       <Welcome
         heading="Welcome to Goldior Luxury"
@@ -46,7 +47,7 @@ function Home() {
       /> */}
       <HomeGrid products={products} heading="Best Selling Products" />
       <SaleBanner
-        heading="Perfume Year-End Sale! Up to 50% OFF"
+        heading="Exclusive Launch Offer For First 100 Customers"
         subtext={
           "Discover an exquisite collection of premium perfumes at unbelievable prices during our exclusive Perfume Sale!"
         }

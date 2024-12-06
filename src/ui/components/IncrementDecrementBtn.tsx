@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
 const IncrementDecrementBtn = ({ minValue = 0, maxValue = 100 }) => {

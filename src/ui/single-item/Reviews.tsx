@@ -5,6 +5,7 @@ import Footer from "../general/Footer";
 import compressImage from "../../utils/compressImage";
 import useAddReview from "../../data/reviews/useAddReview";
 import { useNavigate, useParams } from "react-router-dom";
+import DynamicStarRating from "../general/DynamicStar";
 
 export default function Reviews({
   reviews,
@@ -19,7 +20,7 @@ export default function Reviews({
 }) {
   const totalReviews = reviews.length;
   const recommendedReviews = reviews.filter(
-    (review) => review.isRecommended === true
+    (review: any) => review.isRecommended === true
   ).length;
 
   // Calculate the percentage
@@ -140,7 +141,7 @@ function ReviewListItem({review}: {review: any}){
 }
 
 function RatingSummary({
-  recommendationPercentage,
+  // recommendationPercentage,
   averageRating,
   starCounts,
   reviews,
@@ -165,6 +166,7 @@ function RatingSummary({
   const { isAddingReview, addReview } = useAddReview();
 
   const navigate = useNavigate();
+  console.log(isSubmitting)
 
   useEffect(() => {
     console.log("data url: ", imageUrl);
@@ -182,7 +184,7 @@ function RatingSummary({
     });
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     if (reviewText.trim() === "") {
       alert("Please write a review before submitting.");
@@ -260,7 +262,7 @@ function RatingSummary({
                 Rating (1-5)
               </label>
               <span className="text-lg">{rating}</span>
-              <input
+              {/* <input
                 id="rating"
                 type="range"
                 min="1"
@@ -271,7 +273,15 @@ function RatingSummary({
                   setRating(e.target.value);
                 }}
                 className="w-full h-4 bg-gray-200 rounded-lg cursor-pointer mb-4"
-              />
+              /> */}
+                 <DynamicStarRating
+        maxRating={5}
+        defaultRating={rating}
+        color="#fcc419"
+        size={48}
+        messages={["Poor", "Fair", "Good", "Very Good", "Excellent"]}
+        onSetRating={setRating}
+      />
               {/* Review Text Input */}
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Your Review

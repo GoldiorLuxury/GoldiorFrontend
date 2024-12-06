@@ -1,7 +1,7 @@
 export const verifyUserExists = async (email: string): Promise<boolean> => {
   try {
     const response = await fetch(
-      `http://localhost:5100/api/auth/get-user-by-email/${email}`,
+      `https://website-backend-1-a73j.onrender.com/api/auth/get-user-by-email/${email}`,
       {
         method: "GET", // Make a GET request
         headers: {

@@ -1,13 +1,11 @@
 import { RxCross2 } from "react-icons/rx";
-import perfume from "../../assets/landing-page-perfume.png";
+// import perfume from "../../assets/landing-page-perfume.png";
 import { handleRemoveFromLocalStorage } from "../../data/wishlist/useRemoveFavItem";
 
 function WishlistCard({
   id,
   favorites,
   setFavourites,
-  price,
-  discountPercentage,
   imageUrl,
   quantity,
   name,
@@ -15,8 +13,8 @@ function WishlistCard({
   id: string;
   favorites: any;
   setFavourites: any,
-  price?: string;
-  discountPercentage: string,
+  // price?: string;
+  // discountPercentage: string,
   quantity?: string;
   imageUrl?: string;
   name?: string;

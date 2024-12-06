@@ -120,8 +120,9 @@ export default function Navbar() {
         </div>
 
         <div
-          className={`fixed top-0 left-0 h-screen bg-[var(--theme-brown)] text-white transform opacity-95 transition-transform duration-300 z-20 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-            } w-3/4 sm:hidden shadow-lg`}
+          className={`fixed top-0 left-0 h-screen bg-[var(--theme-brown)] text-white transform opacity-95 transition-transform duration-300 z-20 ease-in-out ${
+            isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } w-3/4 sm:hidden shadow-lg`}
         >
           <div className="flex p-6 justify-between items-center border-b border-white/50">
             <img
@@ -169,8 +170,9 @@ export default function Navbar() {
 
         <div
           ref={wishlistRef}
-          className={`fixed top-0 right-0 h-screen bg-white transform transition-transform duration-500 z-20 ease-in-out ${isWishlistOpen ? "translate-y-0" : "-translate-y-full"
-            } w-4/5 md:w-3/5 lg:w-1/4 shadow-lg`}
+          className={`fixed top-0 right-0 h-screen bg-white transform transition-transform duration-500 z-20 ease-in-out ${
+            isWishlistOpen ? "translate-y-0" : "-translate-y-full"
+          } w-4/5 md:w-3/5 lg:w-1/4 shadow-lg`}
         >
           <div className="flex p-6 justify-between items-center">
             <h2 className="text-3xl md:text-4xl font-semibold">Wishlist</h2>
@@ -186,9 +188,12 @@ export default function Navbar() {
                 key={index}
                 favorites={favourites}
                 setFavourites={setFavourites}
+                // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
                 id={item._id}
                 name={item.name}
+                // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
                 imageUrl={item.imgUrl}
+                // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
                 discountPercentage={item.discountPercentage}
                 quantity="250ml"
                 price={item.price}
@@ -201,9 +206,14 @@ export default function Navbar() {
                 alt="Empty Wishlist"
                 className="w-1/2"
               />
-              <p className="text-xl text-black  font-extrabold font-[Inria-Serif]">Your Wishlist is Empty!</p>
+              <p className="text-xl text-black  font-extrabold font-[Inria-Serif]">
+                Your Wishlist is Empty!
+              </p>
 
-              <NavLink to="/shop" className="mt-10 bg-[var(--theme-brown)] text-white font-medium px-6 py-2 rounded-lg hover:bg-[var(--buttonHover)]">
+              <NavLink
+                to="/shop"
+                className="mt-10 bg-[var(--theme-brown)] text-white font-medium px-6 py-2 rounded-lg hover:bg-[var(--buttonHover)]"
+              >
                 Shop Now
               </NavLink>
             </div>
@@ -218,7 +228,13 @@ export default function Navbar() {
               onClick={toggleProfileCard}
             />
             {isProfileCardOpen && userEmail && (
-              <div style={{ position: 'absolute', top: '3rem', transform: 'translateX(-50%)' }}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "3rem",
+                  transform: "translateX(-50%)",
+                }}
+              >
                 <ProfileCard
                   name="Hey:)"
                   email={userEmail}
@@ -228,7 +244,6 @@ export default function Navbar() {
               </div>
             )}
           </div>
-
 
           <FaRegHeart
             size={23}
@@ -243,9 +258,9 @@ export default function Navbar() {
             />
           </NavLink>
         </div>
-      </nav >
+      </nav>
       <span className="mx-8 sm:mx-16 md:mx-24 lg:mx-32 z-20 top-28 relative">
-        path from url
+        {/* path from url */}
       </span>
     </>
   );

@@ -19,7 +19,7 @@ function Welcome({
       >
 
         <div className="relative z-10 text-center">
-          <h1 className="text-8xl font-semibold text-transparent bg-gradient-to-r from-[#FFFF] to-[#AB572D] bg-clip-text drop-shadow-lg mb-6 md:text-7xl lg:text-8xl">
+          <h1 className="text-7xl font-semibold text-transparent bg-gradient-to-r from-[#FFFF] to-[#AB572D] bg-clip-text drop-shadow-lg mb-6 md:text-7xl lg:text-8xl">
             {heading}
           </h1>
           <p className="text-lg text-white drop-shadow-md text-center px-10 md:text-xl lg:px-72">

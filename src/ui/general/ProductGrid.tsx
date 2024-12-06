@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import ProductCard from "./ProductCard.tsx";
 
 function ProductGrid({
@@ -32,24 +32,19 @@ function ProductGrid({
               </span>
 
               {/* Dropdown for Gender */}
-              <div className="relative w-[150px] text-gray-900 dark:text-gray-100">
-                <div className="relative w-full group">
-                  <button className="py-2.5 px-3 w-full text-sm text-gray-700 bg-white border border-gray-300 hover:border-[#AB572D] focus:border-[#AB572D] focus:outline-none focus:ring-0 peer flex items-center justify-between rounded font-semibold shadow-sm transition-colors">
-                    {selectedGender}
-                  </button>
-                  <div
-                    className="absolute z-[99] top-[100%] left-0 rounded-md overflow-hidden shadow-lg w-full peer-focus:visible peer-focus:opacity-100 opacity-0 invisible duration-200 p-1 bg-white border border-gray-300 text-sm"
-                  >
-                    {["Men", "Women", "Others", "Gifting"].map((gender) => (
-                      <div
-                        key={gender}
-                        className="w-full block cursor-pointer bg-white hover:bg-[#AB572D] hover:text-black text-gray-700 px-3 py-2 rounded-md transition-colors"
-                        onClick={() => setSelectedGender(gender)}
-                      >
-                        {gender}
-                      </div>
-                    ))}
-                  </div>
+              <div className="relative w-full text-gray-900 dark:text-gray-100">
+                <div className="flex space-x-2">
+                  {["Men", "Women", "Others", "Gifting"].map((gender) => (
+                    <button
+                      key={gender}
+                      className={`py-2.5 px-3 w-full text-sm text-gray-700  border border-gray-300 hover:border-[#AB572D] focus:border-[#AB572D] focus:outline-none focus:ring-0 flex items-center justify-center rounded font-semibold shadow-sm transition-colors ${
+                        selectedGender === gender ? "bg-[#AB572D] text-white" : "bg-white"
+                      }`}
+                      onClick={() => setSelectedGender(gender)}
+                    >
+                      {gender}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
@@ -60,9 +55,7 @@ function ProductGrid({
                 <button className="py-2.5 px-3 w-full text-sm text-gray-700 bg-white border border-gray-300 hover:border-[#AB572D] focus:border-[#AB572D] focus:outline-none focus:ring-0 peer flex items-center justify-between rounded font-semibold shadow-sm transition-colors">
                   {selectedSort}
                 </button>
-                <div
-                  className="absolute z-[99] top-[100%] left-0 rounded-md overflow-hidden shadow-lg w-full peer-focus:visible peer-focus:opacity-100 opacity-0 invisible duration-200 p-1 bg-white border border-gray-300 text-sm"
-                >
+                <div className="absolute z-[99] top-[100%] left-0 rounded-md overflow-hidden shadow-lg w-full peer-focus:visible peer-focus:opacity-100 opacity-0 invisible duration-200 p-1 bg-white border border-gray-300 text-sm">
                   {[
                     "Price: Low to High",
                     "Price: High to Low",

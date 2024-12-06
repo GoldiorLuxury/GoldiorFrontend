@@ -7,13 +7,16 @@ export function useVerifyOtp() {
 
   const verifyOtp = async (email: string, otp: string) => {
     try {
-      const res = await fetch(`/api/auth/verify-otp/${email}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ otp }), // Send OTP in the request body
-      });
+      const res = await fetch(
+        `https://website-backend-1-a73j.onrender.com/api/auth/verify-otp/${email}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ otp }), // Send OTP in the request body
+        }
+      );
 
       const data = await res.json();
 

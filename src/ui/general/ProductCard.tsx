@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, getCart } from '../../Features/cart/cartSlice';
@@ -7,11 +7,19 @@ import { RiHandbagLine } from 'react-icons/ri';
 function ProductCard({
   price,
   imageUrl,
-  quantity,
+  // quantity,
   name,
   id,
   discountPercentage,
   brand = "Brand",
+}: {
+  price: any;
+  imageUrl: any;
+  quantity: any;
+  name: any;
+  id: any;
+  discountPercentage: any;
+  brand?: any;
 }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,11 +27,14 @@ function ProductCard({
   const [inCart, setInCart] = useState(false);
 
   // Calculate the discounted price
-  const discountedPrice = (Number(price) * (1 - discountPercentage / 100)).toFixed(2);
+  const discountedPrice = (
+    Number(price) *
+    (1 - discountPercentage / 100)
+  ).toFixed(2);
 
   // Check if item is in cart
   useEffect(() => {
-    const itemInCart = cart.find(item => item.id === id);
+    const itemInCart = cart.find((item) => item.id === id);
     setInCart(!!itemInCart);
   }, [cart, id]);
 
@@ -38,6 +49,7 @@ function ProductCard({
       totalPrice: parseFloat(discountedPrice),
       discountPercentage,
     };
+    // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
     dispatch(addItem(newItem));
     setInCart(true);
   }
@@ -54,9 +66,13 @@ function ProductCard({
       />
       <div className="px-4 py-3">
         <span className="text-gray-400 mr-3 uppercase text-xs">{brand}</span>
-        <p className="text-lg font-bold text-black truncate block capitalize">{name}</p>
+        <p className="text-lg font-bold text-black truncate block capitalize">
+          {name}
+        </p>
         <div className="flex items-center">
-          <p className="text-lg font-semibold text-black cursor-auto my-3">${discountedPrice}</p>
+          <p className="text-lg font-semibold text-black cursor-auto my-3">
+            ${discountedPrice}
+          </p>
           {discountPercentage > 0 && (
             <del>
               <p className="text-sm text-gray-600 cursor-auto ml-2">${price}</p>

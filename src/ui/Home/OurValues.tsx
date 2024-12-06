@@ -2,7 +2,7 @@ function OurValues({
     heading,
     subtext,
     imageUrl,
-    buttonText,
+    // buttonText,
   }: {
     heading?: string;
     subtext?: string;

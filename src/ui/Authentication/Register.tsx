@@ -1,10 +1,10 @@
   import { useEffect, useState } from "react";
-  import { NavLink, useNavigate } from "react-router-dom";
+  import { NavLink } from "react-router-dom";
   import  { saveUser } from "../../data/auth/UseAddUser";
-import { verifyUserExists } from "../../data/auth/VerifyUserExists";
+// import { verifyUserExists } from "../../data/auth/VerifyUserExists";
 
   const RegisterForm = () => {
-    const navigation = useNavigate();
+    // const navigation = useNavigate();
     const [formData, setFormData] = useState({
       username: "",
       email: "",
@@ -33,7 +33,7 @@ import { verifyUserExists } from "../../data/auth/VerifyUserExists";
 
 
     // Updated handleChange function to detect changes in address fields
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
 
     // Check if the field is part of the address object
@@ -57,7 +57,7 @@ import { verifyUserExists } from "../../data/auth/VerifyUserExists";
   };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
       e.preventDefault(); // Prevent form from reloading the page
       try {
         console.log(formData, "form data: frontend");
