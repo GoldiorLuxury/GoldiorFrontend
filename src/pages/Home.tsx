@@ -44,7 +44,7 @@ function Home() {
       /> */}
       <HomeGrid products={products} heading="Best Selling Products" />
       <SaleBanner
-        heading="Perfume Year-End Sale! Up to 50% OFF"
+        heading="Exclusive Launch Offer For First 100 Customers"
         subtext={
           "Discover an exquisite collection of premium perfumes at unbelievable prices during our exclusive Perfume Sale!"
         }

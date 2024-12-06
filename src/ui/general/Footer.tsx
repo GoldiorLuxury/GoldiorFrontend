@@ -1,6 +1,12 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/goldior-logo.png";
-import { FaTwitter, FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
+import {
+  FaTwitter,
+  FaFacebook,
+  FaLinkedin,
+  FaInstagram,
+  FaWhatsapp,
+} from "react-icons/fa";
 
 function Footer() {
   // return (
@@ -251,34 +257,41 @@ function Footer() {
             </button>
           </div>
           <div className="flex justify-start space-x-8 mt-4 text-3xl">
-            <a
-              href="#"
+            <NavLink
+              to={""}
               className="text-blue-500 hover:text-blue-300 duration-300"
               aria-label="Twitter"
             >
               <FaTwitter />
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to={""}
               className="text-blue-700 hover:text-blue-500 duration-300"
               aria-label="Facebook"
             >
               <FaFacebook />
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
+              to={""}
               className="text-blue-600 hover:text-blue-400 duration-300"
               aria-label="LinkedIn"
             >
               <FaLinkedin />
-            </a>
-            <a
-              href="#"
+            </NavLink>
+            <NavLink
               className="text-pink-600 hover:text-pink-400 duration-300"
               aria-label="Instagram"
+              to={""}
             >
               <FaInstagram />
-            </a>
+            </NavLink>
+            <NavLink
+              className="text-green-500 hover:text-green-400 duration-300"
+              aria-label="Instagram"
+              to={"https://wa.link/t09and"}
+            >
+              <FaWhatsapp />
+            </NavLink>
           </div>
         </div>
 
@@ -289,13 +302,13 @@ function Footer() {
             <h3 className="font-semibold text-lg mb-4">Shopping</h3>
             <ul>
               <li className="cursor-pointer hover:text-gray-400 mb-2">
-                Payments
+                <NavLink to={""}>Payments</NavLink>
               </li>
               <li className="cursor-pointer hover:text-gray-400 mb-2">
-                Delivery Options
+                <NavLink to={""}> Delivery Options</NavLink>
               </li>
               <li className="cursor-pointer hover:text-gray-400 mb-2">
-                Buyer Protection
+                <NavLink to={""}>Buyer Protection</NavLink>
               </li>
             </ul>
           </div>
@@ -305,19 +318,19 @@ function Footer() {
             <h3 className="font-semibold text-lg mb-4">Customer Care</h3>
             <ul>
               <li className="cursor-pointer hover:text-gray-400 mb-2">
-                Help Center
+                <NavLink to={""}> Help Center</NavLink>
               </li>
               <li className="cursor-pointer hover:text-gray-400 mb-2">
-                Terms & Conditions
+                <NavLink to={"/terms & conditions"}>Terms & Conditions</NavLink>
               </li>
               <li className="cursor-pointer hover:text-gray-400 mb-2">
-                Privacy Policy
+                <NavLink to={"/privacy-policy"}> Privacy Policy </NavLink>
               </li>
               <li className="cursor-pointer hover:text-gray-400 mb-2">
-                Returns & Refund
+                <NavLink to={"/refund-policy"}>Returns & Refund </NavLink>
               </li>
               <li className="cursor-pointer hover:text-gray-400 mb-2">
-                Survey & Feedback
+                <NavLink to={""}>Survey & Feedback</NavLink>
               </li>
             </ul>
           </div>
@@ -335,7 +348,9 @@ function Footer() {
               <li className="cursor-pointer hover:text-gray-400 mb-2">
                 Contact Us
               </li>
-              <li className="cursor-pointer hover:text-gray-400 mb-2">Blog</li>
+              <li className="cursor-pointer hover:text-gray-400 mb-2">
+                <NavLink to={"/blog"}>Blog</NavLink>
+              </li>
             </ul>
           </div>
         </div>
