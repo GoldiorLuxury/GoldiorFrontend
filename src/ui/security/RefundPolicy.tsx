@@ -6,7 +6,7 @@ const RefundPolicy: React.FC = () => {
     return (
         <>
             <Navbar />
-            <div className="max-w-5xl mx-auto p-6 bg-white font-inter text-gray-800 mt-24">
+            <div className="max-w-5xl mx-auto p-6 bg-transparent font-inter text-gray-800 mt-24">
                 <h1 className="text-5xl font-semibold text-center mb-6">Refund Policy</h1>
 
                 <p className="text-lg mb-6">
