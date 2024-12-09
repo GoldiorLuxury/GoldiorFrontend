@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/goldior-logo.png";
 import {
-  FaTwitter,
   FaFacebook,
   FaLinkedin,
   FaInstagram,
