@@ -36,7 +36,7 @@ const CartPage = () => {
                 <CartItem key={product.id} product={product} />
               ))}
             </div>
-            <div className="flex items-center justify-center bg-white w-full md:w-1/2">
+            <div className="flex items-center justify-center bg-transparent w-full md:w-1/2">
               <div className="border-l p-6 rounded-lg shadow-md max-w-md m-auto">
                 <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
                 <ul>

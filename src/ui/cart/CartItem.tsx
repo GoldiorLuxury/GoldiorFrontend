@@ -8,7 +8,7 @@ export default function CartItem({product}: {product: any}){
     return (
       <div
         key={product.id}
-        className="bg-white rounded-lg shadow-md p-4 mb-4 w-full"
+        className="bg-transparent rounded-lg shadow-md p-4 mb-4 w-full"
       >
         <div className="flex flex-row items-start">
           <img

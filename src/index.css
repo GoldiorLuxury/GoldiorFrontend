@@ -9,8 +9,10 @@
   padding: 0;
   font-family: "Roboto", sans-serif;
   background-color: #ffebbe;
-  color: black;
+  /* color: black; */
 }
+
+
 
 :root {
   --rating-yellow: #ffc633;

@@ -1,10 +1,11 @@
+
 import { FaStar } from "react-icons/fa";
 
-export default function StarRating({ rating, size, fillColor }: { rating: number, size: string, fillColor: string }) {
+export default function StarRating({ rating, size, fillColor = "yellow" }: { rating: number, size: string, fillColor: string }) {
     const totalStars = 5;
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center star-rating" >
             {Array.from({length: totalStars}, (_, index) => {
                 const fullStars = Math.floor(rating); // Number of fully filled stars
                 const decimalPart = rating - fullStars; // Decimal part to determine partial fill
