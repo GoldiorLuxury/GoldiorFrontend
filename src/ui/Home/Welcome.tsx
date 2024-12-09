@@ -18,7 +18,7 @@ function Welcome({
         }}
       >
 
-        <div className="relative z-10 text-center">
+        <div className="relative z-10 text-center bg-transparent">
           <h1 className="text-7xl font-semibold text-transparent bg-gradient-to-r from-[#FFFF] to-[#AB572D] bg-clip-text drop-shadow-lg mb-6 md:text-7xl lg:text-8xl">
             {heading}
           </h1>

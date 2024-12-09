@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import services1 from '../assets/services-img-1.jpg';
 import services2 from '../assets/services-img-2.jpg';
 import services3 from '../assets/services-img-3.jpg';
@@ -16,6 +16,9 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ imageSrc, title, description, buttonLink }) => {
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scrolls to the top of the page
+      }, []);
     return (
         <div className="flex flex-col justify-center items-center gap-0 bg-[#FFFF] shadow-lg rounded-xl p-2 backdrop-blur-sm transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
             <img src={imageSrc} alt={title} className="w-full h-72 object-cover rounded-t-lg" />
@@ -38,7 +41,7 @@ const BlogCollection: React.FC = () => {
     return (
         <>
             <Navbar />
-            <div className="bg-white text-[#303237] py-2 px-6 md:px-12 lg:px-24 pt-24">
+            <div className="bg-transparent text-[#303237] py-2 px-6 md:px-12 lg:px-24 pt-24">
                 <div className="max-w-6xl mx-auto">
                     <h2 className="text-6xl text-[var(--theme-brown)] font-semibold text-center mb-12 mt-6">Our Blog Collection</h2>
                     <div className="flex flex-col md:flex-row items-start gap-10">

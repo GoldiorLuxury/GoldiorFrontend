@@ -28,7 +28,7 @@ function Home() {
         }
         buttonText={"Shop now"}
         imageUrl={landingPageImage}
-        // navigateTo="/shop"
+        navigateTo="/shop"
       />
       <Welcome
         heading="Welcome to Goldior Luxury"
@@ -52,7 +52,7 @@ function Home() {
           "Discover an exquisite collection of premium perfumes at unbelievable prices during our exclusive Perfume Sale!"
         }
         imageUrl={salePageBG}
-        buttonText={"Know more"}
+        // buttonText={"Know more"}
       />
       {/* <DisplayFeatures /> */}
       <Footer />

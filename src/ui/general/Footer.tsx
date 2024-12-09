@@ -231,7 +231,7 @@ function Footer() {
     //   </div>
     // </footer>
 
-    <footer className="bg-white px-3 md:px-20">
+    <footer className=" px-3 md:px-20">
       <div className="flex flex-col md:flex-row justify-between py-6 border-t border-b border-[var(--theme-brown)]">
         {/* Logo and Newsletter */}
         <div className="w-full md:w-1/3 mb-8 md:mb-0">
@@ -257,13 +257,13 @@ function Footer() {
             </button>
           </div>
           <div className="flex justify-start space-x-8 mt-4 text-3xl">
-            <NavLink
+            {/* <NavLink
               to={""}
               className="text-blue-500 hover:text-blue-300 duration-300"
               aria-label="Twitter"
             >
               <FaTwitter />
-            </NavLink>
+            </NavLink> */}
             <NavLink
               to={""}
               className="text-blue-700 hover:text-blue-500 duration-300"

@@ -9,8 +9,8 @@ function OurStory({
 }) {
   return (
     <>
-      {/* Text content */}
-      <div className="w-full p-6 flex flex-col bg-[radial-gradient(circle,#f7eaea,white)] justify-center items-center  md:py-40">
+      {/* bg-[radial-gradient(circle,#f7eaea,white)] */}
+      <div className="w-full p-6 flex flex-col  justify-center items-center  md:py-40">
         <div className="text-3xl text-[var(--theme-brown)] text-center md:px-28 lg:px-72 font-bold mb-4 lg:text-5xl roboto drop-shadow-lg">
           {heading}
         </div>

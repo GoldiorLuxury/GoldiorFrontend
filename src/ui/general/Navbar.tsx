@@ -70,7 +70,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="h-24 p-3 bg-[#F7F1F1]  flex items-center justify-between fixed top-0 w-full z-20">
+    {/* bg-[#F7F1F1]   */}
+      <nav className="h-24 p-3   flex items-center justify-between fixed top-0 w-full z-20">
         <span className="flex items-center justify-center gap-4 w-[35%] sm:w-[25%] h-full">
           <button onClick={() => setMobileMenuOpen(true)} className="sm:hidden">
             <RxHamburgerMenu size={25} />
@@ -170,7 +171,7 @@ export default function Navbar() {
 
         <div
           ref={wishlistRef}
-          className={`fixed top-0 right-0 h-screen bg-white transform transition-transform duration-500 z-20 ease-in-out ${
+          className={`fixed top-0 right-0 h-screen bg-transparent transform transition-transform duration-500 z-20 ease-in-out ${
             isWishlistOpen ? "translate-y-0" : "-translate-y-full"
           } w-4/5 md:w-3/5 lg:w-1/4 shadow-lg`}
         >
