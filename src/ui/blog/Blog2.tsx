@@ -8,7 +8,7 @@ const Blog2: React.FC = () => {
     return (
         <>
             < Navbar />
-            <div className="min-h-screen bg-white text-black mt-24 font-sans">
+            <div className="min-h-screen bg-transparent text-black mt-24 font-sans">
                 <div className="max-w-5xl mx-auto py-10 px-6 md:px-12 lg:px-24">
 
                     {/* Heading */}
