@@ -13,7 +13,7 @@ export default function useGetProducts(){
  async function getAllProducts(){
     try {
         const res = await fetch(
-          "https://website-backend-1-a73j.onrender.com/api/product/"
+          "https://website-backend-1-a73j.onrender.comm/api/product/"
         );
         const data = await res.json();
 
