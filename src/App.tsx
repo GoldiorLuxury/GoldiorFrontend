@@ -1,23 +1,23 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home.tsx";
-import SingleProduct from "./pages/SingleProduct.tsx";
-import About from "./pages/About.tsx";
-import Services from "./pages/Services.tsx";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import Home from "./pages/Home.tsx";
+// import SingleProduct from "./pages/SingleProduct.tsx";
+// import About from "./pages/About.tsx";
+// import Services from "./pages/Services.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Shop from "./pages/Shop.tsx";
-import UserAuthentication from "./pages/UserAuthentication.tsx";
-import Login from "./ui/Authentication/Login.tsx";
-import FinalDetails from "./pages/FinalDetails.tsx";
-import PersonalDetails from "./pages/PersonalDetails.tsx";
-import CartPage from "./pages/CartPage.tsx";
-import Blog from "./pages/Blog.tsx";
-import Blog1 from "./ui/blog/Blog1.tsx";
-import Blog2 from "./ui/blog/Blog2.tsx";
-import Blog3 from "./ui/blog/Blog3.tsx";
-import Blog4 from "./ui/blog/Blog4.tsx";
-import Privacy from "./ui/security/PrivacyPolicy.tsx";
-import RefundPolicy from "./ui/security/RefundPolicy.tsx";
-import TermsAndConditions from "./ui/security/terms.tsx";
+// import Shop from "./pages/Shop.tsx";
+// import UserAuthentication from "./pages/UserAuthentication.tsx";
+// import Login from "./ui/Authentication/Login.tsx";
+// import FinalDetails from "./pages/FinalDetails.tsx";
+// import PersonalDetails from "./pages/PersonalDetails.tsx";
+// import CartPage from "./pages/CartPage.tsx";
+// import Blog from "./pages/Blog.tsx";
+// import Blog1 from "./ui/blog/Blog1.tsx";
+// import Blog2 from "./ui/blog/Blog2.tsx";
+// import Blog3 from "./ui/blog/Blog3.tsx";
+// import Blog4 from "./ui/blog/Blog4.tsx";
+// import Privacy from "./ui/security/PrivacyPolicy.tsx";
+// import RefundPolicy from "./ui/security/RefundPolicy.tsx";
+// import TermsAndConditions from "./ui/security/terms.tsx";
 
 export default function App() {
   const queryClient = new QueryClient({
@@ -30,7 +30,7 @@ export default function App() {
   });
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/product/:productId" element={<SingleProduct />} />
@@ -42,7 +42,6 @@ export default function App() {
           <Route path="/personal-details" element={<PersonalDetails />} />
           <Route path="/register" element={<UserAuthentication />} />
           <Route path="/login" element={<Login />} />
-          {/*<Route path="*" element={<PageNotFound />} />*/}
           <Route path="/services" element={<Services />} />
           <Route path="/blog" element={<Blog />} />
           <Route
@@ -62,7 +61,7 @@ export default function App() {
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/terms & conditions" element={<TermsAndConditions />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </QueryClientProvider>
   );
 }
