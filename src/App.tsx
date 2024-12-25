@@ -32,6 +32,12 @@ export default function App() {
   });
   return (
     <QueryClientProvider client={queryClient}>
+      <div>
+        <span>
+          This website is taken down due to outstanding payments to the
+          developers.
+        </span>
+      </div>
       {/* <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
