@@ -32,13 +32,8 @@ export default function App() {
   });
   return (
     <QueryClientProvider client={queryClient}>
-      <div>
-        <span>
-          This website is taken down due to outstanding payments to the
-          developers.
-        </span>
-      </div>
-      {/* <BrowserRouter>
+     
+      <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/product/:productId" element={<SingleProduct />} />
@@ -69,7 +64,7 @@ export default function App() {
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/terms & conditions" element={<TermsAndConditions />} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </QueryClientProvider>
   );
 }
