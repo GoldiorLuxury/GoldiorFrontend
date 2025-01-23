@@ -6,12 +6,12 @@ import Footer from "../ui/general/Footer";
 
 
 export default function Shop() {
-      const { products } = useGetProducts();
-      console.log("products: ", products);
+  const { products } = useGetProducts();
+  // console.log("products: ", products);
   return (
     <div>
       <Navbar />
-      <ProductGrid products={products} heading="Our Products" showFilters={true} />
+      <ProductGrid products={products} heading="Our Collections" showFilters={true} />
       <Footer />
     </div>
   );

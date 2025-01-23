@@ -13,8 +13,8 @@ const Blog1: React.FC = () => {
 
                     {/* Heading */}
                     <header className="text-center mb-8">
-                        <p className="text-sm text-black-400 mb-3">October 26, 2024</p>
-                        <h1 className="text-4xl font-semibold">
+                        <p className="text-base text-slate-600 text-black-400 mb-3">October 26, 2024</p>
+                        <h1 className="text-3xl font-semibold text-slate-700">
                             Discover the Different Types of Perfumes: A Guide to Finding Your Signature Scent
                         </h1>
                     </header>
@@ -25,12 +25,12 @@ const Blog1: React.FC = () => {
                     </div>
 
                     {/* Content */}
-                    <article className="space-y-6 text-lg leading-relaxed text-black-300">
+                    <article className="space-y-6 text-xl leading-relaxed text-justify text-slate-600">
                         <p>
                             Perfumes come in various types, each with distinct fragrance concentrations that affect their longevity and intensity. Here’s a quick guide to help you understand the main categories.
                         </p>
 
-                        <h2 className="text-2xl font-semibold text-black">A Guide to Finding Your Signature Scent</h2>
+                        <h2 className="text-2xl font-semibold text-slate-700">A Guide to Finding Your Signature Scent</h2>
 
                         <ul className="list-disc list-inside space-y-4 pl-4">
                             <li><strong>Parfum (Pure Perfume):</strong> The most concentrated form, containing 20-30% fragrance oil, offers a rich scent that can last 8-12 hours. Ideal for special occasions.</li>
@@ -40,7 +40,7 @@ const Blog1: React.FC = () => {
                             <li><strong>Eau Fraîche:</strong> The least concentrated with 1-3% fragrance oil, giving a soft, airy scent for around 1 hour.</li>
                         </ul>
 
-                        <p className="text-xl font-semibold text-black mt-8">
+                        <p className="text-xl font-semibold text-slate-700 mt-8">
                             Each type offers a unique experience, so choose based on your preferences and needs. Let Goldior Luxury be your guide to discovering the perfect fragrance fit!
                         </p>
                     </article>

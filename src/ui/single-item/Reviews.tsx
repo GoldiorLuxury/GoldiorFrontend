@@ -38,16 +38,8 @@ export default function Reviews({
 
   return (
     <>
-      <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-0 md:mt-8 py-4">
-        <h2
-          style={{ fontFamily: "Playfair" }}
-          className="text-xl text-gray-900 font-semibold text-center"
-        >
-          Ratings & Reviews
-        </h2>
-        <div className="w-full flex items-center justify-center my-2">
-          <p className="w-[60vw] h-[0.15rem] bg-gray-400"></p>
-        </div>
+      <div className="w-full px-2 sm:px-16 md:px-[2rem] lg:px-[2rem] gap-10 flex-col mt-0 md:mt-8 py-4">
+        <p className="mt-1 text-[2.5rem] font-medium text-center font-serif text-slate-700 leading-[4.25rem]">Ratings & Reviews</p>
         {reviews.length > 0 && (
           <RatingSummary
             reviews={reviews}
@@ -75,58 +67,57 @@ function ReviewList({ reviews }: { reviews: any }) {
   );
 }
 
-function ReviewListItem({review}: {review: any}){
-    const [readMore, setReadMore] = useState<boolean>(false); 
+function ReviewListItem({ review }: { review: any }) {
+  const [readMore, setReadMore] = useState<boolean>(false);
 
-    console.log("review: ", review)
-    
-    function handleToggleReadMore(){
-        setReadMore(!readMore)
-    }
-    return (
-      <div className="flex gap-4 items-start mb-6 mt-10">
-        {/* <img
-          className="rounded-full object-contain"
-          height={64}
-          width={64}
-          src={review.userimg}
-          alt={`${review.username}'s profile`}
-        /> */}
-        <ProfileIcon username={review?.user_id?.username} />
-        <div>
-          <div className="flex w-full items-center justify-between">
-            <div>
-              <p className="text-lg font-semibold text-gray-800">
-                {review?.user_id?.username}
-              </p>
-              <StarRating
-                rating={review?.rating}
-                size="normal"
-                fillColor="var(--rating-yellow)"
-              />
-            </div>
+  console.log("review: ", review)
+
+  function handleToggleReadMore() {
+    setReadMore(!readMore)
+  }
+  return (
+    <div className="flex gap-6 items-start mb-8 mt-12">
+      <ProfileIcon username={review?.user_id?.username} />
+      <div className="w-full">
+        <div className="flex w-full items-center justify-between mb-3">
+          <div>
+            <p className="text-lg font-semibold text-gray-800">{review?.user_id?.username}</p>
+            <StarRating
+              rating={review?.rating}
+              size="normal"
+              fillColor="var(--rating-yellow)"
+            />
           </div>
-          <p className="text-justify text-gray-800 mt-2">
-            {readMore || review.text.length <= 500
-              ? review.text
-              : `${review.text.slice(0, 500)}...`}
-          </p>
-          {review.text.length > 500 && (
-            <button
-              className="text-[var(--theme-brown)]"
-              onClick={handleToggleReadMore}
-            >
-              {readMore ? "Read Less" : "Read More"}
-            </button>
-          )}
-          {review.img_url && (
+        </div>
+
+        <p className="text-justify text-gray-800 mt-2">
+          {readMore || review.text.length <= 500
+            ? review.text
+            : `${review.text.slice(0, 500)}...`}
+        </p>
+
+        {review.text.length > 500 && (
+          <button
+            className="text-[var(--theme-brown)] font-semibold mt-2 hover:text-[var(--theme-dark-brown)] transition-all duration-300"
+            onClick={handleToggleReadMore}
+          >
+            {readMore ? "Read Less" : "Read More"}
+          </button>
+        )}
+
+        {review.img_url && (
+          <div className="mt-4 max-w-full overflow-hidden rounded-lg">
             <img
               src={review.img_url}
               height={200}
               width={300}
               alt="review image"
+              className="w-[30%] h-auto object-cover rounded-lg"
             />
-          )}
+          </div>
+        )}
+
+        <div className="mt-4">
           <span className="font-semibold text-gray-500">
             Posted on{" "}
             {new Date(review.createdAt).toLocaleDateString("en-US", {
@@ -137,7 +128,8 @@ function ReviewListItem({review}: {review: any}){
           </span>
         </div>
       </div>
-    );
+    </div>
+  );
 }
 
 function RatingSummary({
@@ -210,39 +202,35 @@ function RatingSummary({
     } finally {
       setIsSubmitting(false);
       setIsOpenReviewModal(false);
-      setRating(5);   
-      setReviewText(""); 
-      setImageUrl(""); 
-      setRecommend(false); 
+      setRating(5);
+      setReviewText("");
+      setImageUrl("");
+      setRecommend(false);
     }
   }
 
   return (
-    <div className="md:flex ">
-      {/* left side */}
+    <div className="flex flex-col md:flex-row justify-between items-center w-full gap-8 mt-6">
+      {/* Rating Distribution Section */}
       <div className="w-full md:w-[60%]">
-        <div className="mt-6 w-full md:w-[80%]">
-          {[5, 4, 3, 2, 1].map((star) => {
-            const percentage = ((starCounts[star] || 0) / reviews.length) * 100;
+        {[5, 4, 3, 2, 1].map((star) => {
+          const percentage = ((starCounts[star] || 0) / reviews.length) * 100;
 
-            return (
-              <div key={star} className="flex items-center gap-2 my-2">
-                <p className="text-md w-12">
-                  {star} Star{star > 1 && "s"}
-                </p>
-                <div className="outerRound rounded-full w-[80%] h-3 bg-gray-300">
-                  <div
-                    className="innerRound rounded-full h-full bg-[var(--theme-brown)]"
-                    style={{ width: `${percentage}%` }}
-                  ></div>
-                </div>
-                <p className="text-lg font-semibold w-10 text-right">
-                  {(percentage.toFixed(1) || 0) + "%"}
-                </p>
+          return (
+            <div key={star} className="flex items-center gap-4 my-4">
+              <p className="text-sm font-semibold text-gray-700 w-20">{star} Star{star > 1 && "s"}</p>
+
+              <div className="relative w-full bg-gray-300 h-3 rounded-full">
+                <div
+                  className="absolute top-0 left-0 h-full bg-[var(--theme-brown)] rounded-full"
+                  style={{ width: `${percentage}%` }}
+                ></div>
               </div>
-            );
-          })}
-        </div>
+
+              <p className="text-sm font-semibold text-gray-700 w-20 text-right">{percentage.toFixed(1)}%</p>
+            </div>
+          );
+        })}
       </div>
 
       {/* right side  */}
@@ -274,14 +262,14 @@ function RatingSummary({
                 }}
                 className="w-full h-4 bg-gray-200 rounded-lg cursor-pointer mb-4"
               /> */}
-                 <DynamicStarRating
-        maxRating={5}
-        defaultRating={rating}
-        color="#fcc419"
-        size={48}
-        messages={["Poor", "Fair", "Good", "Very Good", "Excellent"]}
-        onSetRating={setRating}
-      />
+              <DynamicStarRating
+                maxRating={5}
+                defaultRating={rating}
+                color="#fcc419"
+                size={48}
+                messages={["Poor", "Fair", "Good", "Very Good", "Excellent"]}
+                onSetRating={setRating}
+              />
               {/* Review Text Input */}
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Your Review
@@ -354,25 +342,27 @@ function RatingSummary({
         </div>
       )}
 
-      <div className=" w-full md:w-[40%] flex items-center justify-center md:justify-normal">
-        <div>
+      <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left w-full md:w-[35%]">
+        <div className="flex items-center justify-center mb-4">
           <StarRating
             rating={averageRating}
             size="large"
             fillColor="var(--theme-brown)"
           />
-          <span className="text-2xl my-1">{averageRating} out of 5</span>
-          <p>99% users recomment this product</p>
-          <span>{reviews.length} reviews</span>{" "}
-          <button
-            onClick={() =>
-              userEmail ? setIsOpenReviewModal(true) : navigate("/login")
-            }
-            className="text-md bg-gray-300 rounded-lg p-2 mx-8"
-          >
-            + Add a review
-          </button>
+          <span className="text-base font-semibold text-slate-500 ml-2">{averageRating} out of 5</span>
         </div>
+
+        <p className="text-base text-gray-600 mb-2">99% users recommend this product</p>
+        <span className="text-base text-gray-500 mb-4">{reviews.length} reviews</span>
+
+        <button
+          onClick={() =>
+            userEmail ? setIsOpenReviewModal(true) : navigate("/login")
+          }
+          className="bg-[var(--theme-brown)] text-white text-md rounded-lg p-2 hover:bg-[var(--buttonHover)] transition duration-300"
+        >
+          + Add a review
+        </button>
       </div>
     </div>
   );
