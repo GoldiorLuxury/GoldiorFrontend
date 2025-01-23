@@ -3,7 +3,8 @@ import { useState } from "react";
 import ProductCard from "./ProductCard";
 import { IoIosArrowUp } from "react-icons/io";
 
-function ProductGrid({ products, heading, showFilters = false }: { products: { products: Product[] }, heading: string, showFilters?: boolean }) {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function ProductGrid({ products, heading, showFilters = false }: { products: { products: any[] }, heading: string, showFilters?: boolean }) {
   const [selectedGender, setSelectedGender] = useState("Gender");
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSort, setSelectedSort] = useState("Price: Low to High");

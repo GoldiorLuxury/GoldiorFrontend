@@ -28,6 +28,7 @@ function ProductCard({
 
   // Calculate the discounted price
   const discountedPrice = (Number(price) * (1 - discountPercentage / 100)).toFixed(2);
+  console.log(brand)
 
   // Check if item is in cart
   useEffect(() => {

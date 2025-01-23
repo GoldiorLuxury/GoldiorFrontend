@@ -1,8 +1,9 @@
-import About from "../../ui/Home/AboutUs";
+
 import AboutImage from "../../assets/welcome-page-image.png";
 import { useNavigate } from "react-router-dom";
 
 function DarkOverlay({
+
   image,
 }: {
   image: string;

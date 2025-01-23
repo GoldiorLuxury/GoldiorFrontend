@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Navbar from "../ui/general/Navbar.tsx";
 // import perfume from '../assets/old-fashion-perfume-black-gold.png';
-import StarRating from "../ui/general/StarRating.tsx";
 import { useState, useEffect } from "react";
 import QuantityAdjuster from "../ui/cart/QuantityAdjuster.tsx";
 import RoundButton from "../ui/general/RoundButton.tsx";
@@ -38,38 +39,47 @@ interface CartItem {
 
 
 export default function SingleProduct() {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const [perfumeCapacities, setPerfumeCapacities] = useState<any[]>([]);
-  const [selectedQuantity, setSelectedQuantity] = useState<number>(perfumeCapacities[0]?.quantity || 50);
+  const [selectedQuantity, setSelectedQuantity] = useState<number>(
+    perfumeCapacities[0]?.quantity || 50
+  );
   const { productId } = useParams();
 
   const [isOpenReviewModal, setIsOpenReviewModal] = useState(false);
 
-
   const { product, isGettingProduct } = useGetProductById(productId);
-  const { reviews, isGettingReviews, refetch: refetchReviews } = useGetReviewForProduct(productId);
+  const {
+    reviews,
+    isGettingReviews,
+    refetch: refetchReviews,
+  } = useGetReviewForProduct(productId);
 
   useEffect(() => {
     if (isOpenReviewModal == false) {
       refetchReviews();
     }
-  }, [isOpenReviewModal, refetchReviews])
+  }, [isOpenReviewModal, refetchReviews]);
 
   useEffect(() => {
     if (product && product.capacityInML) {
       setPerfumeCapacities(product.capacityInML); // Set the perfumeCapacities when product data is available
       setSelectedQuantity(product.product.capacityInML[0]?.quantity || 0); // Initialize selectedQuantity with the first item
     }
-    console.log("produicts: ", product, "selected: ", product?.product?.capacityInML[0].quantity);
+    console.log(
+      "produicts: ",
+      product,
+      "selected: ",
+      product?.product?.capacityInML[0].quantity
+    );
   }, [product, productId]);
-
-
 
   const totalRating = reviews?.reduce(
     (sum: number, review: any) => sum + review?.rating,
     0
   );
   const averageRating = Number((totalRating / reviews?.length).toFixed(1));
-  console.log("reviews: ", reviews)
+  console.log("reviews: ", reviews);
 
   return (
     <>
@@ -126,6 +136,7 @@ function ProductInfo({
   const currentItemId = product?._id;
 
   const [inCart, setInCart] = useState(false);
+  console.log(inCart)
 
   useEffect(() => {
     setProductExistsInWishList(

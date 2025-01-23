@@ -26,21 +26,20 @@ export function useVerifyOtp() {
 
       console.log("OTP verified successfully:", data.message);
 
-      
       const doesuserexist = await verifyUserExists(email);
 
-      console.log("does user existL: ", doesuserexist)
+      console.log("does user existL: ", doesuserexist);
 
       // Navigate to /register after successful OTP verification
       localStorage.setItem("user_email_goldior_luxury", email);
-      if(doesuserexist){
-          window.history.back();
-      }else{
+      if (doesuserexist) {
+        window.history.back();
+      } else {
         navigate("/register");
       }
 
       // Optionally store the email in localStorage if required
-      
+      /* eslint-disable @typescript-eslint/no-explicit-any */
     } catch (error: any) {
       console.error("Error verifying OTP:", error.message);
     }

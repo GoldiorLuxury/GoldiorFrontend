@@ -1,4 +1,4 @@
-import { RxCross2 } from "react-icons/rx";
+
 // import perfume from "../../assets/landing-page-perfume.png";
 import { handleRemoveFromLocalStorage } from "../../data/wishlist/useRemoveFavItem";
 import { MdDelete } from "react-icons/md";
@@ -13,8 +13,9 @@ function WishlistCard({
   name,
 }: {
   id: string;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   favorites: any;
-  setFavourites: any,
+  setFavourites: any;
   // price?: string;
   // discountPercentage: string,
   quantity?: string;
@@ -23,7 +24,7 @@ function WishlistCard({
 }) {
   const handleRemove = () => {
     handleRemoveFromLocalStorage(id);
-    const favs = favorites?.filter((item: any) => id !== item._id)
+    const favs = favorites?.filter((item: any) => id !== item._id);
     setFavourites(favs);
   };
 
@@ -48,9 +49,7 @@ function WishlistCard({
           Add to cart
         </button>
       </div> */}
-      <div
-        className="border-2 rounded-xl p-4 mb-4 w-full "
-      >
+      <div className="border-2 rounded-xl p-4 mb-4 w-full ">
         <div className="flex flex-row items-start">
           <div className="bg-gray-200 rounded-xl p-4 w-[40%] h-auto">
             <img
@@ -65,7 +64,10 @@ function WishlistCard({
                 <p className="text-base font-semibold whitespace-nowrap text-slate-700">
                   {name}
                 </p>
-                <button onClick={() => handleRemove()} className="bg-red-100 w-[2rem] h-[2rem] rounded-md flex justify-center items-center">
+                <button
+                  onClick={() => handleRemove()}
+                  className="bg-red-100 w-[2rem] h-[2rem] rounded-md flex justify-center items-center"
+                >
                   <MdDelete size={20} className="text-red-400" />
                 </button>
               </div>
@@ -73,9 +75,7 @@ function WishlistCard({
                 Quantity: {quantity}ML
               </p>
             </div>
-            <button
-              className="mt-6 text-sm w-full bg-[var(--theme-brown)] hover:bg-[var(--buttonHover)] text-white py-2 px-4 rounded-lg transition-colors duration-300 ease-in-out"
-            >
+            <button className="mt-6 text-sm w-full bg-[var(--theme-brown)] hover:bg-[var(--buttonHover)] text-white py-2 px-4 rounded-lg transition-colors duration-300 ease-in-out">
               Add to Cart
             </button>
           </div>

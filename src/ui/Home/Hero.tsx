@@ -55,7 +55,7 @@ function Hero({
             {shopButton}
           </button>
           <button
-            onClick={() => navigate(navigateToView || "/")}
+            onClick={() => navigate("/discover")}
             className="bg-[#000] text-white shadow-md font-medium px-6 py-3 rounded-lg w-auto xs:w-fit xs:text-xs lg:w-fit lg:text-sm xl:w-fit xl:text-lg sm:w-fit sm:text-xs hover:bg-[#353535] duration-500">
             {viewDetail}
           </button>

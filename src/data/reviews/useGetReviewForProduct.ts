@@ -33,6 +33,7 @@ async function getReviews(product_id: string | undefined) {
 
     const data = await res.json();
     return data;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
   } catch (error: any) {
     throw new Error(error.message);
   }

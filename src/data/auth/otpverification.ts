@@ -22,6 +22,7 @@ export  async function sendEmailForOtp(email: string) {
 
     console.log("OTP sent successfully:", data);
     return data;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
   } catch (error: any) {
     console.error("Error sending OTP:", error.message);
     throw new Error("Failed to send OTP: " + error.message);

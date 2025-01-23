@@ -24,6 +24,7 @@ async function getAllProducts() {
     }
 
     return data;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
   } catch (error: any) {
     console.error(error.message);
     throw new Error("Failed to fetch recipes: useGetProduct.js");

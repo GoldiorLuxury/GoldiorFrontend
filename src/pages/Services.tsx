@@ -26,8 +26,8 @@ function Services() {
     <div>
       <Navbar />
       <DarkOverlay
-        heading="Our services"
-        subtext="At Local Face, we are dedicated to providing you with a delightful and immersive perfume shopping experience. Our services are tailored to ensure that you find the perfect fragrance that complements your unique personality and style. We take pride in offering a range of services that go beyond just selling perfumes, aiming to make your journey with us truly special."
+        // heading="Our services"
+        // subtext="At Local Face, we are dedicated to providing you with a delightful and immersive perfume shopping experience. Our services are tailored to ensure that you find the perfect fragrance that complements your unique personality and style. We take pride in offering a range of services that go beyond just selling perfumes, aiming to make your journey with us truly special."
         image={servicesBG}
       />
 

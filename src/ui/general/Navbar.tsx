@@ -1,15 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../../assets/goldior-logo.png";
 import { PiHeart, PiUser, PiShoppingCartSimple } from "react-icons/pi";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { NavLink, useNavigate } from "react-router-dom";
 import WishlistCard from "./WishlistCard";
-import ProfileCard from '../components/profile';
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { RiHandbagLine } from "react-icons/ri";
-import profileimg from "../../assets/profile.jpg"
+
 import wishimg from "../../assets/8.jpg"
 import { getWishlist } from "../../data/wishlist/getWishlist";
+import ProfileCard from "../components/profile";
 
 // Type definition for Wishlist item
 interface WishlistItem {
@@ -48,14 +48,17 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (event: { target: any; }) => {
-      if (profileCardRef.current && !profileCardRef.current.contains(event.target)) {
+    const handleClickOutside = (event: { target: any }) => {
+      if (
+        profileCardRef.current &&
+        !profileCardRef.current.contains(event.target)
+      ) {
         setIsProfileCardOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -92,7 +95,8 @@ export default function Navbar() {
           <NavLink
             to={to}
             className={({ isActive }) =>
-              `cursor-pointer text-center text-[0.9rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.05rem] xl:text-[1.05rem] text-slate-700 hover:text-[var(--theme-brown)] max-w-fit px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg ease-in-out duration-300 ${isActive ? "text-yellow-500 font-medium" : ""
+              `cursor-pointer text-center text-[0.9rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.05rem] xl:text-[1.05rem] text-slate-700 hover:text-[var(--theme-brown)] max-w-fit px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg ease-in-out duration-300 ${
+                isActive ? "text-yellow-500 font-medium" : ""
               }`
             }
           >
@@ -105,9 +109,7 @@ export default function Navbar() {
     // If 'to' doesn't exist, render a span or other element (no link)
     return (
       <li className="mx-1 sm:mx-2 md:mx-3">
-        <span
-          className="cursor-pointer text-center text-[0.9rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.05rem] xl:text-[1.05rem] text-slate-700 hover:text-[var(--theme-brown)] max-w-fit px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg ease-in-out duration-300"
-        >
+        <span className="cursor-pointer text-center text-[0.9rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.05rem] xl:text-[1.05rem] text-slate-700 hover:text-[var(--theme-brown)] max-w-fit px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg ease-in-out duration-300">
           {children}
         </span>
       </li>
@@ -116,8 +118,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`flex justify-between items-center w-full h-[4rem] xs:h-[5rem] sm:h-[6rem] md:h-[6rem] fixed top-0 z-20 px-4 sm:px-8 sm:py-2 xs:py-2 md:px-8 lg:px-[3rem] xl:px-32 ${isScrolled ? "bg-[#fffef9] shadow" : "bg-transparent"
-        } transition-colors duration-300`}
+      className={`flex justify-between items-center w-full h-[4rem] xs:h-[5rem] sm:h-[6rem] md:h-[6rem] fixed top-0 z-20 px-4 sm:px-8 sm:py-2 xs:py-2 md:px-8 lg:px-[3rem] xl:px-32 ${
+        isScrolled ? "bg-[#fffef9] shadow" : "bg-transparent"
+      } transition-colors duration-300`}
     >
       <div className="lg:w-[7rem] h-auto xs:w-[30%] sm:w-[20%] md:w-[12%]">
         <img
@@ -128,7 +131,7 @@ export default function Navbar() {
       </div>
       <div className="hidden md:block">
         <ul className="flex justify-between items-center font-medium lg:w-[36rem] md:w-[26rem] xl:w-[34rem]">
-          {["Home", "Collection", "Discover", "Blog"].map((menu) => (
+          {["Home", "Collection", "Discover", "Blog"].map((menu) =>
             menu === "Home" ? (
               <NavItem key={menu} to={`/`}>
                 {menu}
@@ -138,16 +141,38 @@ export default function Navbar() {
                 {menu}
               </NavItem>
             )
-          ))}
+          )}
         </ul>
       </div>
       <div className="hidden md:block">
         <ul className="flex items-center justify-between w-[8rem]">
-          <NavItem to="/login">
-            <PiUser className="ease-in-out duration-200 lg:text-[1.4rem] md:text-[1.2rem]" />
-          </NavItem>
+          <div>
+            <PiUser
+              className="ease-in-out duration-200 text-[1.4rem] cursor-pointer"
+              onClick={toggleProfileCard}
+            />
+            {isProfileCardOpen && userEmail && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "3rem",
+                  transform: "translateX(-50%)",
+                }}
+              >
+                <ProfileCard
+                  name="Hey:)"
+                  email={userEmail}
+                  imageUrl={""}
+                  onLogout={handleLogout}
+                />
+              </div>
+            )}
+          </div>
           <NavItem>
-            <PiHeart className="ease-in-out duration-200 lg:text-[1.4rem] md:text-[1.2rem]" onClick={() => setWishlistOpen(true)} />
+            <PiHeart
+              className="ease-in-out duration-200 lg:text-[1.4rem] md:text-[1.2rem]"
+              onClick={() => setWishlistOpen(true)}
+            />
           </NavItem>
           <NavItem to="/cart">
             <div className="relative">
@@ -159,8 +184,9 @@ export default function Navbar() {
       </div>
       <div
         ref={wishlistRef}
-        className={`fixed top-0 right-0 h-screen bg-white border-2 bg-transparent transform transition-transform duration-500 z-20 ease-in-out ${isWishlistOpen ? "translate-x-0" : "translate-x-full"
-          } w-4/5 md:w-3/5 lg:w-1/4`}
+        className={`fixed top-0 right-0 h-screen bg-white border-2 bg-transparent transform transition-transform duration-500 z-20 ease-in-out ${
+          isWishlistOpen ? "translate-x-0" : "translate-x-full"
+        } w-4/5 md:w-3/5 lg:w-1/4`}
       >
         <div className="flex p-6 justify-between items-center text-slate-700">
           <h2 className="text-2xl md:text-2xl font-semibold">Wishlist</h2>
@@ -205,7 +231,8 @@ export default function Navbar() {
 
             {/* Additional Text */}
             <p className="text-base text-slate-500 text-center mt-4">
-              It seems you haven't added anything to your cart yet. Start shopping now and add some exciting products to your cart!
+              It seems you haven't added anything to your cart yet. Start
+              shopping now and add some exciting products to your cart!
             </p>
 
             {/* Shop Now Button */}
@@ -234,9 +261,29 @@ export default function Navbar() {
               </NavItem>
             ))}
             <div className="flex justify-center gap-5 mt-2">
-              <NavItem to="/login">
-                <PiUser className="ease-in-out duration-200 text-[1.4rem]" />
-              </NavItem>
+              <div>
+                <PiUser
+                  className="ease-in-out duration-200 text-[1.4rem]"
+                  onClick={toggleProfileCard}
+                />
+                {isProfileCardOpen && userEmail && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "3rem",
+                      transform: "translateX(-50%)",
+                    }}
+                  >
+                    <ProfileCard
+                      name="Hey:)"
+                      email={userEmail}
+                      imageUrl={""}
+                      onLogout={handleLogout}
+                    />
+                  </div>
+                )}
+              </div>
+
               <NavItem>
                 <PiHeart className="ease-in-out duration-200 text-[1.4rem]" />
               </NavItem>
@@ -256,7 +303,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
     </nav>
   );
 }
