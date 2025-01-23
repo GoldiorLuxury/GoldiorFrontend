@@ -359,7 +359,6 @@ function ProductInfo({
 }
 
 
-
 function KeyNotes({ notes }: { notes: Notes[] }) {
   return (
     <div className="w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 mt-8 flex flex-col gap-8">
@@ -370,8 +369,8 @@ function KeyNotes({ notes }: { notes: Notes[] }) {
 
       {/* Notes Grid */}
       <div className="grid grid-cols-1 gap-8">
-        {notes?.map((item: Notes) => (
-          <div key={item.id} className="flex flex-col items-center border-solid">
+        {notes?.map((item: Notes, index) => (
+          <div key={index} className="flex flex-col items-center border-solid">
             <img
               className="rounded-full object-cover h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72"
               src={item?.image}

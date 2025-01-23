@@ -35,6 +35,7 @@ function Hero({
 
   const firstLine = expertTitletext?.slice(0, splitIndex).trim();
   const secondLine = expertTitletext?.slice(splitIndex).trim();
+  console.log(navigateToView)
 
   const result = `${firstLine}\n${secondLine}`;
 
