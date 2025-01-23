@@ -234,8 +234,27 @@ export default function Navbar() {
               </NavItem>
             ))}
             <div className="flex justify-center gap-5 mt-2">
-              <NavItem to="/login">
-                <PiUser className="ease-in-out duration-200 text-[1.4rem]" />
+              <NavItem>
+                <PiUser
+                  className="ease-in-out duration-200 text-[1.4rem] cursor-pointer"
+                  onClick={toggleProfileCard}
+                />
+                {isProfileCardOpen && userEmail && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "3rem",
+                      transform: "translateX(-50%)",
+                    }}
+                  >
+                    <ProfileCard
+                      name="Hey:)"
+                      email={userEmail}
+                      imageUrl={""}
+                      onLogout={handleLogout}
+                    />
+                  </div>
+                )}
               </NavItem>
               <NavItem>
                 <PiHeart className="ease-in-out duration-200 text-[1.4rem]" />
