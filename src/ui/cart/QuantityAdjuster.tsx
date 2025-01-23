@@ -1,60 +1,62 @@
-import { FaPlus, FaMinus } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   decreaseQuantity,
   deleteItem,
   increaseQuantity,
   getCurrentQuantityById,
 } from "../../Features/cart/cartSlice";
-
+import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
 export default function QuantityAdjuster({ id }: { id: string }) {
   const dispatch = useDispatch();
 
-  // Pass the `id` to the selector to retrieve the quantity
+  // Retrieve the current quantity for the given product ID
   const quantity = useSelector((state: { cart: any }) =>
     getCurrentQuantityById(id)(state)
   );
 
-  function onClickMinus() {
+  // Handle decreasing the quantity
+  const onClickMinus = () => {
     if (quantity <= 1) {
       dispatch(deleteItem(id));
     } else {
       dispatch(decreaseQuantity(id));
     }
-  }
+  };
 
-  function onClickPlus() {
+  // Handle increasing the quantity
+  const onClickPlus = () => {
     if (quantity < 10) {
       dispatch(increaseQuantity(id));
     } else {
       alert("You cannot add more than 10 items of this product.");
     }
-  }
+  };
 
   return (
-    <div
-      style={{ fontFamily: "Playfair" }}
-      className="text-xl flex justify-center items-center gap-8"
-    >
-      {/* Minus button */}
-      <button onClick={onClickMinus}>
-        <span className="text-2xl md:text-3xl text-gray-800">
-          <FaMinus />
-        </span>
+    <div className="flex items-center justify-between w-[8rem] border rounded-md px-2 py-1 bg-gray-200">
+      <button
+        onClick={onClickMinus}
+        disabled={quantity <= 1}
+        className={`text-3xl transition-colors ${quantity > 1
+          ? "text-gray-500 hover:text-gray-800"
+          : "text-gray-300 cursor-not-allowed"
+          }`}
+      >
+        <CiCircleMinus />
       </button>
 
-      {/* Display the current quantity */}
-      <span className="text-xl md:text-2xl font-semibold text-gray-800">
-        {quantity}
-      </span>
+      <span className="text-lg font-medium text-gray-800">{quantity}</span>
 
-      {/* Plus button */}
-      <button onClick={onClickPlus}>
-        <span className="text-xl md:text-2xl font-semibold text-gray-800">
-          <FaPlus />
-        </span>
+      <button
+        onClick={onClickPlus}
+        disabled={quantity >= 10}
+        className={`text-3xl transition-colors ${quantity < 10
+          ? "text-gray-500 hover:text-gray-800"
+          : "text-gray-300 cursor-not-allowed"
+          }`}
+      >
+        <CiCirclePlus />
       </button>
     </div>
   );

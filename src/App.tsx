@@ -31,14 +31,14 @@ export default function App() {
   });
   return (
     <QueryClientProvider client={queryClient}>
-     
+
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/product/:productId" element={<SingleProduct />} />
 
-          <Route path="/about" element={<About />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route path="/Discover" element={<About />} />
+          <Route path="/Collection" element={<Shop />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/final-details" element={<FinalDetails />} />
           <Route path="/personal-details" element={<PersonalDetails />} />

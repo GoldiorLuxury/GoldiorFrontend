@@ -13,25 +13,25 @@ const Blog2: React.FC = () => {
 
                     {/* Heading */}
                     <header className="text-center mb-8">
-                        <p className="text-sm text-black-400 mb-3">October 12, 2024</p>
-                        <h1 className="text-4xl font-semibold">
+                        <p className="text-base text-black-400 mb-3 text-slate-600 font-semibold">October 12, 2024</p>
+                        <h1 className="text-3xl font-semibold text-slate-700">
                             Choosing the Perfect Fragrance for Every Season: A Guide by Goldior Luxury
                         </h1>
                     </header>
 
                     {/* Large Image */}
-                    <div className="w-full mb-10">
-                        <img src={aboutBG} alt="Perfume Collection" className="w-full h-auto rounded-lg shadow-lg" />
+                    <div className="w-full mb-10 border-2 rounded-3xl p-4">
+                        <img src={aboutBG} alt="Perfume Collection" className="w-full h-auto rounded-3xl shadow-lg" />
                     </div>
 
                     {/* Content */}
-                    <article className="space-y-6 text-lg leading-relaxed text-black-300">
+                    <article className="space-y-6 text-xl leading-relaxed text-justify text-slate-600">
                         <p>
                             Finding the ideal fragrance for each season can elevate your style and mood. At Goldior Luxury, we believe that the right scent should complement
                             the weather, enhancing your aura. Here’s a quick guide to selecting perfumes that harmonize with each season:
                         </p>
 
-                        <h2 className="text-2xl font-semibold text-black">A Guide by Goldior Luxury</h2>
+                        <h2 className="text-2xl font-semibold text-slate-700">A Guide by Goldior Luxury</h2>
 
                         <ul className="list-disc list-inside space-y-4 pl-4">
                             <li><strong>Spring: Floral & Fresh:</strong> Embrace light, floral scents with notes of jasmine, rose, or lily. These delicate fragrances add a refreshing touch as nature blooms around you.</li>
@@ -39,7 +39,7 @@ const Blog2: React.FC = () => {
                             <li><strong>Autumn: Warm & Spicy:</strong> Cozy up with warm, spicy fragrances like cinnamon, amber, or sandalwood. These richer tones evoke the comforting ambiance of autumn.</li>
                             <li><strong>Winter: Bold & Musky:</strong> For colder months, choose deeper, muskier fragrances with hints of vanilla, oud, or patchouli. These intense scents add warmth and elegance to your winter attire.</li>
                         </ul>
-                        <p className="text-xl font-semibold text-black mt-8">
+                        <p className="text-xl font-semibold text-slate-700 mt-8">
                             Enhance your seasonal style with Goldior Luxury's range of fragrances crafted to suit every climate!
                         </p>
                     </article>

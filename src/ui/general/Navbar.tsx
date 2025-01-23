@@ -1,26 +1,24 @@
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../../assets/goldior-logo.png";
-// import WLproduct1 from "../../assets/old-fashion-perfume-black-gold.png";
-import { FaRegUser, FaRegHeart } from "react-icons/fa";
-import { RxCross2 } from "react-icons/rx";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { PiHeart, PiUser, PiShoppingCartSimple } from "react-icons/pi";
+import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
 import WishlistCard from "./WishlistCard";
 import ProfileCard from '../components/profile';
-import { FaChevronUp } from "react-icons/fa";
+import { FaLongArrowAltRight } from "react-icons/fa";
 import { RiHandbagLine } from "react-icons/ri";
 import profileimg from "../../assets/profile.jpg"
 import wishimg from "../../assets/8.jpg"
 import { getWishlist } from "../../data/wishlist/getWishlist";
 
-
+// Type definition for Wishlist item
 interface WishlistItem {
   id: string;
   name: string;
   imageUrl: string;
-  discountPercentage?: number;  // Ensure this matches your actual data model.
+  discountPercentage?: number;
   quantity: string;
-  price: number;  // This must be a number if that's what you're receiving.
+  price: number;
 }
 
 export default function Navbar() {
@@ -32,6 +30,22 @@ export default function Navbar() {
   const profileCardRef = useRef<HTMLDivElement>(null);
   const wishlistRef = useRef<HTMLDivElement>(null);
   const userEmail = localStorage.getItem("user_email_goldior_luxury");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: { target: any; }) => {
@@ -67,205 +81,182 @@ export default function Navbar() {
     }
   };
 
+  const NavItem: React.FC<{ to?: string; children: React.ReactNode }> = ({
+    children,
+    to,
+  }) => {
+    if (to) {
+      // If 'to' exists, render NavLink
+      return (
+        <li className="mx-1 sm:mx-2 md:mx-3">
+          <NavLink
+            to={to}
+            className={({ isActive }) =>
+              `cursor-pointer text-center text-[0.9rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.05rem] xl:text-[1.05rem] text-slate-700 hover:text-[var(--theme-brown)] max-w-fit px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg ease-in-out duration-300 ${isActive ? "text-yellow-500 font-medium" : ""
+              }`
+            }
+          >
+            {children}
+          </NavLink>
+        </li>
+      );
+    }
+
+    // If 'to' doesn't exist, render a span or other element (no link)
+    return (
+      <li className="mx-1 sm:mx-2 md:mx-3">
+        <span
+          className="cursor-pointer text-center text-[0.9rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.05rem] xl:text-[1.05rem] text-slate-700 hover:text-[var(--theme-brown)] max-w-fit px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg ease-in-out duration-300"
+        >
+          {children}
+        </span>
+      </li>
+    );
+  };
 
   return (
-    <>
-    {/* bg-[#F7F1F1]   */}
-      <nav className="h-24 p-3   flex items-center justify-between fixed top-0 w-full z-20">
-        <span className="flex items-center justify-center gap-4 w-[35%] sm:w-[25%] h-full">
-          <button onClick={() => setMobileMenuOpen(true)} className="sm:hidden">
-            <RxHamburgerMenu size={25} />
-          </button>
-          <img
-            src={logo}
-            alt="Goldior"
-            className="h-[50%] sm:h-[70%] object-cover"
-          />
-        </span>
-
-        {/* Desktop Menu */}
-        <div className="hidden sm:flex w-[55%]">
-          <ul className="flex items-center justify-center sm:gap-6 md:gap-10 lg:gap-16 w-full">
-            <NavLink
-              to="/"
-              className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/shop"
-              className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
-            >
-              Shop
-            </NavLink>
-            <NavLink
-              to="/about"
-              className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
-            >
-              About
-            </NavLink>
-
-            {/* <NavLink
-              to="/services"
-              className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
-            >
-              Services
-            </NavLink> */}
-            <NavLink
-              to="/blog"
-              className="text-center lg:text-xl roboto-regular hover:text-[var(--theme-brown)] hover:font-semibold duration-300"
-            >
-              Blog
-            </NavLink>
-          </ul>
-        </div>
-
-        <div
-          className={`fixed top-0 left-0 h-screen bg-[var(--theme-brown)] text-white transform opacity-95 transition-transform duration-300 z-20 ease-in-out ${
-            isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          } w-3/4 sm:hidden shadow-lg`}
-        >
-          <div className="flex p-6 justify-between items-center border-b border-white/50">
-            <img
-              src={logo}
-              alt="Goldior"
-              className="h-10 w-28 sm:h-16 sm:w-32 md:w-[30%]"
-            />
-            <RxCross2
-              onClick={() => setMobileMenuOpen(false)}
-              size={24}
-              className="cursor-pointer"
-            />
-          </div>
-          <ul className="flex flex-col items-center gap-8 py-8">
-            <NavLink
-              to="/"
-              className="text-center text-2xl roboto-regular duration-200 hover:text-gray-200"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/shop"
-              className="text-center text-2xl roboto-regular hover:text-gray-200 duration-200"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Shop
-            </NavLink>
-            <NavLink
-              to="/about"
-              className="text-center text-2xl roboto-regular hover:text-gray-200 transition-colors duration-200"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              About
-            </NavLink>
-            <NavLink
-              to="/blog"
-              className="text-center text-2xl roboto-regular hover:text-gray-200 transition-colors duration-200"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Blog
-            </NavLink>
-          </ul>
-        </div>
-
-        <div
-          ref={wishlistRef}
-          className={`fixed top-0 right-0 h-screen bg-transparent transform transition-transform duration-500 z-20 ease-in-out ${
-            isWishlistOpen ? "translate-y-0" : "-translate-y-full"
-          } w-4/5 md:w-3/5 lg:w-1/4 shadow-lg`}
-        >
-          <div className="flex p-6 justify-between items-center">
-            <h2 className="text-3xl md:text-4xl font-semibold">Wishlist</h2>
-            <FaChevronUp
-              onClick={() => setWishlistOpen(false)}
-              size={28}
-              className="cursor-pointer"
-            />
-          </div>
-          {favourites.length > 0 ? (
-            favourites.map((item, index) => (
-              <WishlistCard
-                key={index}
-                favorites={favourites}
-                setFavourites={setFavourites}
-                // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
-                id={item._id}
-                name={item.name}
-                // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
-                imageUrl={item.imgUrl}
-                // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
-                discountPercentage={item.discountPercentage}
-                quantity="250ml"
-                price={item.price}
-              />
-            ))
-          ) : (
-            <div className="flex flex-col items-center justify-center h-100">
-              <img
-                src={wishimg} // You should replace this with your actual image path or use an imported image
-                alt="Empty Wishlist"
-                className="w-1/2"
-              />
-              <p className="text-xl text-black  font-extrabold font-[Inria-Serif]">
-                Your Wishlist is Empty!
-              </p>
-
-              <NavLink
-                to="/shop"
-                className="mt-10 bg-[var(--theme-brown)] text-white font-medium px-6 py-2 rounded-lg hover:bg-[var(--buttonHover)]"
-              >
-                Shop Now
-              </NavLink>
+    <nav
+      className={`flex justify-between items-center w-full h-[4rem] xs:h-[5rem] sm:h-[6rem] md:h-[6rem] fixed top-0 z-20 px-4 sm:px-8 sm:py-2 xs:py-2 md:px-8 lg:px-[3rem] xl:px-32 ${isScrolled ? "bg-[#fffef9] shadow" : "bg-transparent"
+        } transition-colors duration-300`}
+    >
+      <div className="lg:w-[7rem] h-auto xs:w-[30%] sm:w-[20%] md:w-[12%]">
+        <img
+          src={logo}
+          alt="Goldior Logo"
+          className="h-full max-h-[70%] sm:max-h-[auto] w-auto object-contain rounded-md"
+        />
+      </div>
+      <div className="hidden md:block">
+        <ul className="flex justify-between items-center font-medium lg:w-[36rem] md:w-[26rem] xl:w-[34rem]">
+          {["Home", "Collection", "Discover", "Blog"].map((menu) => (
+            menu === "Home" ? (
+              <NavItem key={menu} to={`/`}>
+                {menu}
+              </NavItem>
+            ) : (
+              <NavItem key={menu} to={`/${menu.toLowerCase()}`}>
+                {menu}
+              </NavItem>
+            )
+          ))}
+        </ul>
+      </div>
+      <div className="hidden md:block">
+        <ul className="flex items-center justify-between w-[8rem]">
+          <NavItem to="/login">
+            <PiUser className="ease-in-out duration-200 lg:text-[1.4rem] md:text-[1.2rem]" />
+          </NavItem>
+          <NavItem>
+            <PiHeart className="ease-in-out duration-200 lg:text-[1.4rem] md:text-[1.2rem]" onClick={() => setWishlistOpen(true)} />
+          </NavItem>
+          <NavItem to="/cart">
+            <div className="relative">
+              <PiShoppingCartSimple className="ease-in-out duration-200 lg:text-[1.4rem] md:text-[1.2rem]" />
+              <span className="absolute top-[0rem] lg:left-[0.95rem] md:left-[0.75rem] w-[0.6rem] h-[0.6rem] bg-[#eca95c] rounded-full border-2 border-white"></span>
             </div>
-          )}
-        </div>
-
-        <div className="h-full w-[40%] sm:w-[22%] flex items-center justify-evenly lg:mx-16">
-          <div className="relative">
-            <FaRegUser
-              size={23}
-              className="hover:text-[var(--theme-brown)] cursor-pointer"
-              onClick={toggleProfileCard}
+          </NavItem>
+        </ul>
+      </div>
+      <div
+        ref={wishlistRef}
+        className={`fixed top-0 right-0 h-screen bg-white border-2 bg-transparent transform transition-transform duration-500 z-20 ease-in-out ${isWishlistOpen ? "translate-x-0" : "translate-x-full"
+          } w-4/5 md:w-3/5 lg:w-1/4`}
+      >
+        <div className="flex p-6 justify-between items-center text-slate-700">
+          <h2 className="text-2xl md:text-2xl font-semibold">Wishlist</h2>
+          <div className="bg-slate-200 w-[2rem] h-[2rem] flex justify-center items-center rounded-lg">
+            <FaLongArrowAltRight
+              onClick={() => setWishlistOpen(false)}
+              size={20}
+              className="cursor-pointer"
             />
-            {isProfileCardOpen && userEmail && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "3rem",
-                  transform: "translateX(-50%)",
-                }}
-              >
-                <ProfileCard
-                  name="Hey:)"
-                  email={userEmail}
-                  imageUrl={profileimg}
-                  onLogout={handleLogout}
-                />
-              </div>
-            )}
           </div>
-
-          <FaRegHeart
-            size={23}
-            className="hover:text-[var(--theme-brown)] cursor-pointer"
-            onClick={() => setWishlistOpen(true)}
-          />
-
-          <NavLink to={"/cart"}>
-            <RiHandbagLine
-              size={23}
-              className="hover:text-[var(--theme-brown)] cursor-pointer"
-            />
-          </NavLink>
         </div>
-      </nav>
-      <span className="mx-8 sm:mx-16 md:mx-24 lg:mx-32 z-20 top-28 relative">
-        {/* path from url */}
-      </span>
-    </>
+        {favourites.length > 0 ? (
+          favourites.map((item, index) => (
+            <WishlistCard
+              key={index}
+              favorites={favourites}
+              setFavourites={setFavourites}
+              // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
+              id={item._id}
+              name={item.name}
+              // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
+              imageUrl={item.imgUrl}
+              // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
+              discountPercentage={item.discountPercentage}
+              quantity="250ml"
+              price={item.price}
+            />
+          ))
+        ) : (
+          <div className="flex flex-col items-center justify-center h-100 px-4">
+            {/* Empty Cart Image */}
+            <img
+              src={wishimg} // Use a relevant empty cart image
+              alt="Empty Cart"
+              className="w-full max-w-[200px] h-auto object-cover mix-blend-multiply mb-6"
+            />
+
+            {/* Empty Cart Title */}
+            <p className="text-3xl text-slate-700 font-bold text-center">
+              Your Wishlist is Empty!
+            </p>
+
+            {/* Additional Text */}
+            <p className="text-base text-slate-500 text-center mt-4">
+              It seems you haven't added anything to your cart yet. Start shopping now and add some exciting products to your cart!
+            </p>
+
+            {/* Shop Now Button */}
+            <NavLink
+              to="/Collection"
+              className="mt-8 bg-[var(--theme-brown)] text-white text-base font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[var(--buttonHover)]"
+            >
+              Shop Now
+            </NavLink>
+          </div>
+        )}
+      </div>
+      <div className="md:hidden flex items-center">
+        <RxHamburgerMenu
+          className="text-xl cursor-pointer"
+          onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+        />
+      </div>
+
+      {isMobileMenuOpen && (
+        <div className="absolute top-[6rem] bg-white border-2 rounded-2xl p-4 z-10 w-[90%] mx-auto">
+          <ul className="flex flex-col items-center py-4">
+            {["Home", "Collection", "Discover", "Blog"].map((menu) => (
+              <NavItem key={menu} to={`/${menu.toLowerCase()}`}>
+                {menu}
+              </NavItem>
+            ))}
+            <div className="flex justify-center gap-5 mt-2">
+              <NavItem to="/login">
+                <PiUser className="ease-in-out duration-200 text-[1.4rem]" />
+              </NavItem>
+              <NavItem>
+                <PiHeart className="ease-in-out duration-200 text-[1.4rem]" />
+              </NavItem>
+              <NavItem to="/cart">
+                <div className="relative">
+                  <PiShoppingCartSimple className="ease-in-out duration-200 text-[1.4rem]" />
+                  <span className="absolute top-[0.1rem] left-[1rem] w-[0.55rem] h-[0.55rem] bg-[#eca95c] rounded-full border-2 border-white"></span>
+                </div>
+              </NavItem>
+            </div>
+          </ul>
+          <div
+            className="absolute top-0 right-0 p-4"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <RxCross2 className="text-xl cursor-pointer" />
+          </div>
+        </div>
+      )}
+
+    </nav>
   );
 }
-
-
-

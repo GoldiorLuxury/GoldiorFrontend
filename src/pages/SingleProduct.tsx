@@ -1,12 +1,14 @@
 import Navbar from "../ui/general/Navbar.tsx";
 // import perfume from '../assets/old-fashion-perfume-black-gold.png';
 import StarRating from "../ui/general/StarRating.tsx";
-import  {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import QuantityAdjuster from "../ui/cart/QuantityAdjuster.tsx";
 import RoundButton from "../ui/general/RoundButton.tsx";
-import {FaRegHeart} from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
+import { PiHeart, PiShootingStarThin } from "react-icons/pi";
 import Notes from "../Types/Notes.ts";
+import { TfiLayoutLineSolid } from "react-icons/tfi";
+import { BiSolidStar } from "react-icons/bi";
 import Reviews from "../ui/single-item/Reviews.tsx";
 import { useParams } from "react-router-dom";
 import useGetProductById from "../data/products/useGetProductById.ts";
@@ -25,32 +27,32 @@ import { getWishlist } from "../data/wishlist/getWishlist.ts";
 import { handleRemoveFromLocalStorage } from "../data/wishlist/useRemoveFavItem.ts";
 // import { useWatch } from "react-hook-form";
 
-  interface CartItem {
-    id: string;
-    name: string;
-    quantity: number;
-    unitPrice: number;
-    totalPrice: number;
-    imgUrl: string;
-  }
+interface CartItem {
+  id: string;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+  imgUrl: string;
+}
 
 
-export default function SingleProduct(){
-    const [perfumeCapacities, setPerfumeCapacities] = useState<any[]>([]);
-    const [selectedQuantity, setSelectedQuantity] = useState<number>(perfumeCapacities[0]?.quantity || 50);
-    const {productId} = useParams();
-    
-    const [isOpenReviewModal, setIsOpenReviewModal] = useState(false);
+export default function SingleProduct() {
+  const [perfumeCapacities, setPerfumeCapacities] = useState<any[]>([]);
+  const [selectedQuantity, setSelectedQuantity] = useState<number>(perfumeCapacities[0]?.quantity || 50);
+  const { productId } = useParams();
+
+  const [isOpenReviewModal, setIsOpenReviewModal] = useState(false);
 
 
-    const {product, isGettingProduct} = useGetProductById(productId);
-    const {reviews, isGettingReviews, refetch: refetchReviews} = useGetReviewForProduct(productId); 
-    
-    useEffect(() => {
-      if(isOpenReviewModal == false){
-        refetchReviews();
-      }
-    }, [isOpenReviewModal, refetchReviews])
+  const { product, isGettingProduct } = useGetProductById(productId);
+  const { reviews, isGettingReviews, refetch: refetchReviews } = useGetReviewForProduct(productId);
+
+  useEffect(() => {
+    if (isOpenReviewModal == false) {
+      refetchReviews();
+    }
+  }, [isOpenReviewModal, refetchReviews])
 
   useEffect(() => {
     if (product && product.capacityInML) {
@@ -59,36 +61,36 @@ export default function SingleProduct(){
     }
     console.log("produicts: ", product, "selected: ", product?.product?.capacityInML[0].quantity);
   }, [product, productId]);
-    
-    
 
-    const totalRating = reviews?.reduce(
-      (sum: number, review: any) => sum + review?.rating,
-      0
-    );
-    const averageRating = Number((totalRating / reviews?.length).toFixed(1));
-    console.log("reviews: ", reviews)
 
-    return (
-      <>
-        {isGettingProduct || isGettingReviews || !product ? (
-          <Spinner />
-        ) : (
-          <>
-            <Navbar />
-            <ProductInfo
-              isOpenReviewModal={isOpenReviewModal}
-              setIsOpenReviewModal={setIsOpenReviewModal}
-              averageRating={averageRating}
-              reviews={reviews}
-              product={product?.product}
-              selectedQuantity={selectedQuantity}
-              setSelectedQuantity={setSelectedQuantity}
-            />
-          </>
-        )}
-      </>
-    );
+
+  const totalRating = reviews?.reduce(
+    (sum: number, review: any) => sum + review?.rating,
+    0
+  );
+  const averageRating = Number((totalRating / reviews?.length).toFixed(1));
+  console.log("reviews: ", reviews)
+
+  return (
+    <>
+      {isGettingProduct || isGettingReviews || !product ? (
+        <Spinner />
+      ) : (
+        <>
+          <Navbar />
+          <ProductInfo
+            isOpenReviewModal={isOpenReviewModal}
+            setIsOpenReviewModal={setIsOpenReviewModal}
+            averageRating={averageRating}
+            reviews={reviews}
+            product={product?.product}
+            selectedQuantity={selectedQuantity}
+            setSelectedQuantity={setSelectedQuantity}
+          />
+        </>
+      )}
+    </>
+  );
 }
 
 function ProductInfo({
@@ -198,83 +200,87 @@ function ProductInfo({
   return (
     <div>
       <div
-        className={
-          "h-[95vh] sm:h-[55vh] md:h-[55vh] mt-32 lg:h-[60vh] w-full px-0 sm:px-16 md:px-20 lg:px-28 justify-center items-center flex sm:flex-row flex-col"
-        }
+        className="w-full px-4 sm:px-8 md:px-[2rem] lg:px-28 xl:px-32 gap-10 items-start flex flex-col sm:flex-row sm:gap-5 xl:gap-10 pt-[10rem]"
       >
-        {/*perfume image*/}
-        <div
-          className={
-            "img-containerh-[55%] sm:h-full w-full sm:w-[35%] flex  justify-end"
-          }
-        >
+        {/* Perfume Image */}
+        <div className="w-fit h-auto rounded-3xl bg-gray-200 p-8 sm:p-6 border-[1.5px]">
+          <div className="flex justify-between items-center mb-4">
+            {/* "New in" Badge */}
+            <div className="bg-white p-2 rounded-full flex items-center">
+              <PiShootingStarThin className="text-slate-600" />
+              <span className="text-xs text-slate-600 ml-1">New in</span>
+            </div>
+            {/* Wishlist Toggle */}
+            <div className="bg-white p-2 rounded-full ml-auto cursor-pointer">
+              {!productExistsInWishList ? (
+                <PiHeart
+                  className="text-2xl text-stone-500"
+                  onClick={handleToggleWishlist}
+                />
+              ) : (
+                <FcLike
+                  className="text-2xl"
+                  onClick={handleToggleWishlist}
+                />
+              )}
+            </div>
+          </div>
           <img
             src={product?.imgUrl}
             alt="Perfume"
-            className="h-auto w-full max-w-[300px] max-h-[450px] sm:max-w-[250px] sm:max-h-[350px] md:max-w-[300px] md:max-h-[400px] lg:max-w-[350px] lg:max-h-[450px] xl:max-w-[400px] xl:max-h-[500px] object-cover mx-auto mt-[-10%]"
+            className="h-auto w-fit max-w-[250px] max-h-[350px] sm:max-w-[180px] sm:max-h-[180px] md:max-w-[280px] md:max-h-[400px] lg:max-w-[400px] lg:max-h-[500px] xl:max-w-[400px] xl:max-h-[400px] object-cover mx-auto mix-blend-multiply"
           />
         </div>
-        {/*perfume info*/}
-        <div className={" h-full w-full sm:w-[65%] p-3 space-y-3 "}>
-          <div className={"flex items-center gap-5"}>
-            <span
-              style={{ fontFamily: "Playfair" }}
-              className={"text-4xl font-semibold text-gray-800"}
-            >
+
+        {/* Perfume Info */}
+        <div className="h-full w-full sm:w-[65%] p-3 xs:p-0 space-y-7">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-5">
+            <span className="xl:text-3xl sm:text-xl font-semibold text-gray-800">
               {product?.name}
             </span>
-            <button onClick={handleToggleWishlist}>
-              {!productExistsInWishList ? (
-                <FaRegHeart size={25} color="var(--theme-brown)" />
-              ) : (
-                <FaHeart size={25} color="var(--theme-brown)" />
-              )}
-            </button>
           </div>
-          <div className="flex gap-2 items-center">
-            <StarRating
-              rating={averageRating}
-              size="normal"
-              fillColor="var(--rating-yellow)"
-            />{" "}
-            <span style={{ fontFamily: "Playfair" }} className={"text-lg"}>
-              {averageRating
-                ? `${averageRating}/5`
-                : "Be the first one to review!"}
-            </span>
-          </div>
-          <span
-            style={{ fontFamily: "Playfair" }}
-            className={"price font-semibold text-3xl text-gray-800"}
-          >
-            ${Math.round(salePrice)}
-          </span>
-          {product?.discountPercentage > 0 && (
-            <span
-              style={{ fontFamily: "Playfair" }}
-              className={"text-sm text-gray-500 line-through ml-2"}
-            >
-              ${actualPrice}
-            </span>
-          )}
-          <p
-            style={{ fontFamily: "Playfair" }}
-            className={"description text-gray-800"}
-          >
-            {product?.description}
-          </p>
 
-          {/*perfume sizes */}
-          <div>
-            <span
-              style={{ fontFamily: "Playfair" }}
-              className={"text-gray-800 font-semibold"}
+          <div className="flex flex-wrap items-center gap-3 lg:gap-6 xs:gap-0 sm:gap-0">
+            <button
+              className="xs:px-2 xs:py-1 sm:px-1 sm:py-1 xl:py-1 xl:px-3 border-2 border-green-500 rounded-md"
             >
-              Choose size:
-            </span>
-            <div className={"flex items-center justify-start"}>
+              <span className="text-green-500 xl:text-base sm:text-xs xs:text-xs">
+                ${Math.round(salePrice)}
+                {product?.discountPercentage > 0 && (
+                  <span className="xl:text-base text-gray-500 line-through ml-2  xs:text-xs sm:text-xs">
+                    ${actualPrice}
+                  </span>
+                )}
+              </span>
+            </button>
+
+            <TfiLayoutLineSolid className="rotate-90 text-2xl sm:text-3xl text-slate-300" />
+
+            <div className="flex items-center cursor-pointer">
+              <BiSolidStar className="xl:text-2xl sm:text-lg text-amber-400" />
+              <span className="xl:text-base ml-1 sm:text-xs text-slate-500 xs:text-xs ">
+                {averageRating
+                  ? `${averageRating}`
+                  : "Be the first one to review!"}{" "}
+                (110 Review)
+              </span>
+            </div>
+
+            <TfiLayoutLineSolid className="rotate-90 text-2xl sm:text-3xl text-slate-300" />
+
+            <div className="bg-gray-200 px-2 sm:px-3 py-1 sm:py-2 rounded-full flex items-center">
+              <PiShootingStarThin className="text-slate-600 xl:text-base xs:text-xs sm:text-xs" />
+              <span className="xl:text-base text-slate-600 ml-1 xs:text-xs sm:text-xs">New in</span>
+            </div>
+          </div>
+
+          <p className="text-[0.95rem] text-slate-500">{product?.description}</p>
+          <div>
+            <div className="text-base text-slate-900 font-semibold">Select Size</div>
+            <div className="flex flex-wrap gap-3">
               {product?.capacityInML?.map((item: any) => (
                 <SizePics
+                  key={item}
                   capacity={item}
                   selectedQuantity={selectedQuantity}
                   setSelectedQuantity={setSelectedQuantity}
@@ -283,51 +289,37 @@ function ProductInfo({
               ))}
             </div>
           </div>
-          {/*actions*/}
-          <div
-            className={
-              "flex flex-row items-center justify-start gap-6 md:gap-20 px-6"
-            }
-          >
-            {inCart && <QuantityAdjuster id={product?._id} />}
-            {!inCart && (
-              <RoundButton
-                onClick={() =>
-                  handleAddToCart(product?._id, product?.name, salePrice)
-                }
-                text="Add to cart"
-                size={size}
-              />
-            )}
+
+          <div className="flex flex-wrap space-x-2 mt-5 w-full xs:text-sm xl:text-base">
+            <QuantityAdjuster id={product?._id} />
+            <RoundButton
+              onClick={() =>
+                handleAddToCart(product?._id, product?.name, salePrice)
+              }
+              text="Add to cart"
+              size={size}
+            />
           </div>
         </div>
       </div>
+
       {/* product info  */}
-      <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-14 md:mt-8">
-        <h2
-          style={{ fontFamily: "Playfair" }}
-          className="text-xl text-gray-900 font-semibold text-center"
-        >
-          Product Detail
-        </h2>
-        <div className="w-full flex items-center justify-center my-2">
-          <p className="w-[60vw] h-[0.15rem] bg-gray-400"></p>
+      <div className="w-full px-4 sm:px-12 md:px-16 lg:px-24 xl:px-32 mt-12 flex flex-col gap-6">
+        {/* Title Section */}
+        <p className="mt-1 text-[2.5rem] font-medium text-center font-serif text-slate-700 leading-[4.25rem]">Product Detail</p>
+        {/* Description Section */}
+        <div className="py-1">
+          <ul className="list-disc space-y-4 text-slate-500 text-sm sm:text-base leading-relaxed">
+            {product?.description2
+              .split(".")
+              .filter(Boolean)
+              ?.map((sentence: string, index: number) => (
+                <li key={index}>{sentence.trim()}.</li>
+              ))}
+          </ul>
         </div>
-        <p
-          style={{ fontFamily: "Playfair" }}
-          className="mt-2 text-justify px-20"
-        >
-          {product?.description2
-            .split(".")
-            .filter(Boolean)
-            ?.map((sentence: string, index: number) => (
-              <ul className="list-disc" key={index}>
-                 <li>{sentence.trim()}.</li>
-                <br />
-              </ul>
-            ))}
-        </p>
       </div>
+
       <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-7">
         {/* <h2
           style={{ fontFamily: "Playfair" }}
@@ -342,7 +334,6 @@ function ProductInfo({
           {product?.description2}
         </p> */}
       </div>
-
       {/* key notes  */}
       <KeyNotes notes={product?.keynotes} />
       {/* reviews  */}
@@ -358,44 +349,48 @@ function ProductInfo({
 
 
 
-function KeyNotes({notes}: {notes: Notes[]}){
-    return(
-        <div className="w-full px-2 sm:px-16 md:px-20 lg:px-28 gap-10 flex-col mt-0 md:mt-8">
-            <h2 style={{fontFamily: 'Playfair'}} className="text-xl text-gray-900 font-semibold text-center">Key Notes</h2>
-            <div className="w-full flex items-center justify-center my-2"><p className="w-[60vw] h-[0.15rem] bg-gray-400"></p></div>
-            <div className="flex items-center justify-evenly">
-            {
-                notes?.map((item: Notes) => {
-                    return <div className=" w-[25%] md:w-[33%]" >
-                        <div className="flex flex-col justify-center items-center border-solid">
-                            <p style={{fontFamily: 'Playfair'}} className="text-center font-semibold text-base md:text-lg">{item?.name}</p>
-                            {/* <p style={{fontFamily: 'Playfair'}} className="text-center text-base md:text-lg">{item.ingredients.join(', ')}</p> */}
-                            <img className="rounded-full  object-cover h-28 w-32 sm:h-36 sm:w-36 md:h-44 md:w-44" src={item?.image} alt="image" />
-                        </div>
-                    </div>
-                })
-            }
-            </div>
-        </div>
-    )
+function KeyNotes({ notes }: { notes: Notes[] }) {
+  return (
+    <div className="w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 mt-8 flex flex-col gap-8">
+      {/* Title Section */}
+      <p className="mt-1 text-[2rem] sm:text-[2.5rem] text-center font-medium font-serif text-slate-700 leading-[3rem] sm:leading-[4rem]">
+        Key Notes
+      </p>
+
+      {/* Notes Grid */}
+      <div className="grid grid-cols-1 gap-8">
+        {notes?.map((item: Notes) => (
+          <div key={item.id} className="flex flex-col items-center border-solid">
+            <img
+              className="rounded-full object-cover h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72"
+              src={item?.image}
+              alt="image"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-function SizePics({capacity, selectedQuantity, setSelectedQuantity, imgUrl}: {
-    capacity: any,
-    selectedQuantity: number,
-    setSelectedQuantity: any,
-    imgUrl: string
-}) {
-    return (
-        <button onClick={() => setSelectedQuantity(capacity?.quantity)}
-                className={`flex w-24 p-4 flex-col items-center justify-center rounded-sm  ${selectedQuantity === capacity?.quantity && 'bg-gray-300'}`}>
-            <img
-                src={imgUrl}
-                alt="Perfume"
-                className="h-auto w-full max-w-[60px] max-h-[90px] sm:max-w-[50px] sm:max-h-[70px] md:max-w-[60px] md:max-h-[80px] lg:max-w-[70px] lg:max-h-[90px] xl:max-w-[80px] xl:max-h-[100px] object-cover mx-auto mt-[-10%]"
-            />
-            <span style={{fontFamily: 'Playfair'}}>{capacity?.quantity} ml</span>
-        </button>
 
-    )
+
+function SizePics({ capacity, selectedQuantity, setSelectedQuantity, imgUrl }: {
+  capacity: any,
+  selectedQuantity: number,
+  setSelectedQuantity: any,
+  imgUrl: string
+}) {
+  return (
+    <button onClick={() => setSelectedQuantity(capacity?.quantity)}
+      className={`mt-4 flex w-24 p-4 flex-col items-center justify-center rounded-lg  ${selectedQuantity === capacity?.quantity && 'bg-gray-200'}`}>
+      <img
+        src={imgUrl}
+        alt="Perfume"
+        className="mix-blend-multiply h-auto w-full max-w-[60px] max-h-[90px] sm:max-w-[50px] sm:max-h-[70px] md:max-w-[60px] md:max-h-[80px] lg:max-w-[70px] lg:max-h-[90px] xl:max-w-[80px] xl:max-h-[100px] object-cover mx-auto mt-[-10%]"
+      />
+      <span className="text-sm">{capacity?.quantity} ml</span>
+    </button>
+
+  )
 }

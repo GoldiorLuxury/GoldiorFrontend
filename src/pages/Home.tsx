@@ -1,60 +1,60 @@
-import HomeGrid from "../ui/general/ProductGrid";
-import Hero from "../ui/Home/Hero";
-// import OurValues from "../ui/Home/OurValues";
-import Welcome from "../ui/Home/Welcome";
 import Navbar from "../ui/general/Navbar";
+import HomeGrid from "../ui/general/Collection";
+import Hero from "../ui/Home/Hero";
+// import Review from "../ui/Home/Review";
+import SubscriptionBanner from "../ui/Home/SubscriptionBanner";
+import Welcome from "../ui/Home/Welcome";
+import About from "../ui/Home/AboutUs";
 import landingPageImage from "../assets/landing-page-perfume.png";
-import welcomeBg from "../assets/welcome-bg.png";
-// import { useNavigate, NavLink } from "react-router-dom";
-
-
-import SaleBanner from "../ui/Home/SaleBanner";
-import salePageBG from "../assets/sale_page_bg.jpg";
+import AboutImage from "../assets/welcome-page-image.png";
+// import welcomeBg from "../assets/welcome-bg.png";
+// import SaleBanner from "../ui/Home/SaleBanner";
+// import salePageBG from "../assets/sale_page_bg.jpg";
 import Footer from "../ui/general/Footer";
 import useGetMostOrderedProducts from "../data/products/useGetMostOrderedProducts";
-// import DisplayFeatures from "../ui/Home/Features";
 
 function Home() {
   const { products } = useGetMostOrderedProducts();
-  // const navigate = useNavigate(); // Initialize navigate
-  console.log("products: ", products);
+  // console.log("products: ", products);
   return (
     <>
       <Navbar />
       <Hero
-        heading={"Luxury Perfumes Priced For You!"}
+        heading={"Luxury Perfumes Tailored Just For You!"}
         subtext={
-          "At Goldior Luxury, we believe that every victory deserves a signature scent, and we are dedicated to providing unforgettable fragrances that elevate your spirit and empower your journey."
+          "At Goldior Luxury, we craft exquisite fragrances that celebrate your success. Our exclusive collection is designed to empower and elevate your spirit, leaving a lasting impression wherever you go. Embrace the essence of luxury with a scent that’s uniquely yours."
         }
-        buttonText={"Shop now"}
+        shopButton={"Shop Now"}
+        viewDetail={"View Details"}
+        expertTitle={"Our Experts"}
+        expertTitletext={"Harness the power of natural ingredients to stand out in your personality."}
+        explore={"Explore More"}
         imageUrl={landingPageImage}
-        navigateTo="/shop"
+        navigateToshop="/Collection"
+        navigateToView="/View"
+        navigateToAbout="/Discover"
       />
-      <Welcome
-        heading="Welcome to Goldior Luxury"
-        // subtext={
-        // "Welcome to Goldior Luxury Perfumes, where the spirit of victory and triumph come alive through scents that empower and inspire. Our curated collection, aptly named Victory Scented, is a celebration of success and elegance, designed to unleash your victorious essence. Indulge in the sweet taste of triumph with captivating fragrances that tell the tale of your achievements. At Goldior Luxury, we believe that every victory deserves a signature scent, and we are dedicated to providing unforgettable fragrances that elevate your spirit and empower your journey."
-        // }
-        imageUrl={welcomeBg}
-      />
-      {/* <OurValues
-        heading="Our values"
+      <Welcome />
+      <About
+        heading={"About Us"}
+        subHead={"Our Legacy Of Excellence"}
         subtext={
-          "At Goldior Luxury, our perfume retail store is built on a foundation of passion and authenticity. We believe in celebrating the individuality of every customer, providing a diverse collection of scents that resonate with their unique personality and style. Our dedicated team of fragrance enthusiasts is committed to creating a welcoming and inclusive environment, where connections are forged, and inspiration thrives."
-        }
-        imageUrl={welcomePage}
-        buttonText={"Shop now"}
-      /> */}
-      <HomeGrid products={products} heading="Best Selling Products" />
-      <SaleBanner
+          "Goldior is a luxury perfume brand that provides an exclusive collection of premium lifestyle products for everyone. Our formulations are a mix of luxurious & made from the best oils from around the world in every product. We provide premium quality and sophistication at affordable prices."}
+        shopButton={"Discover More"}
+        imageUrl={AboutImage}
+        navigateToshop="/Discover"
+      />
+      <HomeGrid products={products} heading="Best Seller" />
+      {/* <Review /> */}
+      <SubscriptionBanner />
+      {/* <SaleBanner
         heading="Exclusive Launch Offer For First 100 Customers"
         subtext={
           "Discover an exquisite collection of premium perfumes at unbelievable prices during our exclusive Perfume Sale!"
         }
         imageUrl={salePageBG}
-        // buttonText={"Know more"}
       />
-      {/* <DisplayFeatures /> */}
+      <Footer /> */}
       <Footer />
     </>
   );

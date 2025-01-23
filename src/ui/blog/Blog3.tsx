@@ -13,8 +13,8 @@ const Blog1: React.FC = () => {
 
                     {/* Heading */}
                     <header className="text-center mb-8">
-                        <p className="text-sm text-black-400 mb-3">October 19, 2024</p>
-                        <h1 className="text-4xl font-semibold">
+                        <p className="text-base text-slate-600 font-semibold mb-3">October 19, 2024</p>
+                        <h1 className="text-3xl font-semibold text-slate-700">
                             Find Your Signature Scent: How to Choose the Perfect Perfume
                         </h1>
                     </header>
@@ -25,12 +25,12 @@ const Blog1: React.FC = () => {
                     </div>
 
                     {/* Content */}
-                    <article className="space-y-6 text-lg leading-relaxed text-black-300">
+                    <article className="space-y-6 text-xl leading-relaxed text-justify text-slate-600">
                         <p>
                             Choosing the right fragrance can transform your style and elevate your daily confidence. Here's how to pick the perfect perfume that resonates with your personality and style:
                         </p>
 
-                        <h2 className="text-2xl font-semibold text-black">How to Choose the Perfect Perfume</h2>
+                        <h2 className="text-2xl font-semibold text-slate-700">How to Choose the Perfect Perfume</h2>
 
                         <ul className="list-disc list-inside space-y-4 pl-4">
                             <li><strong>Know Your Scent Profile:</strong> Identify fragrance families you prefer—floral, oriental, woody, or fresh. Floral notes offer romantic tones, while woody scents are grounding and warm.</li>
@@ -40,7 +40,7 @@ const Blog1: React.FC = () => {
                             <li><strong>Trust Your Intuition:</strong> The best fragrance is the one that makes you feel your best. Trust your nose and pick a scent that speaks to you.</li>
                         </ul>
 
-                        <p className="text-xl font-semibold text-black mt-8">
+                        <p className="text-xl font-semibold text-slate-700 mt-8">
                             Explore Goldior Luxury's diverse range and find your perfect match today!
                         </p>
                     </article>

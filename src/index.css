@@ -7,23 +7,41 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
-  background-color: #ffebbe;
   /* color: black; */
 }
 
-
-
-
 :root {
   --rating-yellow: #ffc633;
-  --theme-brown: #ab572d;
+  --theme-brown: #eca95c;
   --facebookIcon: #1877f2;
   --twitterIcon: #1da1f2;
   --linkedinIcon: #0077b5;
   --instagramIcon: #cc2366;
   --background: #f7eaea;
-  --buttonHover: #7d3d1d;
+  --buttonHover: #f2b26a;
+  --background-color: #fffef9;
+  font-family: sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cccccc82;
+  border-radius: 8px;
+  height: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ccccccab;
 }
 
 @keyframes slideInFromRight {
@@ -31,10 +49,12 @@
     opacity: 0;
     transform: translateX(80%);
   }
+
   50% {
     opacity: 0.5;
     transform: translateX(60%);
   }
+
   100% {
     opacity: 1;
     transform: translateX(25%);
@@ -42,7 +62,8 @@
 }
 
 .slide-in {
-  display: inline-block; /* or block if the component takes up the whole row */
+  display: inline-block;
+  /* or block if the component takes up the whole row */
   animation: slideInFromRight 3s ease forwards;
 }
 
