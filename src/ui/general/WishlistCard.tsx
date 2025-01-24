@@ -1,8 +1,6 @@
-
 // import perfume from "../../assets/landing-page-perfume.png";
 import { handleRemoveFromLocalStorage } from "../../data/wishlist/useRemoveFavItem";
 import { MdDelete } from "react-icons/md";
-
 
 function WishlistCard({
   id,
@@ -29,7 +27,7 @@ function WishlistCard({
   };
 
   return (
-    <div className="relative flex items-center p-2 bg-white border-y-2 border-gray-200">
+    <div className="relative flex items-center bg-white">
       {/* <RxCross2
         size={18}
         className="absolute top-2 right-2 cursor-pointer text-gray-600"
@@ -49,19 +47,21 @@ function WishlistCard({
           Add to cart
         </button>
       </div> */}
-      <div className="border-2 rounded-xl p-4 mb-4 w-full ">
-        <div className="flex flex-row items-start">
-          <div className="bg-gray-200 rounded-xl p-4 w-[40%] h-auto">
+      <div className="border-2 rounded-xl p-4 mb-4 w-full">
+        <div className="flex flex-col sm:flex-row items-start sm:gap-10 md:gap-2">
+          {/* Image Container */}
+          <div className="bg-gray-200 rounded-xl p-4 w-full sm:w-[35%] md:w-full h-auto">
             <img
               src={imageUrl}
               alt="Unable to load image"
-              className="w-[100%] h-auto object-cover rounded-md mix-blend-multiply"
+              className="w-full h-auto object-cover rounded-md mix-blend-multiply"
             />
           </div>
-          <div className="flex flex-col flex-grow ml-5">
-            <div className="text-left">
-              <div className="flex justify-between">
-                <p className="text-base font-semibold whitespace-nowrap text-slate-700">
+          {/* Text and Buttons */}
+          <div className="flex flex-col flex-grow mt-4 md:mt-0 md:ml-5 xs:w-full">
+            <div className="text-left ">
+              <div className="flex justify-between items-center w-full">
+                <p className="text-sm sm:text-base font-semibold whitespace-nowrap text-slate-700">
                   {name}
                 </p>
                 <button
@@ -71,11 +71,11 @@ function WishlistCard({
                   <MdDelete size={20} className="text-red-400" />
                 </button>
               </div>
-              <p className="text-sm whitespace-nowrap text-slate-700 mt-1">
+              <p className="text-xs sm:text-sm whitespace-nowrap text-slate-700 mt-1">
                 Quantity: {quantity}ML
               </p>
             </div>
-            <button className="mt-6 text-sm w-full bg-[var(--theme-brown)] hover:bg-[var(--buttonHover)] text-white py-2 px-4 rounded-lg transition-colors duration-300 ease-in-out">
+            <button className="mt-4 md:mt-6 text-xs sm:text-sm w-full bg-[var(--theme-brown)] hover:bg-[var(--buttonHover)] text-white py-2 px-4 rounded-lg transition-colors duration-300 ease-in-out">
               Add to Cart
             </button>
           </div>

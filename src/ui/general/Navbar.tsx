@@ -7,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import WishlistCard from "./WishlistCard";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
-import wishimg from "../../assets/8.jpg"
+import wishimg from "../../assets/8.jpg";
 import { getWishlist } from "../../data/wishlist/getWishlist";
 import ProfileCard from "../components/profile";
 
@@ -133,7 +133,7 @@ export default function Navbar() {
         <ul className="flex justify-between items-center font-medium lg:w-[36rem] md:w-[26rem] xl:w-[34rem]">
           {["Home", "Collection", "Discover", "Blog"].map((menu) =>
             menu === "Home" ? (
-              <NavItem key={menu} to={`/`}>
+              <NavItem key={menu} to="/">
                 {menu}
               </NavItem>
             ) : (
@@ -184,12 +184,15 @@ export default function Navbar() {
       </div>
       <div
         ref={wishlistRef}
-        className={`fixed top-0 right-0 h-screen bg-white border-2 bg-transparent transform transition-transform duration-500 z-20 ease-in-out ${
+        className={`fixed top-0 right-0 h-screen bg-white border-2 transform transition-transform duration-500 z-20 ease-in-out ${
           isWishlistOpen ? "translate-x-0" : "translate-x-full"
-        } w-4/5 md:w-3/5 lg:w-1/4`}
+        } w-full xs:w-full sm:w-4/5 md:w-[60%] lg:w-[70%] xl:w-[30%]`}
       >
-        <div className="flex p-6 justify-between items-center text-slate-700">
-          <h2 className="text-2xl md:text-2xl font-semibold">Wishlist</h2>
+        {/* Header */}
+        <div
+          className={`flex justify-between items-center w-full h-[4rem] sm:h-[5rem] md:h-[6rem] fixed top-0 z-20 px-4 sm:px-8 lg:px-[3rem] xl:px-8 bg-white transition-colors duration-300`}
+        >
+          <h2 className="text-xl sm:text-2xl font-semibold">Wishlist</h2>
           <div className="bg-slate-200 w-[2rem] h-[2rem] flex justify-center items-center rounded-lg">
             <FaLongArrowAltRight
               onClick={() => setWishlistOpen(false)}
@@ -198,53 +201,55 @@ export default function Navbar() {
             />
           </div>
         </div>
-        {favourites.length > 0 ? (
-          favourites.map((item, index) => (
-            <WishlistCard
-              key={index}
-              favorites={favourites}
-              setFavourites={setFavourites}
-              // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
-              id={item._id}
-              name={item.name}
-              // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
-              imageUrl={item.imgUrl}
-              // @ts-expect-error: The types of `favourites` and `setFavourites` are not compatible.
-              discountPercentage={item.discountPercentage}
-              quantity="250ml"
-              price={item.price}
-            />
-          ))
-        ) : (
-          <div className="flex flex-col items-center justify-center h-100 px-4">
-            {/* Empty Cart Image */}
-            <img
-              src={wishimg} // Use a relevant empty cart image
-              alt="Empty Cart"
-              className="w-full max-w-[200px] h-auto object-cover mix-blend-multiply mb-6"
-            />
 
-            {/* Empty Cart Title */}
-            <p className="text-3xl text-slate-700 font-bold text-center">
-              Your Wishlist is Empty!
-            </p>
+        {/* Wishlist Items */}
+        <div className="pt-[5rem] sm:pt-[6rem] md:pt-[7rem] px-4 sm:px-8 lg:px-[3rem] xl:px-8 overflow-y-auto h-screen">
+          {favourites.length > 0 ? (
+            favourites.map((item, index) => (
+              <WishlistCard
+                key={index}
+                favorites={favourites}
+                setFavourites={setFavourites}
+                id={item._id}
+                name={item.name}
+                imageUrl={item.imgUrl}
+                // discountPercentage={item.discountPercentage}
+                quantity="250ml"
+                // price={item.price}
+              />
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full px-4">
+              {/* Empty Wishlist Image */}
+              <img
+                src={wishimg} // Provide a valid empty wishlist image
+                alt="Empty Wishlist"
+                className="w-full max-w-[200px] h-auto object-cover mix-blend-multiply mb-6"
+              />
 
-            {/* Additional Text */}
-            <p className="text-base text-slate-500 text-center mt-4">
-              It seems you haven't added anything to your cart yet. Start
-              shopping now and add some exciting products to your cart!
-            </p>
+              {/* Empty Wishlist Title */}
+              <p className="text-xl sm:text-2xl font-bold text-center text-slate-700">
+                Your Wishlist is Empty!
+              </p>
 
-            {/* Shop Now Button */}
-            <NavLink
-              to="/Collection"
-              className="mt-8 bg-[var(--theme-brown)] text-white text-base font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[var(--buttonHover)]"
-            >
-              Shop Now
-            </NavLink>
-          </div>
-        )}
+              {/* Additional Text */}
+              <p className="text-sm sm:text-base text-center mt-4 text-slate-500">
+                It seems you haven’t added anything to your wishlist yet. Start
+                exploring and add some favorites!
+              </p>
+
+              {/* Shop Now Button */}
+              <NavLink
+                to="/Collection"
+                className="mt-8 bg-[var(--theme-brown)] text-white text-sm sm:text-base font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[var(--buttonHover)]"
+              >
+                Shop Now
+              </NavLink>
+            </div>
+          )}
+        </div>
       </div>
+
       <div className="md:hidden flex items-center">
         <RxHamburgerMenu
           className="text-xl cursor-pointer"
@@ -265,7 +270,7 @@ export default function Navbar() {
             ))}
 
             <div className="flex justify-center items-center gap-5 mt-2">
-              <div>
+              <NavItem>
                 <PiUser
                   className="ease-in-out duration-200 text-[1.4rem]"
                   onClick={toggleProfileCard}
@@ -286,10 +291,13 @@ export default function Navbar() {
                     />
                   </div>
                 )}
-              </div>
+              </NavItem>
 
               <NavItem>
-                <PiHeart className="ease-in-out duration-200 text-[1.4rem]" />
+                <PiHeart
+                  className="ease-in-out duration-200 text-[1.4rem]"
+                  onClick={() => setWishlistOpen(true)}
+                />
               </NavItem>
               <NavItem to="/cart">
                 <div className="relative">
