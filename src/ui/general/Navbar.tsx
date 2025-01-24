@@ -256,11 +256,15 @@ export default function Navbar() {
         <div className="absolute top-[6rem] bg-white border-2 rounded-2xl p-4 z-10 w-[90%] mx-auto">
           <ul className="flex flex-col items-center py-4">
             {["Home", "Collection", "Discover", "Blog"].map((menu) => (
-              <NavItem key={menu} to={`/${menu.toLowerCase()}`}>
+              <NavItem
+                key={menu}
+                to={menu === "Home" ? "/" : `/${menu.toLowerCase()}`}
+              >
                 {menu}
               </NavItem>
             ))}
-            <div className="flex justify-center gap-5 mt-2">
+
+            <div className="flex justify-center items-center gap-5 mt-2">
               <div>
                 <PiUser
                   className="ease-in-out duration-200 text-[1.4rem]"
