@@ -230,21 +230,21 @@ function Footer() {
 
     <footer className="px-8 sm:px-16 md:px-16 lg:px-32 pt-16 pb-4 bg-gradient-to-r from-[#fef3e6] via-white to-[#fdebd0] border-t-2">
       <div>
-        <div className="w-[7rem] h-auto mx-auto sm:w-[8rem] md:w-[9rem] lg:w-[10rem]">
+        <div className="w-[7rem] h-auto sm:w-[8rem] md:w-[9rem] lg:w-[10rem] xl:w-[8rem]">
           <img
             src={logo}
             alt="Glodior Logo"
             className="h-full max-h-[70%] sm:max-h-[auto] w-auto object-contain rounded-md"
           />
         </div>
-        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[var(--theme-brown)] mt-6 text-center">
+        <p className="text-lg xs:text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-xl text-[var(--theme-brown)] my-6">
           Where luxury meets the art of fragrance
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 justify-items-stretch">
           <div>
             <div className="font-medium text-xl mb-3 text-slate-800">Office Address</div>
             <div className="text-sm sm:text-base text-gray-500">
-              202, Crystal Tower, Gundavali Road, Near Apollo Diagnostic, <br /> Andheri East, Maharashtra, India.
+              202, Crystal Tower, Gundavali Road, Near Apollo Diagnostic, Andheri East, Maharashtra, India.
             </div>
             <div>
               <ul className="flex flex-wrap xs:w-full gap-4 text-sm sm:text-base text-slate-800 mt-12">
@@ -262,13 +262,13 @@ function Footer() {
             <div className="font-medium text-xl mb-3 text-slate-800">Shopping</div>
             <ul>
               <li className="cursor-pointer text-sm sm:text-base text-gray-500 hover:text-gray-800 mb-2">
-                <NavLink to={""}>Payments</NavLink>
+                <NavLink to={"/Payment-Page"}>Payments</NavLink>
               </li>
               <li className="cursor-pointer text-sm sm:text-base text-gray-500 hover:text-gray-800 mb-2">
-                <NavLink to={""}>Delivery Options</NavLink>
+                <NavLink to={"/Delivery-Page"}>Delivery Options</NavLink>
               </li>
               <li className="cursor-pointer text-sm sm:text-base text-gray-500 hover:text-gray-800 mb-2">
-                <NavLink to={""}>Buyer Protection</NavLink>
+                <NavLink to={"/Buyer-Protection-Page"}>Buyer Protection</NavLink>
               </li>
             </ul>
           </div>
@@ -345,7 +345,7 @@ function Footer() {
       <div className="mt-8 text-center">
         <hr className="border-gray-400 mb-4" />
         <p className="text-sm sm:text-base text-gray-800 mb-2 flex justify-center items-start gap-2">
-          <FaRegCopyright className="xs:text-base" /> Copyright 2024 Glodior Luxury Pvt. Ltd. All Rights Reserved
+          <FaRegCopyright className="xs:text-base xl:mt-1 xl:text-sm" /> Copyright 2024 Glodior Luxury Pvt. Ltd. All Rights Reserved
         </p>
       </div>
     </footer>

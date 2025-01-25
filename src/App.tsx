@@ -17,6 +17,9 @@ import Blog4 from "./ui/blog/Blog4.tsx";
 import Privacy from "./ui/security/PrivacyPolicy.tsx";
 import RefundPolicy from "./ui/security/RefundPolicy.tsx";
 import TermsAndConditions from "./ui/security/terms.tsx";
+import BuyerProtectionPage from "./ui/security/BuyerProtectionPage.tsx";
+import DeliveryPage from "./ui/security/DeliveryPage.tsx";
+import PaymentPage from "./ui/security/PaymentPage.tsx";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -34,18 +37,20 @@ export default function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />} />
           <Route path="/product/:productId" element={<SingleProduct />} />
 
-          <Route path="/Discover" element={<About />} />
-          <Route path="/Collection" element={<Shop />} />
+          <Route index element={<Home />} />
+          <Route path="/about-us" element={<About />} />
+          <Route path="/Our-Luxury-Collection" element={<Shop />} />
+          <Route path="/New-Launch" element={<Shop />} />
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/Contact-Us" element={<Blog />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/final-details" element={<FinalDetails />} />
           <Route path="/personal-details" element={<PersonalDetails />} />
           <Route path="/register" element={<UserAuthentication />} />
           <Route path="/login" element={<Login />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/blog" element={<Blog />} />
           <Route
             path="/blog/make-your-scent-last-all-day"
             element={<Blog1 />}
@@ -62,6 +67,9 @@ export default function App() {
           <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="/terms & conditions" element={<TermsAndConditions />} />
+          <Route path="/Payment-Page" element={<PaymentPage />} />
+          <Route path="/Buyer-Protection-Page" element={<BuyerProtectionPage />} />
+          <Route path="/Delivery-Page" element={<DeliveryPage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

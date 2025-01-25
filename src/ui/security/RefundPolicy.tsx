@@ -9,7 +9,7 @@ const RefundPolicy: React.FC = () => {
             <div className="max-w-5xl mx-auto p-6 bg-transparent font-inter mt-24 text-justify">
                 <h1 className="text-3xl font-semibold text-center mb-6 text-slate-700">Refund Policy</h1>
 
-                <p className="text-base text-slate-600 mb-6 text-slate-600">
+                <p className="text-base text-slate-600 mb-6">
                     At Goldior Luxury, customer satisfaction is our top priority. If you are not entirely satisfied with your purchase, we're here to help. Please review our refund policy below:
                 </p>
 
@@ -74,11 +74,26 @@ const RefundPolicy: React.FC = () => {
                 </section>
 
                 <section>
-                    <h2 className="text-lg font-semibold mb-3 mt-6 text-slate-700">9. Contact Us</h2>
-                    <p className="text-base text-slate-600">For any questions regarding our refund policy, please reach out to us at:</p>
+                    <h2 className="text-lg font-semibold mb-3 mt-6 text-slate-700">14. Contact Information</h2>
+                    <p className="text-base text-slate-600">
+                        For any questions or concerns regarding these Terms and Conditions, please contact us at:
+                    </p>
                     <ul className="list-none text-base text-slate-600 space-y-2 mt-2">
-                        <li><strong>Email:</strong> [Your email address]</li>
-                        <li><strong>Phone:</strong> [Your phone number]</li>
+                        <li>
+                            <strong>Email: </strong>
+                            <a href="mailto:support@goldiorluxury.com" className="text-blue-500 hover:underline">
+                                support@goldiorluxury.com
+                            </a>
+                        </li>
+                        <li>
+                            <strong>Contact Us:</strong> India: +91 8818-8818-25 | U.A.E: +971 56-786-1067
+                        </li>
+                        <li>
+                            <strong>WhatsApp:</strong> India: +91 8818-8818-25 | U.A.E: +971 56-786-1067
+                        </li>
+                        <li>
+                            <strong>Address:</strong> Mumbai, Maharashtra, India & Bur Dubai, U.A.E
+                        </li>
                     </ul>
                 </section>
             </div>
