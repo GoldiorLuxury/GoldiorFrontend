@@ -42,7 +42,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/Our-Luxury-Collection" element={<Shop />} />
-          <Route path="/New-Launch" element={<Shop />} />
+          {/* <Route path="/New-Launch" element={<Shop />} /> */}
           <Route path="/blogs" element={<Blog />} />
           <Route path="/Contact-Us" element={<Blog />} />
           <Route path="/cart" element={<CartPage />} />

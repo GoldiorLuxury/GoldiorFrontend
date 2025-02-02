@@ -70,7 +70,6 @@ export default function Navbar() {
     fetchData();
   }, [isWishlistOpen]);
 
-  console.log("favourites: ", favourites);
   const handleLogout = () => {
     localStorage.removeItem("user_email_goldior_luxury");
     setIsProfileCardOpen(false);
@@ -131,14 +130,24 @@ export default function Navbar() {
         />
       </div>
       <div className="hidden md:block">
-        <ul className="flex justify-between items-center font-medium lg:w-[36rem] md:w-[26rem] xl:w-[34rem]">
-          {["Home", "Collection", "Discover", "Blog"].map((menu) =>
+        <ul className="flex justify-between items-center font-medium lg:w-[36rem] md:w-[26rem] xl:w-fit">
+          {[
+            "Home",
+            "About Us",
+            "Our Luxury Collection",
+            // "New Launch",
+            "blogs",
+            // "Contact Us",
+          ].map((menu) =>
             menu === "Home" ? (
               <NavItem key={menu} to="/">
                 {menu}
               </NavItem>
             ) : (
-              <NavItem key={menu} to={`/${menu.toLowerCase()}`}>
+              <NavItem
+                key={menu}
+                to={`/${menu.toLowerCase().replace(/\s+/g, "-")}`}
+              >
                 {menu}
               </NavItem>
             )
@@ -146,10 +155,10 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="hidden md:block">
-        <ul className="flex items-center justify-between w-[8rem]">
-          <div>
+        <ul className="flex justify-between items-center font-medium lg:w-[36rem] md:w-[26rem] xl:w-[10rem]">
+          <NavItem>
             <PiUser
-              className="ease-in-out duration-200 text-[1.4rem] cursor-pointer"
+              className="ease-in-out duration-200 text-[1.5rem] cursor-pointer"
               onClick={toggleProfileCard}
             />
             {isProfileCardOpen && userEmail && (
@@ -168,17 +177,17 @@ export default function Navbar() {
                 />
               </div>
             )}
-          </div>
+          </NavItem>
           <NavItem>
             <PiHeart
-              className="ease-in-out duration-200 lg:text-[1.4rem] md:text-[1.2rem]"
+              className="ease-in-out duration-200 lg:text-[1.5rem] md:text-[1.2rem]"
               onClick={() => setWishlistOpen(true)}
             />
           </NavItem>
           <NavItem to="/cart">
             <div className="relative">
-              <PiShoppingCartSimple className="ease-in-out duration-200 lg:text-[1.4rem] md:text-[1.2rem]" />
-              <span className="absolute top-[0rem] lg:left-[0.95rem] md:left-[0.75rem] w-[0.6rem] h-[0.6rem] bg-[#eca95c] rounded-full border-2 border-white"></span>
+              <PiShoppingCartSimple className="ease-in-out duration-200 lg:text-[1.5rem] md:text-[1.2rem]" />
+              <span className="absolute top-[0rem] lg:left-[0.95rem] xl:left-[1rem] md:left-[0.75rem] w-[0.7rem] h-[0.75rem] bg-[#eca95c] rounded-full border-2 border-white"></span>
             </div>
           </NavItem>
         </ul>
@@ -262,14 +271,27 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="absolute top-[6rem] bg-white border-2 rounded-2xl p-4 z-10 w-[90%] mx-auto">
           <ul className="flex flex-col items-center py-4">
-            {["Home", "Collection", "Discover", "Blog"].map((menu) => (
-              <NavItem
-                key={menu}
-                to={menu === "Home" ? "/" : `/${menu.toLowerCase()}`}
-              >
-                {menu}
-              </NavItem>
-            ))}
+            {[
+              "Home",
+              "About Us",
+              "Our Luxury Collection",
+              // "New Launch",
+              "blogs",
+              // "Contact Us",
+            ].map((menu) =>
+              menu === "Home" ? (
+                <NavItem key={menu} to="/">
+                  {menu}
+                </NavItem>
+              ) : (
+                <NavItem
+                  key={menu}
+                  to={`/${menu.toLowerCase().replace(/\s+/g, "-")}`}
+                >
+                  {menu}
+                </NavItem>
+              )
+            )}
 
             <div className="flex justify-center items-center gap-5 mt-2">
               <NavItem>
