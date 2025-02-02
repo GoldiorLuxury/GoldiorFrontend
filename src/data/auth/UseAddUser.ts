@@ -1,4 +1,4 @@
-// https://website-backend-1-a73j.onrender.com/api/product/672c49008681df2dabc8ad20
+// http://35.154.187.94:5100/api/product/672c49008681df2dabc8ad20
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -14,16 +14,13 @@ export async function saveUser(formData: any) {
   console.log(formData, "form data saving...");
   try {
     // Send the POST request to the backend API
-    const res = await fetch(
-      "https://website-backend-1-a73j.onrender.com/api/auth/create-user",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData), // Send the form data in the body
-      }
-    );
+    const res = await fetch("http://35.154.187.94:5100/api/auth/create-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData), // Send the form data in the body
+    });
 
     const data = await res.json();
 

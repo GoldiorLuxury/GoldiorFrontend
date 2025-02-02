@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { verifyUserExists } from "./VerifyUserExists";
 
 export function useVerifyOtp() {
-//   const [errorMessage, setErrorMessage] = useState("");
+  //   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); // useNavigate is used inside the hook
 
   const verifyOtp = async (email: string, otp: string) => {
     try {
       const res = await fetch(
-        `https://website-backend-1-a73j.onrender.com/api/auth/verify-otp/${email}`,
+        `http://35.154.187.94:5100/api/auth/verify-otp/${email}`,
         {
           method: "POST",
           headers: {

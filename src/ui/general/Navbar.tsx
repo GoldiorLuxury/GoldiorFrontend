@@ -136,7 +136,7 @@ export default function Navbar() {
             "About Us",
             "Our Luxury Collection",
             // "New Launch",
-            "blogs",
+            "Blogs",
             // "Contact Us",
           ].map((menu) =>
             menu === "Home" ? (
@@ -276,7 +276,7 @@ export default function Navbar() {
               "About Us",
               "Our Luxury Collection",
               // "New Launch",
-              "blogs",
+              "Blogs",
               // "Contact Us",
             ].map((menu) =>
               menu === "Home" ? (

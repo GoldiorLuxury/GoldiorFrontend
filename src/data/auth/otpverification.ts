@@ -1,10 +1,7 @@
-
-
-
-export  async function sendEmailForOtp(email: string) {
+export async function sendEmailForOtp(email: string) {
   try {
     const res = await fetch(
-      `https://website-backend-1-a73j.onrender.com/api/auth/send-otp/${email}`,
+      `http://35.154.187.94:5100/api/auth/send-otp/${email}`,
       {
         method: "POST", // Using POST method
         headers: {
@@ -28,6 +25,3 @@ export  async function sendEmailForOtp(email: string) {
     throw new Error("Failed to send OTP: " + error.message);
   }
 }
-
-
-

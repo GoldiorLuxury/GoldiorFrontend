@@ -1,4 +1,4 @@
-// https://website-backend-1-a73j.onrender.com/api/product/672c49008681df2dabc8ad20
+// http://35.154.187.94:5100/api/product/672c49008681df2dabc8ad20
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -13,9 +13,7 @@ export default function useGetProductById(id: string | undefined) {
 
 async function getProduct(id: string | undefined) {
   try {
-    const res = await fetch(
-      `https://website-backend-1-a73j.onrender.com/api/product/${id}`
-    );
+    const res = await fetch(`http://35.154.187.94:5100/api/product/${id}`);
     const data = await res.json();
 
     if (!res.ok) {

@@ -1,5 +1,5 @@
-// https://website-backend-1-a73j.onrender.com/api/review/
-// https://website-backend-1-a73j.onrender.com/api/product/672c49008681df2dabc8ad20
+// http://35.154.187.94:5100/api/review/
+// http://35.154.187.94:5100/api/product/672c49008681df2dabc8ad20
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -19,7 +19,7 @@ export default function useGetReviewForProduct(product_id: string | undefined) {
 async function getReviews(product_id: string | undefined) {
   try {
     const res = await fetch(
-      `https://website-backend-1-a73j.onrender.com/api/review/${product_id}`,
+      `http://35.154.187.94:5100/api/review/${product_id}`,
       {
         method: "GET",
         headers: {
