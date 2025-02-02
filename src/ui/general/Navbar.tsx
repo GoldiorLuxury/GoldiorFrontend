@@ -251,7 +251,7 @@ export default function Navbar() {
 
               {/* Shop Now Button */}
               <NavLink
-                to="/Collection"
+                to="/Our-Luxury-Collection"
                 className="mt-8 bg-[var(--theme-brown)] text-white text-sm sm:text-base font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:bg-[var(--buttonHover)]"
               >
                 Shop Now
