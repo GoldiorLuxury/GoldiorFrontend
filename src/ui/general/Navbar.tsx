@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../../assets/goldior-logo.png";
+import profile from "../../assets/profile.jpg";
 import { PiHeart, PiUser, PiShoppingCartSimple } from "react-icons/pi";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { NavLink, useNavigate } from "react-router-dom";
 import WishlistCard from "./WishlistCard";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import { BsArrowRight } from "react-icons/bs";
 
 import wishimg from "../../assets/8.jpg";
 import { getWishlist } from "../../data/wishlist/getWishlist";
@@ -129,7 +130,7 @@ export default function Navbar() {
           className="h-full max-h-[70%] sm:max-h-[auto] w-auto object-contain rounded-md"
         />
       </div>
-      <div className="hidden md:block">
+      <div className="md:hidden xs:hidden lg:hidden xl:block">
         <ul className="flex justify-between items-center font-medium lg:w-[36rem] md:w-[26rem] xl:w-fit">
           {[
             "Home",
@@ -154,8 +155,8 @@ export default function Navbar() {
           )}
         </ul>
       </div>
-      <div className="hidden md:block">
-        <ul className="flex justify-between items-center font-medium lg:w-[36rem] md:w-[26rem] xl:w-[10rem]">
+      <div className="md:hidden xs:hidden lg:hidden xl:block">
+        <ul className="flex justify-between items-center font-medium lg:w-[36rem] xl:w-[11rem]">
           <NavItem>
             <PiUser
               className="ease-in-out duration-200 text-[1.5rem] cursor-pointer"
@@ -165,14 +166,14 @@ export default function Navbar() {
               <div
                 style={{
                   position: "absolute",
-                  top: "3rem",
+                  top: "4.5rem",
                   transform: "translateX(-50%)",
                 }}
               >
                 <ProfileCard
-                  name="Hey:)"
+                  name="Welcome Back!"
                   email={userEmail}
-                  imageUrl={""}
+                  imageUrl={profile}
                   onLogout={handleLogout}
                 />
               </div>
@@ -203,8 +204,8 @@ export default function Navbar() {
           className={`flex justify-between items-center w-full h-[4rem] sm:h-[5rem] md:h-[6rem] fixed top-0 z-20 px-4 sm:px-8 lg:px-[3rem] xl:px-8 bg-white transition-colors duration-300`}
         >
           <h2 className="text-xl sm:text-2xl font-semibold">Wishlist</h2>
-          <div className="bg-slate-200 w-[2rem] h-[2rem] flex justify-center items-center rounded-lg">
-            <FaLongArrowAltRight
+          <div className="bg-slate-200 w-[3rem] h-[2rem] flex justify-center items-center rounded-lg">
+            <BsArrowRight
               onClick={() => setWishlistOpen(false)}
               size={20}
               className="cursor-pointer"
@@ -261,7 +262,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="md:hidden flex items-center">
+      <div className="xl:hidden flex items-center">
         <RxHamburgerMenu
           className="text-xl cursor-pointer"
           onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
@@ -269,8 +270,8 @@ export default function Navbar() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="absolute top-[6rem] bg-white border-2 rounded-2xl p-4 z-10 w-[90%] mx-auto">
-          <ul className="flex flex-col items-center py-4">
+        <div className="xl:hidden absolute top-[6rem] bg-white border-2 rounded-2xl p-4 z-10 w-[90%] mx-auto">
+          <ul className="flex flex-col items-center gap-2 py-4">
             {[
               "Home",
               "About Us",
@@ -293,7 +294,7 @@ export default function Navbar() {
               )
             )}
 
-            <div className="flex justify-center items-center gap-5 mt-2">
+            <div className="flex justify-center items-center gap-5 -mt-4 overflow-auto">
               <NavItem>
                 <PiUser
                   className="ease-in-out duration-200 text-[1.4rem]"
@@ -303,14 +304,15 @@ export default function Navbar() {
                   <div
                     style={{
                       position: "absolute",
-                      top: "3rem",
-                      transform: "translateX(-50%)",
+                      top: "12rem",
+                      transform: "translateX(-24%)",
+                      zIndex: 100,
                     }}
                   >
                     <ProfileCard
-                      name="Hey:)"
+                      name="Welcome Back!"
                       email={userEmail}
-                      imageUrl={""}
+                      imageUrl={profile}
                       onLogout={handleLogout}
                     />
                   </div>

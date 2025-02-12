@@ -249,7 +249,7 @@ function Footer() {
             <div>
               <ul className="flex flex-wrap xs:w-full gap-4 text-sm sm:text-base text-slate-800 mt-12">
                 <li className="cursor-pointer hover:text-gray-700 mb-2">
-                  <NavLink to={"/terms & conditions"}>Terms & Conditions</NavLink>
+                  <NavLink to={"/terms-&-conditions"}>Terms & Conditions</NavLink>
                 </li>
                 <li className="cursor-pointer hover:text-gray-700 mb-2">
                   <NavLink to={"/privacy-policy"}> Privacy Policy </NavLink>
@@ -292,16 +292,16 @@ function Footer() {
             <div className="font-medium text-xl mb-3 text-slate-800">Pages</div>
             <ul>
               <li className="cursor-pointer text-sm sm:text-base text-gray-500 hover:text-gray-800 mb-2">
-                <NavLink to="/Discover">Discover</NavLink>
+                <NavLink to="/about-us">Discover</NavLink>
               </li>
               <li className="cursor-pointer text-sm sm:text-base text-gray-500 hover:text-gray-800 mb-2">
-                <NavLink to="/Collection">Collection</NavLink>
+                <NavLink to="/Our-Luxury-Collection">Collection</NavLink>
+              </li>
+              <li className="cursor-pointer text-sm sm:text-base text-gray-500 hover:text-gray-800 mb-2">
+                <NavLink to={"/blogs"}>Blog</NavLink>
               </li>
               <li className="cursor-pointer text-sm sm:text-base text-gray-500 hover:text-gray-800 mb-2">
                 Contact Us
-              </li>
-              <li className="cursor-pointer text-sm sm:text-base text-gray-500 hover:text-gray-800 mb-2">
-                <NavLink to={"/blog"}>Blog</NavLink>
               </li>
             </ul>
           </div>

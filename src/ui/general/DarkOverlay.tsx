@@ -31,7 +31,7 @@ function DarkOverlay({
                 Goldior is a luxury perfume brand that provides an exclusive collection of premium lifestyle products for everyone. Our formulations are a mix of luxurious & made from the best oils from around the world in every product. We provide premium quality and sophistication at affordable prices.
               </p>
               <button
-                onClick={() => navigate("/Discover")}
+                onClick={() => navigate("/blogs")}
                 className="bg-[var(--theme-brown)] text-white shadow-md font-medium px-6 py-3 xs:text-xs md:text-xs xl:text-base rounded-lg w-fit mt-1 hover:bg-[var(--buttonHover)] duration-500">
                 Discover More
               </button>

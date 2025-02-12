@@ -1,9 +1,12 @@
-import React from "react";
-import Navbar from "../general/Navbar";
-import Footer from "../general/Footer";
+import { useEffect } from 'react';
+import Navbar from '../general/Navbar';
+import Footer from '../general/Footer';
 import { NavLink } from "react-router-dom";
 
 const TermsAndConditions: React.FC = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scrolls to the top of the page
+    }, []);
     return (
         <>
             <Navbar />

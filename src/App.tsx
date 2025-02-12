@@ -66,7 +66,7 @@ export default function App() {
           />
           <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/terms & conditions" element={<TermsAndConditions />} />
+          <Route path="/terms-&-conditions" element={<TermsAndConditions />} />
           <Route path="/Payment-Page" element={<PaymentPage />} />
           <Route path="/Buyer-Protection-Page" element={<BuyerProtectionPage />} />
           <Route path="/Delivery-Page" element={<DeliveryPage />} />

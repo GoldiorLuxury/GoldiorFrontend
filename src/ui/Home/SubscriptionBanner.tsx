@@ -12,13 +12,13 @@ const SubscriptionBanner = () => {
                 </p>
 
                 {/* Input and Button */}
-                <div className="flex flex-col sm:flex-row items-center sm:w-[60%] lg:w-[50%] mb-6">
+                <div className="flex flex-col sm:flex-row items-center sm:w-[60%] lg:w-[50%] mb-6 relative">
                     <input
                         type="email"
                         placeholder="Email Address"
-                        className="border border-gray-200 xs:w-[80%] sm:w-[60%] md:w-[70%] lg:w-[80%] xl:w-[20%] rounded-l-md p-2 xs:p-1 sm:p-3 md:p-2 lg:p-3 flex-grow focus:outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm md:placeholder:text-base text-slate-700 transition-all"
+                        className="border border-gray-200 xs:w-[80%] sm:w-[60%] md:w-[70%] lg:w-[80%] xl:w-[20%] p-2 xs:p-1 sm:p-3 md:p-2 lg:p-3 xl:p-[0.9prem] rounded-lg flex-grow focus:outline-none placeholder:text-gray-500 placeholder:text-xs sm:placeholder:text-sm md:placeholder:text-base text-slate-700 transition-all"
                     />
-                    <button className="bg-[var(--theme-brown)] text-white xs:w-[80%] sm:w-[30%] md:w-[25%] lg:w-[30%]  xl:w-[30%] xs:px-2 xs:py-1 xs:text-sm sm:px-4 sm:py-3 md:px-3 md:py-2 lg:px-6 lg:py-3 xs:rounded-md rounded-r-md hover:bg-[var(--buttonHover)] transition-all duration-300 ease-in-out mt-4 sm:mt-0">
+                    <button className="absolute right-1 bg-[var(--theme-brown)] text-white xs:w-[80%] sm:w-[30%] md:w-[25%] lg:w-[30%] xl:w-[30%] xs:px-2 xs:py-1 xs:text-sm sm:px-4 sm:py-3 md:px-3 md:py-2 lg:px-6 lg:py-3 rounded-lg hover:bg-[var(--buttonHover)] transition-all duration-300 ease-in-out mt-4 sm:mt-0">
                         Subscribe
                     </button>
                 </div>

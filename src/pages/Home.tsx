@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Navbar from "../ui/general/Navbar";
 import HomeGrid from "../ui/general/Collection";
 import Hero from "../ui/Home/Hero";
@@ -14,6 +15,9 @@ import Footer from "../ui/general/Footer";
 import useGetMostOrderedProducts from "../data/products/useGetMostOrderedProducts";
 
 function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, []);
   const { products } = useGetMostOrderedProducts();
   // console.log("products: ", products);
   return (
@@ -25,7 +29,7 @@ function Home() {
           "At Goldior Luxury, we craft exquisite fragrances that celebrate your success. Our exclusive collection is designed to empower and elevate your spirit, leaving a lasting impression wherever you go. Embrace the essence of luxury with a scent that’s uniquely yours."
         }
         shopButton={"Shop Now"}
-        viewDetail={"View Details"}
+        viewDetail={"View Cart"}
         expertTitle={"Our Experts"}
         expertTitletext={
           "Harness the power of natural ingredients to stand out in your personality."
@@ -33,9 +37,9 @@ function Home() {
         explore={"Explore More"}
         imageUrl={landingPageImage}
         navigateToshop="/Our-Luxury-Collection"
-        navigateToView="/View"
-        navigateToAbout="/Discover"
-      />
+        navigateToView="/cart"
+        navigateToAbout="/blogs"
+
       <Welcome />
       <About
         heading={"About Us"}
@@ -45,7 +49,7 @@ function Home() {
         }
         shopButton={"Discover More"}
         imageUrl={AboutImage}
-        navigateToshop="/Discover"
+        navigateToshop="/about-us"
       />
       <HomeGrid products={products} heading="Best Seller" />
       {/* <Review /> */}

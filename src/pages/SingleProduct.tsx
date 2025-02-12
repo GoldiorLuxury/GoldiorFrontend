@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 import Navbar from "../ui/general/Navbar.tsx";
 // import perfume from '../assets/old-fashion-perfume-black-gold.png';
 import { useState, useEffect } from "react";
@@ -211,7 +210,7 @@ function ProductInfo({
   return (
     <div>
       <div
-        className="w-full px-4 sm:px-8 md:px-[2rem] lg:px-28 xl:px-32 gap-10 items-start flex flex-col sm:flex-row sm:gap-5 xl:gap-10 pt-[10rem]"
+        className="w-full px-4 sm:px-8 md:px-[2rem] lg:px-[3rem] xl:px-32 lg:gap-10 gap-10 items-start flex sm:flex-col xs:flex-col md:flex-row lg:flex-row xl:flex-row sm:gap-5 xl:gap-10 pt-[10rem]"
       >
         {/* Perfume Image */}
         <div className="w-fit h-auto rounded-3xl bg-gray-200 p-8 sm:p-6 border-[1.5px]">
@@ -239,26 +238,26 @@ function ProductInfo({
           <img
             src={product?.imgUrl}
             alt="Perfume"
-            className="h-auto w-fit max-w-[250px] max-h-[350px] sm:max-w-[180px] sm:max-h-[180px] md:max-w-[280px] md:max-h-[400px] lg:max-w-[400px] lg:max-h-[500px] xl:max-w-[400px] xl:max-h-[400px] object-cover mx-auto mix-blend-multiply"
+            className="h-auto w-fit max-w-[250px] max-h-[350px] sm:max-w-[350px] sm:max-h-[350px] md:max-w-[250px] md:max-h-[400px] lg:max-w-[350px] lg:max-h-[300px] xl:max-w-[350px] xl:max-h-[400px] object-cover mx-auto mix-blend-multiply"
           />
         </div>
 
         {/* Perfume Info */}
-        <div className="h-full w-full sm:w-[65%] p-3 xs:p-0 space-y-7">
+        <div className="flex flex-col h-full w-full sm:w-[65%] p-3 xs:p-0 gap-4 mt-3">
           <div className="flex flex-wrap items-center gap-3 sm:gap-5">
-            <span className="xl:text-3xl sm:text-xl font-semibold text-gray-800">
+            <span className="xl:text-2xl sm:text-xl md:text-base lg:text-lg font-semibold text-gray-800">
               {product?.name}
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 lg:gap-6 xs:gap-0 sm:gap-0">
+          <div className="flex flex-wrap items-center gap-3 lg:gap-0 xl:gap-6 xs:gap-0 sm:gap-0 md:gap-0 ">
             <button
               className="xs:px-2 xs:py-1 sm:px-1 sm:py-1 xl:py-1 xl:px-3 border-2 border-green-500 rounded-md"
             >
-              <span className="text-green-500 xl:text-base sm:text-xs xs:text-xs">
+              <span className="text-green-500 xl:text-base sm:text-xs xs:text-xs md:text-xs lg:text-base">
                 ${Math.round(salePrice)}
                 {product?.discountPercentage > 0 && (
-                  <span className="xl:text-base text-gray-500 line-through ml-2  xs:text-xs sm:text-xs">
+                  <span className="xl:text-base text-gray-500 line-through ml-2 xs:text-xs sm:text-xs md:text-xs lg:text-sm">
                     ${actualPrice}
                   </span>
                 )}
@@ -269,11 +268,10 @@ function ProductInfo({
 
             <div className="flex items-center cursor-pointer">
               <BiSolidStar className="xl:text-2xl sm:text-lg text-amber-400" />
-              <span className="xl:text-base ml-1 sm:text-xs text-slate-500 xs:text-xs ">
+              <span className="xl:text-base ml-1 sm:text-xs text-slate-500 xs:text-xs lg:text-base">
                 {averageRating
                   ? `${averageRating}`
-                  : "Be the first one to review!"}{" "}
-                (110 Review)
+                  : "Be the first one to review!"}
               </span>
             </div>
 
@@ -281,11 +279,11 @@ function ProductInfo({
 
             <div className="bg-gray-200 px-2 sm:px-3 py-1 sm:py-2 rounded-full flex items-center">
               <PiShootingStarThin className="text-slate-600 xl:text-base xs:text-xs sm:text-xs" />
-              <span className="xl:text-base text-slate-600 ml-1 xs:text-xs sm:text-xs">New in</span>
+              <span className="xl:text-base text-slate-600 ml-1 xs:text-xs sm:text-xs lg:text-base">New in</span>
             </div>
           </div>
 
-          <p className="text-[0.95rem] text-slate-500">{product?.description}</p>
+          <p className="text-[0.95rem] text-slate-500 capitalize">{product?.description}</p>
           <div>
             <div className="text-base text-slate-900 font-semibold">Select Size</div>
             <div className="flex flex-wrap gap-3">
@@ -393,11 +391,11 @@ function SizePics({ capacity, selectedQuantity, setSelectedQuantity, imgUrl }: {
 }) {
   return (
     <button onClick={() => setSelectedQuantity(capacity?.quantity)}
-      className={`mt-4 flex w-24 p-4 flex-col items-center justify-center rounded-lg  ${selectedQuantity === capacity?.quantity && 'bg-gray-200'}`}>
+      className={`mt-4 flex w-24 p-4 flex-col items-center justify-center rounded-lg  ${selectedQuantity === capacity?.quantity && 'bg-gray-200 border border-gray-300'}`}>
       <img
         src={imgUrl}
         alt="Perfume"
-        className="mix-blend-multiply h-auto w-full max-w-[60px] max-h-[90px] sm:max-w-[50px] sm:max-h-[70px] md:max-w-[60px] md:max-h-[80px] lg:max-w-[70px] lg:max-h-[90px] xl:max-w-[80px] xl:max-h-[100px] object-cover mx-auto mt-[-10%]"
+        className="mix-blend-multiply h-auto w-full max-w-[60px] max-h-[90px] sm:max-w-[50px] sm:max-h-[70px] md:max-w-[45px] md:max-h-[45px] lg:max-w-[70px] lg:max-h-[90px] xl:max-w-[80px] xl:max-h-[100px] object-cover mx-auto mt-[-10%]"
       />
       <span className="text-sm">{capacity?.quantity} ml</span>
     </button>

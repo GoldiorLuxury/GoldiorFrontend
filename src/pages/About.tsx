@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import DarkOverlay from "../ui/general/DarkOverlay";
 import aboutBG from "../assets/about-bg.png";
 import OutStory from "../ui/About/OurStory";
@@ -7,6 +8,9 @@ import Navbar from "../ui/general/Navbar";
 import Footer from "../ui/general/Footer";
 
 function About() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, []);
   return (
     <>
       <Navbar />

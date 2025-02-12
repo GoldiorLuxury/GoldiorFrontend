@@ -1,10 +1,12 @@
-import React from 'react';
+import { useEffect } from 'react';
 import aboutBG from '../../assets/about-bg.png'; // Replace this with the actual path to your uploaded image
 import Navbar from '../general/Navbar';
 import Footer from '../general/Footer';
 
-
 const Blog2: React.FC = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scrolls to the top of the page
+    }, []);
     return (
         <>
             < Navbar />

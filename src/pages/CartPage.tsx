@@ -1,4 +1,5 @@
 import Navbar from "../ui/general/Navbar";
+import { useEffect } from 'react'
 import { useNavigate, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -9,6 +10,9 @@ import CartItem from "../ui/cart/CartItem.tsx";
 import wishimg from "../assets/8.jpg"; // Assume you have an empty cart image
 
 const CartPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, []);
   const navigate = useNavigate();
   const cart = useSelector(getCart);
   const totalCost = useSelector(getTotalCartPrice);
