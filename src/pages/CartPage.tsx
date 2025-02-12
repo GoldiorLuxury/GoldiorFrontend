@@ -50,7 +50,10 @@ const CartPage = () => {
                         {product.name}
                       </span>
                       <span className="font-semibold text-sm sm:text-base">
-                        ${product.totalPrice ? product.totalPrice.toFixed(2) : "0.00"}
+                        $
+                        {product.totalPrice
+                          ? product.totalPrice.toFixed(2)
+                          : "0.00"}
                       </span>
                     </li>
                   ))}
@@ -90,12 +93,13 @@ const CartPage = () => {
 
             {/* Additional Text */}
             <p className="text-sm sm:text-base text-slate-500 text-center mt-4">
-              It seems you haven't added anything to your cart yet. Start shopping now and add some exciting products to your cart!
+              It seems you haven't added anything to your cart yet. Start
+              shopping now and add some exciting products to your cart!
             </p>
 
             {/* Shop Now Button */}
             <NavLink
-              to="/Collection"
+              to="/Our-Luxury-Collection"
               className="mt-8 bg-[var(--theme-brown)] text-white text-sm sm:text-base font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-all duration-300 hover:bg-[var(--buttonHover)]"
             >
               Shop Now

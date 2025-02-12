@@ -31,19 +31,22 @@ function Home() {
         shopButton={"Shop Now"}
         viewDetail={"View Cart"}
         expertTitle={"Our Experts"}
-        expertTitletext={"Harness the power of natural ingredients to stand out in your personality."}
+        expertTitletext={
+          "Harness the power of natural ingredients to stand out in your personality."
+        }
         explore={"Explore More"}
         imageUrl={landingPageImage}
         navigateToshop="/Our-Luxury-Collection"
         navigateToView="/cart"
         navigateToAbout="/blogs"
-      />
+
       <Welcome />
       <About
         heading={"About Us"}
         subHead={"Our Legacy Of Excellence"}
         subtext={
-          "Goldior is a luxury perfume brand that provides an exclusive collection of premium lifestyle products for everyone. Our formulations are a mix of luxurious & made from the best oils from around the world in every product. We provide premium quality and sophistication at affordable prices."}
+          "Goldior is a luxury perfume brand that provides an exclusive collection of premium lifestyle products for everyone. Our formulations are a mix of luxurious & made from the best oils from around the world in every product. We provide premium quality and sophistication at affordable prices."
+        }
         shopButton={"Discover More"}
         imageUrl={AboutImage}
         navigateToshop="/about-us"
