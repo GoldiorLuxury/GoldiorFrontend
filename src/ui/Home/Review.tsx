@@ -1,5 +1,5 @@
 import React from 'react'
-import Review from "../../assets/ReviewPerson.png";
+import Review from "../../assets/profile.jpg";
 import { PiStarFill } from "react-icons/pi";
 
 const testimonials = [
@@ -60,7 +60,7 @@ function SaleBanner() {
         <div className="px-8 sm:px-32 py-16 bg-[#fdf6ed]">
             <div className="w-full h-auto bg-white p-8 rounded-bl-[1.5rem] rounded-tr-[1.5rem] rounded-tl-[6rem] rounded-br-[6rem] border">
                 {/* Header */}
-                <h2 className="text-center text-[2.5rem] font-serif font-bold text-slate-700 leading-snug mb-8">
+                <h2 className="text-center text-[2.5rem] font-serif font-medium text-slate-700 leading-snug mb-8">
                     What Our Customers Say
                 </h2>
 

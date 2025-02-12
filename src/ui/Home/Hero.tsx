@@ -52,12 +52,12 @@ function Hero({
         <div className="flex flex-wrap justify-start items-center gap-4 mt-6">
           <button
             onClick={() => navigate(navigateToshop || "/")}
-            className="bg-[var(--theme-brown)] text-white shadow-md font-medium px-6 py-3 rounded-lg w-auto xs:w-fit xs:text-xs lg:w-fit lg:text-sm xl:w-fit xl:text-lg sm:w-fit sm:text-xs hover:bg-[var(--buttonHover)] duration-500">
+            className="bg-[var(--theme-brown)] text-white shadow-md font-medium px-6 py-3 rounded-lg w-auto xs:w-fit xs:text-xs lg:w-fit lg:text-sm xl:w-fit xl:text-[1.1rem] sm:w-fit sm:text-xs hover:bg-[var(--buttonHover)] duration-500">
             {shopButton}
           </button>
           <button
-            onClick={() => navigate("/discover")}
-            className="bg-[#000] text-white shadow-md font-medium px-6 py-3 rounded-lg w-auto xs:w-fit xs:text-xs lg:w-fit lg:text-sm xl:w-fit xl:text-lg sm:w-fit sm:text-xs hover:bg-[#353535] duration-500">
+            onClick={() => navigate(navigateToView || "/")}
+            className="bg-[#000] text-white shadow-md font-medium px-6 py-3 rounded-lg w-auto xs:w-fit xs:text-xs lg:w-fit lg:text-sm xl:w-fit xl:text-[1.1rem] sm:w-fit sm:text-xs hover:bg-[#353535] duration-500">
             {viewDetail}
           </button>
         </div>

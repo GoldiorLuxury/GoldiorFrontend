@@ -53,8 +53,8 @@ function ProductCard({
   }
 
   return (
-    <div className="w-full sm:w-[17rem] md:w-[13rem] lg:w-[18rem] xl:w-[80%] bg-white rounded-3xl duration-500 cursor-pointer border mb-8" onClick={() => navigate("/product/" + id)}>
-      <div className="h-auto w-full max-w-full rounded-xl p-4 pt-8 mx-auto">
+    <div className="w-full sm:w-[17rem] md:w-[13rem] lg:w-[18rem] xl:w-[80%] bg-white rounded-3xl duration-500 cursor-pointer border mb-8">
+      <div className="h-auto w-full max-w-full rounded-xl p-4 pt-8 mx-auto" onClick={() => navigate("/product/" + id)}>
         <img
           src={imageUrl || "https://via.placeholder.com/320x360"}
           alt={name}
@@ -67,7 +67,7 @@ function ProductCard({
         <p className="mt-1 text-xs sm:text-[0.8rem] md:text-xs lg:text-[0.85rem] xl:text-base xl:w-[70%]  font-medium text-slate-500 w-[70%] sm:w-full">A bold blend of blackcurrant and musk for irresistible allure.</p>
         <div className="flex items-center justify-between mt-6">
           {inCart ? (
-            <div className="bg-[#34d399] text-xs sm:text-xs md:text-xs md:px-3 md:py-1 lg:text-sm lg:px-4 lg:py-1 xl:text-base xl:px-5 xl:py-2 text-white px-5 py-2 rounded-lg w-fit duration-500">
+            <div className="bg-[#34d399] text-xs sm:text-xs md:text-xs md:px-3 md:py-1 lg:text-sm lg:px-4 lg:py-1 xl:text-base xl:px-5 xl:py-2 text-white px-5 py-2 rounded-lg w-fit duration-500" onClick={() => navigate("/cart")}>
               Go to Cart
             </div>
           ) : (

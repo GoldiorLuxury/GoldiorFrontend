@@ -1,8 +1,11 @@
-import React from 'react';
+import { useEffect } from 'react'
 import Navbar from '../general/Navbar';
 import Footer from '../general/Footer';
 
 const PaymentPage: React.FC = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0); // Scrolls to the top of the page
+    }, []);
     return (
         <>
             <Navbar />

@@ -50,8 +50,8 @@ function Hero({
                 </div>
 
                 {/* Decorative Borders */}
-                <div className="absolute -top-6 -right-6 sm:-top-8 sm:-right-2 md:-top-4 md:-right-4 xs:-top-4 xs:-right-4 p-6 sm:p-8 border-t-2 sm:border-t-3 border-r-2 sm:border-r-3 border-dotted border-orange-300 rounded-tr-xl"></div>
-                <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-4 md:-bottom-5 md:-left-5 xs:-bottom-4 xs:-left-4 p-6 sm:p-8 border-b-2 sm:border-b-3 border-l-2 sm:border-l-3 border-dotted border-orange-300 rounded-bl-xl"></div>
+                <div className="absolute -top-[1.5rem] -right-[1.5rem] xs:-top-[0.5rem] xs:-right-[0.5rem] sm:-top-[1.2rem] sm:-right-[1.2rem] p-[2rem] sm:p-[3rem] border-t-[3px] border-r-[3px] border-dotted border-orange-300 rounded-tr-[1.5rem]"></div>
+                <div className="absolute -bottom-[1.5rem] -left-[1.5rem] xs:-bottom-[0.5rem] xs:-left-[0.5rem] sm:-bottom-[1.2rem] sm:-left-[1.2rem] p-[2rem] sm:p-[3rem] border-b-[3px] border-l-[3px] border-dotted border-orange-300 rounded-bl-[1.5rem]"></div>
             </div>
         </div>
     );

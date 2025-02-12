@@ -42,10 +42,10 @@ export default function CartItem({ product }: { product: any }) {
           </p>
 
           {/* Price and Quantity Adjuster */}
-          <div className="flex flex-col md:flex-row xs:flex-row xs:p-1  justify-between items-center gap-4 mt-6">
+          <div className="flex flex-col md:flex-row xs:flex-row xs:p-1 justify-between items-center gap-4 mt-6">
             {/* Price Button */}
             <button
-              className="p-2 sm:p-3 xs:w-fit w-full md:w-full lg:w-full lg:p-1  xl:w-full border-2 border-green-500 rounded-md"
+              className="p-2 sm:p-3 xs:w-fit w-full md:w-full lg:w-full lg:p-1 xl:w-[60%] border-2 border-green-500 rounded-md"
             >
               <span className="text-green-500 text-sm sm:text-base lg:text-lg">
                 ${Math.round(product?.unitPrice)}
