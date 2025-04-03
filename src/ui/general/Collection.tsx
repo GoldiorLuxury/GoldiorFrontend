@@ -24,6 +24,7 @@ function ProductGrid({
                         quantity={"100ml"}
                         id={item._id}
                         discountPercentage={item?.discountPercentage}
+                        description={item.description || "No description available"}
                     />
                 ))}
             </div>

@@ -1,4 +1,4 @@
-import { BASE_URL } from "../../config/apiConfig";
+// import { BASE_URL } from "../../config/apiConfig";
 
 export function getWishlist() {
     const favourites = JSON.parse(
