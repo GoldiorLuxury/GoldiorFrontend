@@ -20,6 +20,7 @@ import TermsAndConditions from "./ui/security/terms.tsx";
 import BuyerProtectionPage from "./ui/security/BuyerProtectionPage.tsx";
 import DeliveryPage from "./ui/security/DeliveryPage.tsx";
 import PaymentPage from "./ui/security/PaymentPage.tsx";
+import ComingSoon from "./pages/ComingSoon.tsx";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/about-us" element={<About />} />
           <Route path="/Our-Luxury-Collection" element={<Shop />} />
           {/* <Route path="/New-Launch" element={<Shop />} /> */}
+          <Route path="/New-Launch" element={<ComingSoon />} />
           <Route path="/blogs" element={<Blog />} />
           <Route path="/Contact-Us" element={<Blog />} />
           <Route path="/cart" element={<CartPage />} />

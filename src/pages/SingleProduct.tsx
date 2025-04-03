@@ -15,7 +15,7 @@ import useGetProductById from "../data/products/useGetProductById.ts";
 import Spinner from "../ui/general/Spinner.tsx";
 import useGetReviewForProduct from "../data/reviews/useGetReviewForProduct.ts";
 import { handleSaveToLocalStorage } from "../data/wishlist/useSetFavItems.ts";
-
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItem,
@@ -53,6 +53,9 @@ export default function SingleProduct() {
     isGettingReviews,
     refetch: refetchReviews,
   } = useGetReviewForProduct(productId);
+
+
+
 
   useEffect(() => {
     if (isOpenReviewModal == false) {
@@ -207,6 +210,18 @@ function ProductInfo({
     }
   };
 
+  const navigate = useNavigate();
+  const handleReviewClick = () => {
+    const userEmail = localStorage.getItem("user_email_goldior_luxury");
+
+    if (userEmail) {
+      setIsOpenReviewModal(true); // Open review modal if logged in
+    } else {
+      navigate("/login"); // Redirect to login if not logged in
+    }
+  };
+
+
   return (
     <div>
       <div
@@ -255,10 +270,10 @@ function ProductInfo({
               className="xs:px-2 xs:py-1 sm:px-1 sm:py-1 xl:py-1 xl:px-3 border-2 border-green-500 rounded-md"
             >
               <span className="text-green-500 xl:text-base sm:text-xs xs:text-xs md:text-xs lg:text-base">
-                ${Math.round(salePrice)}
+                Rs.{Math.round(salePrice)}
                 {product?.discountPercentage > 0 && (
                   <span className="xl:text-base text-gray-500 line-through ml-2 xs:text-xs sm:text-xs md:text-xs lg:text-sm">
-                    ${actualPrice}
+                    Rs.{actualPrice}
                   </span>
                 )}
               </span>
@@ -266,14 +281,14 @@ function ProductInfo({
 
             <TfiLayoutLineSolid className="rotate-90 text-2xl sm:text-3xl text-slate-300" />
 
-            <div className="flex items-center cursor-pointer">
+            <div className="flex items-center cursor-pointer" onClick={handleReviewClick}>
               <BiSolidStar className="xl:text-2xl sm:text-lg text-amber-400" />
               <span className="xl:text-base ml-1 sm:text-xs text-slate-500 xs:text-xs lg:text-base">
-                {averageRating
-                  ? `${averageRating}`
-                  : "Be the first one to review!"}
+                {averageRating ? `${averageRating}` : <span className="underline">Be the first one to review!</span>}
               </span>
             </div>
+
+
 
             <TfiLayoutLineSolid className="rotate-90 text-2xl sm:text-3xl text-slate-300" />
 
@@ -366,18 +381,22 @@ function KeyNotes({ notes }: { notes: Notes[] }) {
       </p>
 
       {/* Notes Grid */}
-      <div className="grid grid-cols-1 gap-8">
+      <div className="grid grid-cols- sm:grid-cols-3 gap-8">
         {notes?.map((item: Notes, index) => (
           <div key={index} className="flex flex-col items-center border-solid">
             <img
               className="rounded-full object-cover h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72"
               src={item?.image}
-              alt="image"
+              alt={item?.name?.toString()}
             />
+            <p className="mt-4 text-center text-lg font-normal font-sans text-gray-900">
+              {item?.name}
+            </p>
           </div>
         ))}
       </div>
     </div>
+
   );
 }
 

@@ -32,12 +32,12 @@ const FinalDetails = () => {
               {cartItems?.map((product: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; totalPrice: number; }, index: React.Key | null | undefined) => (
                 <div key={index} className="flex justify-between text-lg py-2">
                   <span>{product.name}</span>
-                  <span>${product.totalPrice.toFixed(2)}</span>
+                  <span>Rs.{product.totalPrice.toFixed(2)}</span>
                 </div>
               ))}
               <div className="flex justify-between text-lg font-bold py-2">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>Rs.{total.toFixed(2)}</span>
               </div>
             </div>
           </>

@@ -26,7 +26,7 @@ function Home() {
       <Hero
         heading={"Luxury Perfumes Tailored Just For You!"}
         subtext={
-          "At Goldior Luxury, we craft exquisite fragrances that celebrate your success. Our exclusive collection is designed to empower and elevate your spirit, leaving a lasting impression wherever you go. Embrace the essence of luxury with a scent that’s uniquely yours."
+          "Goldior is a luxury perfume brand that provides an exclusive collection of premium lifestyle products for everyone. Our formulations are a mix of luxurious & made from the best oils from around the world in every product. We provide premium quality and sophistication at affordable prices.."
         }
         shopButton={"Shop Now"}
         viewDetail={"View Cart"}
@@ -39,7 +39,7 @@ function Home() {
         navigateToshop="/Our-Luxury-Collection"
         navigateToView="/cart"
         navigateToAbout="/blogs"
-
+      />
       <Welcome />
       <About
         heading={"About Us"}

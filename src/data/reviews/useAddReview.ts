@@ -1,6 +1,6 @@
 // useAddReview.ts (custom hook)
 import { useState } from "react";
-
+import { BASE_URL } from "../../config/apiConfig";
 // Function to add a review
 // Function to add a review
 export async function addReview(
@@ -31,7 +31,7 @@ export async function addReview(
 
   try {
     // Make the API call
-    const res = await fetch("http://35.154.187.94:5100/api/review/add", {
+    const res = await fetch(`${BASE_URL}/api/review/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

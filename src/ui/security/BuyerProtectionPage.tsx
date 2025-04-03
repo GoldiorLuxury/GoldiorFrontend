@@ -11,7 +11,9 @@ const BuyerProtectionPage: React.FC = () => {
             <Navbar />
             <div className="max-w-5xl mx-auto p-6 bg-transparent font-inter mt-24 text-justify">
                 <h1 className="text-3xl font-semibold text-center mb-6 text-slate-700">Buyer Protection</h1>
-
+                <p className="text-base text-slate-600 mb-6">
+                    At Goldior Luxury, we prioritize your satisfaction and security, offering comprehensive buyer protection to ensure you have a seamless and worry-free shopping experience. Here’s how we protect you:
+                </p>
                 <section>
                     <h2 className="text-lg font-semibold mb-3 text-slate-700">1. 100% Authentic Products</h2>
                     <p className="text-base text-slate-600">
@@ -51,9 +53,21 @@ const BuyerProtectionPage: React.FC = () => {
                         order, shipping, or any other concerns, we're here to ensure you have a smooth experience.
                     </p>
                 </section>
+                <section>
+                    <h2 className="text-lg font-semibold mb-3 mt-6 text-slate-700">6. Quality Assurance</h2>
+                    <p className="text-base text-slate-600">
+                        We ensure that all our luxury perfumes undergo rigorous quality checks before dispatch. Your purchase will arrive in perfect condition, ready to indulge your senses.
+                    </p>
+                </section>
+                <section>
+                    <h2 className="text-lg font-semibold mb-3 mt-6 text-slate-700">7. No Hidden Fees</h2>
+                    <p className="text-base text-slate-600">
+                        Transparency is key. When you shop with us, you’ll never encounter hidden fees. The price you see includes everything—shipping, taxes, and any applicable charges—so there are no surprises at checkout.
+                    </p>
+                </section>
 
                 <section>
-                    <h2 className="text-lg font-semibold mb-3 mt-6 text-slate-700">6. Contact Us</h2>
+                    <h2 className="text-lg font-semibold mb-3 mt-6 text-slate-700">8. Contact Us</h2>
                     <ul className="list-none text-base text-slate-600 space-y-2 mt-2">
                         <li>
                             <strong>Email: </strong>

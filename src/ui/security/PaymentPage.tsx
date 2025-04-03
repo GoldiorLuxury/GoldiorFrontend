@@ -69,7 +69,10 @@ const PaymentPage: React.FC = () => {
                 <section>
                     <h2 className="text-lg font-semibold mb-3 mt-6 text-slate-700">7. Customer Support</h2>
                     <p className="text-base text-slate-600">
-                        If you have any issues with your payment or need assistance, our customer service team is here to help.
+                        If you have any issues with your payment or need assistance, our customer service team is here to help. Contact us for prompt resolution of any queries.
+                    </p>
+                    <p className="text-base text-slate-700 mt-5 mb-5">
+                        Feel free to explore our luxurious yet affordable perfume collections today and enjoy a secure, convenient payment experience with Goldior Luxury.
                     </p>
                     <ul className="list-none text-base text-slate-600 space-y-2 mt-2">
                         <li>

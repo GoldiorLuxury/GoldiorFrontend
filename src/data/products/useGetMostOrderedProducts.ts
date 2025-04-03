@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "@tanstack/react-query";
-
+import { BASE_URL } from "../../config/apiConfig";
 export default function useGetMostOrderedProducts() {
   const { data: products, isLoading: isGettingProducts } = useQuery({
     queryFn: getAllProducts,
@@ -13,7 +13,7 @@ export default function useGetMostOrderedProducts() {
 async function getAllProducts() {
   try {
     const res = await fetch(
-      "http://35.154.187.94:5100/api/product/mostOrdered"
+      `${BASE_URL}/api/product/mostOrdered`
     );
     const data = await res.json();
 

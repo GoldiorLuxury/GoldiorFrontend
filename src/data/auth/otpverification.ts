@@ -1,7 +1,9 @@
+import { BASE_URL } from "../../config/apiConfig";
+
 export async function sendEmailForOtp(email: string) {
   try {
     const res = await fetch(
-      `http://35.154.187.94:5100/api/auth/send-otp/${email}`,
+      `${BASE_URL}/api/auth/send-otp/${email}`,
       {
         method: "POST", // Using POST method
         headers: {

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "@tanstack/react-query";
+import { BASE_URL } from "../../config/apiConfig";
 
 export default function useGetProducts() {
   const { data: products, isLoading: isGettingProducts } = useQuery({
@@ -12,7 +13,7 @@ export default function useGetProducts() {
 
 async function getAllProducts() {
   try {
-    const res = await fetch("http://35.154.187.94:5100/api/product/");
+    const res = await fetch(`${BASE_URL}/api/product/`);
     const data = await res.json();
 
     if (!res.ok) {

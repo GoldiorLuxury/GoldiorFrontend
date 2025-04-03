@@ -1,3 +1,5 @@
+import { BASE_URL } from "../../config/apiConfig";
+
 export function handleSaveToLocalStorage(item?: any) {
   const existingItems =
     JSON.parse(localStorage.getItem("GoldiorWishlist") ?? "[]") || [];

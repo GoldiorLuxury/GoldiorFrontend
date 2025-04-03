@@ -48,7 +48,7 @@ export default function CartItem({ product }: { product: any }) {
               className="p-2 sm:p-3 xs:w-fit w-full md:w-full lg:w-full lg:p-1 xl:w-[60%] border-2 border-green-500 rounded-md"
             >
               <span className="text-green-500 text-sm sm:text-base lg:text-lg">
-                ${Math.round(product?.unitPrice)}
+                Rs.{Math.round(product?.unitPrice)}
               </span>
             </button>
 

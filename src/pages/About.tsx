@@ -18,10 +18,13 @@ function About() {
         image={aboutBG}
       />
       <OutStory
-        heading="Goldior Luxury: A Legacy of Excellence"
-        subtext="Goldior Luxury is proud to celebrate the rich history of the perfume business. We have crafted exceptional fragrances for years, honoring the timeless art of perfume making. We source the finest raw materials from across the globe—delicate roses from Bulgaria, rare oud from the Middle East, and vibrant citrus from Italy. Our commitment to quality ensures that each perfume is a masterpiece, capturing the essence of luxury, elegance, and sophistication. At Goldior Luxury, we believe that every scent tells a story, and we are dedicated to creating perfumes that leave a lasting impression."
+        heading="Goldior Luxury: A Tradition of Magnificence"
+        subtext="Goldior Luxury is proud to explore the rich history of the perfume industry. We have been creating outstanding fragrances for years, paying tribute to the age-old craft of creating perfumes. We source brilliant citrus from Italy, rare oud from Asia, and exquisite roses from Bulgaria to give the best notes to your memories. Each scent is a work of art that perfectly captures the spirit of luxury, elegance, and sophistication. Goldior Luxury is committed to making perfumes that make an impression because we think every scent has a story."
+        subtext2="Shop with confidence at Goldior Luxury, where your satisfaction and protection are our top priorities. Enjoy luxurious fragrances at budget-friendly prices, backed by our commitment to your security and peace of mind."
         imageUrl={ourStoryImage}
       />
+
+
       {/* <WhatMakesUsUnique /> */}
       <Footer />
     </>

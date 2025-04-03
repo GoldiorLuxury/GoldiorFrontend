@@ -11,7 +11,9 @@ const DeliveryPage: React.FC = () => {
             <Navbar />
             <div className="max-w-5xl mx-auto p-6 bg-transparent font-inter mt-24 text-justify">
                 <h1 className="text-3xl font-semibold text-center mb-6 text-slate-700">Delivery Options</h1>
-
+                <p className="text-base text-slate-600 mb-6">
+                    At Goldior Luxury, we are committed to providing a seamless and efficient delivery experience for our customers. Whether you're purchasing a signature fragrance or a limited edition scent, we offer various delivery options tailored to your needs. Here’s everything you need to know about our delivery services:
+                </p>
                 <section>
                     <h2 className="text-lg font-semibold mb-3 text-slate-700">1. Free Standard Shipping</h2>
                     <p className="text-base text-slate-600">
@@ -57,6 +59,9 @@ const DeliveryPage: React.FC = () => {
                     <p className="text-base text-slate-600">
                         Our dedicated customer support team is available to assist you with any delivery inquiries. Feel free to
                         contact us for any questions regarding your order or shipping options.
+                    </p>
+                    <p className="text-base text-slate-700 mt-5 mb-5">
+                        Shop with confidence at Goldior Luxury, where luxury meets convenience. Select your desired delivery option and enjoy your perfumes delivered right to your door.
                     </p>
                     <ul className="list-none text-base text-slate-600 space-y-2 mt-2">
                         <li>

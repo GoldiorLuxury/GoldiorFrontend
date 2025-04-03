@@ -79,7 +79,7 @@ function ProductGrid({ products, heading, showFilters = false }: { products: { p
       <div className="flex items-center justify-center">
         <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8 mt-14">
           {products?.products?.map((item, index) => (
-            <ProductCard key={index} imageUrl={item.imgUrl} name={item.name} price={item.capacityInML[0].price} quantity={"100ml"} id={item._id} discountPercentage={item?.discountPercentage} />
+            <ProductCard key={index} imageUrl={item.imgUrl} name={item.name} price={item.capacityInML[0].price} quantity={"100ml"} id={item._id} discountPercentage={item?.discountPercentage} description={item.description} />
           ))}
         </div>
       </div>

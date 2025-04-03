@@ -1,10 +1,12 @@
 function OurStory({
   heading,
   subtext,
+  subtext2,
   imageUrl,
 }: {
   heading: string;
   subtext: string;
+  subtext2: string;
   imageUrl: string;
 }) {
   return (
@@ -16,6 +18,8 @@ function OurStory({
         </div>
 
         <p className="text-lg lg:text-2xl text-justify md:px-28 lg:px-42 drop-shadow-lg">{subtext}</p>
+        <div style={{ marginBottom: "26px" }}></div> {/* Adds a gap */}
+        <p className="text-lg lg:text-2xl text-justify md:px-28 lg:px-42 drop-shadow-lg">{subtext2}</p>
       </div>
 
       {/* Image below text */}

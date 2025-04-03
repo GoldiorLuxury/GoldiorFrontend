@@ -50,7 +50,7 @@ const CartPage = () => {
                         {product.name}
                       </span>
                       <span className="font-semibold text-sm sm:text-base">
-                        $
+                        Rs.
                         {product.totalPrice
                           ? product.totalPrice.toFixed(2)
                           : "0.00"}
@@ -62,7 +62,7 @@ const CartPage = () => {
                       Total
                     </span>
                     <span className="text-sm sm:text-base">
-                      ${totalCost ? totalCost.toFixed(2) : "0.00"}
+                      Rs.{totalCost ? totalCost.toFixed(2) : "0.00"}
                     </span>
                   </li>
                 </ul>

@@ -1,6 +1,6 @@
 // http://35.154.187.94:5100/api/review/
 // http://35.154.187.94:5100/api/product/672c49008681df2dabc8ad20
-
+import { BASE_URL } from "../../config/apiConfig";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useGetReviewForProduct(product_id: string | undefined) {
@@ -19,7 +19,7 @@ export default function useGetReviewForProduct(product_id: string | undefined) {
 async function getReviews(product_id: string | undefined) {
   try {
     const res = await fetch(
-      `http://35.154.187.94:5100/api/review/${product_id}`,
+      `${BASE_URL}/api/review/${product_id}`,
       {
         method: "GET",
         headers: {

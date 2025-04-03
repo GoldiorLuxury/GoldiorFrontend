@@ -40,7 +40,7 @@ export default function Reviews({
     <>
       <div className="w-full px-2 sm:px-16 md:px-[2rem] lg:px-[2rem] gap-10 flex-col mt-0 md:mt-8 py-4">
         <p className="mt-1 text-[2.5rem] font-medium text-center font-serif text-slate-700 leading-[4.25rem]">Ratings & Reviews</p>
-        {reviews.length > 0 && (
+        {(reviews.length > 0 || isOpenReviewModal) && (
           <RatingSummary
             reviews={reviews}
             averageRating={averageRating}

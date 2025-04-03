@@ -7,23 +7,23 @@ function OrderSummary() {
             <ul>
                 <li className="flex justify-between py-1">
                     <span>Luxurious Elixir</span>
-                    <span>$250</span>
+                    <span>Rs. 250</span>
                 </li>
                 <li className="flex justify-between py-1">
                     <span>The golden legacy</span>
-                    <span>$150</span>
+                    <span>Rs. 150</span>
                 </li>
                 <li className="flex justify-between py-1">
                     <span>Auram aura</span>
-                    <span>$200</span>
+                    <span>Rs. 200</span>
                 </li>
                 <li className="flex justify-between py-1">
                     <span>Delivery fees</span>
-                    <span>$30</span>
+                    <span>Rs. 30</span>
                 </li>
                 <li className="border-t pt-3 mt-3 flex justify-between">
                     <span className="font-semibold">Total</span>
-                    <span className="font-semibold">$630</span>
+                    <span className="font-semibold">Rs. 630</span>
                 </li>
             </ul>
             <button className="mt-4 w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded transition-colors duration-200 ease-in-out flex justify-center items-center">

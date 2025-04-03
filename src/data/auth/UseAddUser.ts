@@ -1,6 +1,7 @@
 // http://35.154.187.94:5100/api/product/672c49008681df2dabc8ad20
 
 import { useQuery } from "@tanstack/react-query";
+import { BASE_URL } from "../../config/apiConfig";
 
 export default function UseAddUser(formData: any) {
   const { data: user, isLoading: isSavingUser } = useQuery({
@@ -14,7 +15,7 @@ export async function saveUser(formData: any) {
   console.log(formData, "form data saving...");
   try {
     // Send the POST request to the backend API
-    const res = await fetch("http://35.154.187.94:5100/api/auth/create-user", {
+    const res = await fetch(`${BASE_URL}/api/auth/create-user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

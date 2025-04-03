@@ -96,8 +96,7 @@ export default function Navbar() {
           <NavLink
             to={to}
             className={({ isActive }) =>
-              `cursor-pointer text-center text-[0.9rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.05rem] xl:text-[1.05rem] text-slate-700 hover:text-[var(--theme-brown)] max-w-fit px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg ease-in-out duration-300 ${
-                isActive ? "text-yellow-500 font-medium" : ""
+              `cursor-pointer text-center text-[0.9rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.05rem] xl:text-[1.05rem] text-slate-700 hover:text-[var(--theme-brown)] max-w-fit px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg ease-in-out duration-300 ${isActive ? "text-yellow-500 font-medium" : ""
               }`
             }
           >
@@ -119,24 +118,23 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`flex justify-between items-center w-full h-[4rem] xs:h-[5rem] sm:h-[6rem] md:h-[6rem] fixed top-0 z-20 px-4 sm:px-8 sm:py-2 xs:py-2 md:px-8 lg:px-[3rem] xl:px-32 ${
-        isScrolled ? "bg-[#fffef9] shadow" : "bg-transparent"
-      } transition-colors duration-300`}
+      className={`flex justify-between items-center w-full h-[4rem] xs:h-[5rem] sm:h-[6rem] md:h-[6rem] fixed top-0 z-20 px-4 sm:px-8 sm:py-2 xs:py-2 md:px-8 lg:px-[3rem] xl:px-32 ${isScrolled ? "bg-[#fffef9] shadow" : "bg-transparent"
+        } transition-colors duration-300`}
     >
-      <div className="lg:w-[7rem] h-auto xs:w-[30%] sm:w-[20%] md:w-[12%]">
+      <NavLink to="/" className="lg:w-[7rem] h-auto xs:w-[30%] sm:w-[20%] md:w-[12%]">
         <img
           src={logo}
           alt="Goldior Logo"
-          className="h-full max-h-[70%] sm:max-h-[auto] w-auto object-contain rounded-md"
+          className="h-full max-h-[70%] w-auto object-contain rounded-md"
         />
-      </div>
+      </NavLink>
       <div className="md:hidden xs:hidden lg:hidden xl:block">
         <ul className="flex justify-between items-center font-medium lg:w-[36rem] md:w-[26rem] xl:w-fit">
           {[
             "Home",
             "About Us",
             "Our Luxury Collection",
-            // "New Launch",
+            "New Launch",
             "Blogs",
             // "Contact Us",
           ].map((menu) =>
@@ -195,9 +193,8 @@ export default function Navbar() {
       </div>
       <div
         ref={wishlistRef}
-        className={`fixed top-0 right-0 h-screen bg-white border-2 transform transition-transform duration-500 z-20 ease-in-out ${
-          isWishlistOpen ? "translate-x-0" : "translate-x-full"
-        } w-full xs:w-full sm:w-4/5 md:w-[60%] lg:w-[70%] xl:w-[30%]`}
+        className={`fixed top-0 right-0 h-screen bg-white border-2 transform transition-transform duration-500 z-20 ease-in-out ${isWishlistOpen ? "translate-x-0" : "translate-x-full"
+          } w-full xs:w-full sm:w-4/5 md:w-[60%] lg:w-[70%] xl:w-[30%]`}
       >
         {/* Header */}
         <div
@@ -227,7 +224,7 @@ export default function Navbar() {
                 imageUrl={item.imgUrl}
                 // discountPercentage={item.discountPercentage}
                 quantity="250ml"
-                // price={item.price}
+              // price={item.price}
               />
             ))
           ) : (
@@ -276,7 +273,7 @@ export default function Navbar() {
               "Home",
               "About Us",
               "Our Luxury Collection",
-              // "New Launch",
+              "New Launch",
               "Blogs",
               // "Contact Us",
             ].map((menu) =>

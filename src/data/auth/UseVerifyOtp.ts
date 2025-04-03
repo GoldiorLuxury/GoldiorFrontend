@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { verifyUserExists } from "./VerifyUserExists";
+import { BASE_URL } from "../../config/apiConfig";
 
 export function useVerifyOtp() {
   //   const [errorMessage, setErrorMessage] = useState("");
@@ -8,7 +9,7 @@ export function useVerifyOtp() {
   const verifyOtp = async (email: string, otp: string) => {
     try {
       const res = await fetch(
-        `http://35.154.187.94:5100/api/auth/verify-otp/${email}`,
+        `${BASE_URL}/api/auth/verify-otp/${email}`,
         {
           method: "POST",
           headers: {
