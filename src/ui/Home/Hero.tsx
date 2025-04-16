@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 import preview from "../../assets/AdobeExpress_trimmed.png";
-import branch from "../../assets/branch.png"
+
 
 interface HeroProps {
   heading?: string;

@@ -14,7 +14,6 @@ function Hero({
     heading,
     subHead,
     subtext,
-    imageUrl,
     shopButton,
     navigateToshop,
 }: HeroProps) {
