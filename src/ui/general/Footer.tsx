@@ -301,7 +301,7 @@ function Footer() {
                 <NavLink to={"/blogs"}>Blog</NavLink>
               </li>
               <li className="cursor-pointer text-sm sm:text-base text-gray-500 hover:text-gray-800 mb-2">
-                Contact Us
+                <NavLink to={"/contactUs"}>Contact Us</NavLink>
               </li>
             </ul>
           </div>
