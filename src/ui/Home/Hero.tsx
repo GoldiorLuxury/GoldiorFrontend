@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { LiaLongArrowAltRightSolid } from "react-icons/lia";
+import preview from "../../assets/AdobeExpress_trimmed.png";
+import branch from "../../assets/branch.png"
 
 interface HeroProps {
   heading?: string;
@@ -19,7 +21,6 @@ interface HeroProps {
 function Hero({
   heading,
   subtext,
-  imageUrl,
   shopButton,
   viewDetail,
   expertTitle,
@@ -42,8 +43,9 @@ function Hero({
   return (
     <div className="relative flex flex-col-reverse lg:flex-row items-center justify-between lg:w-full xl:px-[8rem] xl:py-[6rem] sm:px-0 sm:w-full md:px-8 lg:px-12 lg:py-36 py-12 xs:py-20 xs:px-6 bg-gradient-to-r from-[#fef3e6] via-white to-[#fdebd0]">
       {/* Left Content */}
-      <div className="flex flex-col justify-center items-start p-0 w-full sm:w-[90%] md:w-[100%] lg:w-[50%] xl:w-[45%] xl:mt-20">
-        <p className="mt-4 xl:text-[3.5rem] xs:text-[1.8rem] md:text-[2rem] lg:text-[2.5rem] my-4 font-medium font-serif text-slate-700 xl:leading-[4.5rem] sm:leading-[3rem] xs:leading-[2.2rem] lg:leading-[3.5rem]">
+
+      <div className="flex flex-col justify-center items-start p-0 w-full sm:w-[90%] md:w-[100%] lg:w-[50%] xl:w-[45%] xl:mt-0 ">
+        <p className="mt-0 xl:text-[3.5rem] xs:text-[1.8rem] md:text-[2rem] lg:text-[2.5rem] my-4 font-medium font-serif text-slate-700 xl:leading-[4.5rem] sm:leading-[3rem] xs:leading-[2.2rem] lg:leading-[3.5rem]">
           {heading}
         </p>
         <p className="xl:text-[1.1rem] xs:text-[0.8rem] text-justify lg:text-[1rem] md:text-[1.1rem] text-slate-500 mb-4">
@@ -81,13 +83,16 @@ function Hero({
       </div>
 
       {/* Right Image */}
-      <div className="w-full sm:w-[80%] md:w-[85%] lg:w-[50%] xl:w-[45%] flex justify-center items-center lg:mt-0">
+      {/* Right Image */}
+      {/* Right Image */}
+      <div className="w-full lg:w-1/2 flex justify-end items-center h-full px-2 sm:px-4 lg:px-0">
         <img
-          src={imageUrl || "/default-image.jpg"}
+          src={preview || "/default-image.jpg"}
           alt="Hero Banner"
-          className="rounded-b-full w-[80%] sm:w-[50%] md:w-[50%] lg:w-[70%] xl:w-[60%] h-auto object-cover xl:-mt-14 xl:ml-24"
+          className="w-full h-auto object-contain mb-10 sm:mb-20 lg:mb-40"
         />
       </div>
+
     </div>
 
   );

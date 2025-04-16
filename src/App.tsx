@@ -21,6 +21,7 @@ import BuyerProtectionPage from "./ui/security/BuyerProtectionPage.tsx";
 import DeliveryPage from "./ui/security/DeliveryPage.tsx";
 import PaymentPage from "./ui/security/PaymentPage.tsx";
 import ComingSoon from "./pages/ComingSoon.tsx";
+import ContactForm from "./ui/security/ContactForm.tsx";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -72,6 +73,7 @@ export default function App() {
           <Route path="/Payment-Page" element={<PaymentPage />} />
           <Route path="/Buyer-Protection-Page" element={<BuyerProtectionPage />} />
           <Route path="/Delivery-Page" element={<DeliveryPage />} />
+          <Route path="/contactUs" element={<ContactForm />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

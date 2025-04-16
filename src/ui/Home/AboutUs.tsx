@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import gif from "../../assets/animat.gif"
 
 interface HeroProps {
     heading?: string;
@@ -43,7 +44,7 @@ function Hero({
                 {/* Image Section */}
                 <div className="w-full lg:w-[45%] flex justify-center items-center mb-8 lg:mb-0">
                     <img
-                        src={imageUrl || "/default-image.jpg"}
+                        src={gif || "/default-image.jpg"}
                         alt="Hero Banner"
                         className="rounded-t-full xl:w-[70%] sm:w-[60%] md:w-[80%] md:-ml-14 lg:-ml-28 lg:w-[90%] h-auto object-cover"
                     />
