@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import DarkOverlay from "../ui/general/DarkOverlay";
 import aboutBG from "../assets/about-bg.png";
 import OutStory from "../ui/About/OurStory";
-import ourStoryImage from "../assets/our-story.jpg";
+import ourStoryImage from "../assets/our-story-image.jpg";
 // import WhatMakesUsUnique from "../ui/About/WhatMakesUsUnique";
 import Navbar from "../ui/general/Navbar";
 import Footer from "../ui/general/Footer";

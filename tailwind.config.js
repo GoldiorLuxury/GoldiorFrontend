@@ -10,7 +10,7 @@ export default {
         serif: ['Inria Serif', 'serif'],
       },
       screens: {
-        'xs': '350px',  // Adding a new custom breakpoint at 450px
+        'xs': '360px',  // Adding a new custom breakpoint at 450px
       }
     },
   },

@@ -9,56 +9,52 @@ export default function CartItem({ product }: { product: any }) {
   return (
     <div
       key={product.id}
-      className="border-2 rounded-xl p-4 md:p-6 lg:p-8 mb-4 xl:w-[80%]"
+      className="border-2 rounded-xl p-4 mb-4 w-full max-w-[600px]"
     >
-      <div className="flex flex-col md:flex-row items-start xs:flex-row">
+      <div className="flex items-start gap-3 flex-wrap xs:flex-nowrap">
         {/* Product Image */}
-        <div className="bg-gray-200 rounded-xl p-4 flex-shrink-0 w-full md:w-auto xs:w-fit">
+        <div className="bg-gray-200 rounded-xl p-2 flex-shrink-0">
           <img
             src={product?.imgUrl}
             alt={product?.name}
-            className="h-24 w-24 sm:h-32 sm:w-32 xs:w-14 xs:h-14 md:h-32 md:w-32 lg:h-28 lg:w-28 object-cover rounded-lg mix-blend-multiply"
+            className="h-16 w-16 xs:h-20 xs:w-20 sm:h-24 sm:w-24 object-cover rounded-lg mix-blend-multiply"
           />
         </div>
 
-        {/* Product Details */}
-        <div className="flex flex-col md:ml-10 xs:ml-3 lg:ml-5 mt-4 md:mt-0 flex-grow">
-          {/* Product Name and Delete Button */}
-          <div className="flex justify-between items-center">
-            <p className="text-base sm:text-lg xs:text-sm lg:text-xl font-semibold text-slate-700">
+        {/* Product Info */}
+        <div className="flex flex-col flex-1 min-w-0">
+          <div className="flex justify-between items-center w-full">
+            <p className="text-sm xs:text-sm font-semibold text-slate-700 truncate">
               {product?.name}
             </p>
             <button
               onClick={() => dispatch(deleteItem(product.id))}
-              className="bg-red-100 w-[2rem] h-[2rem] rounded-md flex justify-center items-center hover:bg-red-200"
+              className="bg-red-100 w-7 h-7 xs:w-8 xs:h-8 rounded-md flex justify-center items-center hover:bg-red-200"
             >
-              <MdDelete size={20} className="text-red-400" />
+              <MdDelete size={16} className="text-red-400" />
             </button>
           </div>
 
-          {/* Product Quantity */}
-          <p className="text-sm sm:text-base text-slate-700 xs:text-xs mt-1">
+          <p className="text-xs xs:text-sm text-slate-600 mt-1">
             Quantity: {product?.quantity}ML
           </p>
 
-          {/* Price and Quantity Adjuster */}
-          <div className="flex flex-col md:flex-row xs:flex-row xs:p-1 justify-between items-center gap-4 mt-6">
-            {/* Price Button */}
-            <button
-              className="p-2 sm:p-3 xs:w-fit w-full md:w-full lg:w-full lg:p-1 xl:w-[60%] border-2 border-green-500 rounded-md"
-            >
-              <span className="text-green-500 text-sm sm:text-base lg:text-lg">
+          {/* Price and Quantity */}
+          <div className="flex flex-col xs:flex-col justify-between items-center gap-2 mt-4">
+            <button className="p-2 border-2 border-green-500 rounded-md w-full xs:w-auto">
+              <span className="text-green-500 text-sm xs:text-base">
                 Rs.{Math.round(product?.unitPrice)}
               </span>
             </button>
 
-            {/* Quantity Adjuster */}
-            <div className="w-full md:w-auto sm:w-fit">
+            <div className="w-full xs:w-auto">
               <QuantityAdjuster id={product?.id} />
             </div>
           </div>
+
         </div>
       </div>
     </div>
+
   );
 }

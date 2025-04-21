@@ -69,7 +69,17 @@ const FinalDetails = () => {
 
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg p-8 max-w-md w-full shadow-lg text-center">
+          <div className="relative bg-white rounded-lg p-8 max-w-md w-full shadow-lg text-center">
+
+            {/* Close Button (X Icon) */}
+            <button
+              onClick={() => setShowModal(false)}
+              className="absolute top-2 right-2 text-gray-600 hover:text-black text-xl font-bold"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+
             <h3 className="text-2xl font-semibold mb-4">We're Sorry!</h3>
             <p className="mb-4 text-gray-700">
               We can't process your order at the moment. Please reach out to us at{" "}
@@ -84,6 +94,7 @@ const FinalDetails = () => {
           </div>
         </div>
       )}
+
     </>
   );
 };

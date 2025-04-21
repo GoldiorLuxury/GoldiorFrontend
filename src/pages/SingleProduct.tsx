@@ -64,17 +64,12 @@ export default function SingleProduct() {
   }, [isOpenReviewModal, refetchReviews]);
 
   useEffect(() => {
-    if (product && product.capacityInML) {
-      setPerfumeCapacities(product.capacityInML); // Set the perfumeCapacities when product data is available
-      setSelectedQuantity(product.product.capacityInML[0]?.quantity || 0); // Initialize selectedQuantity with the first item
+    if (product?.product?.capacityInML && product.product.capacityInML.length > 0) {
+      setPerfumeCapacities(product.product.capacityInML);
+      setSelectedQuantity(product.product.capacityInML[0].quantity); // ✅ Set the first quantity as default
     }
-    console.log(
-      "produicts: ",
-      product,
-      "selected: ",
-      product?.product?.capacityInML[0].quantity
-    );
-  }, [product, productId]);
+  }, [product]);
+
 
   const totalRating = reviews?.reduce(
     (sum: number, review: any) => sum + review?.rating,
